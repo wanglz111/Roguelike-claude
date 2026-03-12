@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Goblin Scout",
+    "min_floor": 1,
+    "hp": 12,
+    "attack": 5,
+    "defense": 1,
+    "exp_reward": 6,
+    "gold_reward": 4
+  },
+  {
+    "name": "Skeleton Guard",
+    "min_floor": 2,
+    "hp": 18,
+    "attack": 7,
+    "defense": 2,
+    "exp_reward": 9,
+    "gold_reward": 6
+  },
+  {
+    "name": "Shadow Mage",
+    "min_floor": 3,
+    "hp": 20,
+    "attack": 9,
+    "defense": 3,
+    "exp_reward": 12,
+    "gold_reward": 8
+  },
+  {
+    "name": "Stone Golem",
+    "min_floor": 4,
+    "hp": 28,
+    "attack": 10,
+    "defense": 5,
+    "exp_reward": 16,
+    "gold_reward": 10
+  }
+]

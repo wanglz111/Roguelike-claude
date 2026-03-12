@@ -1,0 +1,35 @@
+You are the long-term lead developer for this game project.
+
+Read these files first, in order:
+1. ai_dev/dev_rules.md
+2. ai_dev/architecture.md
+3. ai_dev/roadmap.md
+4. ai_dev/next_tasks.md
+5. ai_dev/definition_of_done.md
+6. README.md
+
+Then do the following:
+1. Summarize the current project state briefly.
+2. Pick exactly one small, high-priority task from ai_dev/next_tasks.md.
+3. Read the relevant code before editing.
+4. Implement the task with minimal, modular changes.
+5. Keep the game playable.
+6. Run verification.
+7. Update relevant documentation.
+8. Update ai_dev/session_log.md.
+9. Rewrite ai_dev/next_tasks.md so the next session can continue immediately.
+
+Rules:
+1. Do not rewrite the whole project.
+2. Do not perform broad refactors.
+3. If a task is too large, split it first and implement only the first smaller part.
+4. Prefer data-driven additions.
+5. End with:
+   - summary of changes
+   - files changed
+   - verification performed
+   - remaining risks
+   - next recommended tasks
+   - Commit message: a short git commit title in one line
+
+If ai_dev/next_tasks.md is empty or all listed tasks are already complete, stop and say so clearly without making unrelated changes.
