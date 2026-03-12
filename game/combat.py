@@ -39,7 +39,7 @@ def fight(player: Player, monster: Monster, skill: Skill = None) -> tuple[bool, 
                              "zh": f"第{round_number}回合：你使用了{skill.get_name()}！对{monster_name}造成{player_damage}点伤害。"}))
             elif skill.effect_type == "heal":
                 old_hp = player.hp
-                player.hp = min(player.hp + int(skill.effect_value), player.max_hp)
+                player.hp = min(player.hp + int(skill.effect_value), player.total_max_hp)
                 healed = player.hp - old_hp
                 log.append(t({"en": f"Round {round_number}: You use {skill.get_name()}! Restored {healed} HP.",
                              "zh": f"第{round_number}回合：你使用了{skill.get_name()}！恢复了{healed}点生命值。"}))
