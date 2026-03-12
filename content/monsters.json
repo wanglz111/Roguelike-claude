@@ -10,7 +10,8 @@
     "defense": 1,
     "exp_reward": 6,
     "gold_reward": 4,
-    "drop_item": "Small Potion"
+    "drop_item": "Small Potion",
+    "is_boss": false
   },
   {
     "name": {
@@ -23,7 +24,8 @@
     "defense": 2,
     "exp_reward": 9,
     "gold_reward": 6,
-    "drop_item": "Iron Sword"
+    "drop_item": "Iron Sword",
+    "is_boss": false
   },
   {
     "name": {
@@ -36,7 +38,8 @@
     "defense": 3,
     "exp_reward": 12,
     "gold_reward": 8,
-    "drop_item": "Leather Armor"
+    "drop_item": "Leather Armor",
+    "is_boss": false
   },
   {
     "name": {
@@ -49,6 +52,35 @@
     "defense": 5,
     "exp_reward": 16,
     "gold_reward": 10,
-    "drop_item": "Medium Potion"
+    "drop_item": "Medium Potion",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Goblin Warlord",
+      "zh": "哥布林军阀"
+    },
+    "min_floor": 5,
+    "hp": 50,
+    "attack": 15,
+    "defense": 5,
+    "exp_reward": 30,
+    "gold_reward": 25,
+    "drop_item": "Steel Sword",
+    "is_boss": true
+  },
+  {
+    "name": {
+      "en": "Lich King",
+      "zh": "巫妖王"
+    },
+    "min_floor": 10,
+    "hp": 80,
+    "attack": 22,
+    "defense": 8,
+    "exp_reward": 50,
+    "gold_reward": 40,
+    "drop_item": "Plate Armor",
+    "is_boss": true
   }
 ]

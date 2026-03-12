@@ -36,8 +36,33 @@ def load_events() -> list[dict]:
 
 
 def generate_monster(floor: int, rng: random.Random) -> Monster:
+    # Boss floors: every 5th floor (5, 10, 15, ...)
+    is_boss_floor = (floor % 5 == 0)
+
+    if is_boss_floor:
+        # Generate boss monster
+        candidates = [
+            monster for monster in load_monster_pool()
+            if monster.get("is_boss", False) and monster["min_floor"] <= floor
+        ]
+        if candidates:
+            template = rng.choice(candidates)
+            scale = max(0, floor - template["min_floor"])
+            return Monster(
+                name=template["name"],
+                hp=template["hp"] + scale * 3,
+                attack=template["attack"] + scale * 2,
+                defense=template["defense"] + scale,
+                exp_reward=template["exp_reward"] + scale * 3,
+                gold_reward=template["gold_reward"] + scale * 2,
+                drop_item=template.get("drop_item"),
+                is_boss=True,
+            )
+
+    # Normal monster generation
     candidates = [
-        monster for monster in load_monster_pool() if monster["min_floor"] <= floor
+        monster for monster in load_monster_pool()
+        if not monster.get("is_boss", False) and monster["min_floor"] <= floor
     ]
     template = rng.choice(candidates)
     scale = max(0, floor - template["min_floor"])
@@ -49,6 +74,7 @@ def generate_monster(floor: int, rng: random.Random) -> Monster:
         exp_reward=template["exp_reward"] + scale * 2,
         gold_reward=template["gold_reward"] + scale,
         drop_item=template.get("drop_item"),
+        is_boss=False,
     )
 
 

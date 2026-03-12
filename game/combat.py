@@ -19,7 +19,10 @@ def check_critical_hit(crit_chance: float = 0.1) -> bool:
 
 def fight(player: Player, monster: Monster) -> tuple[bool, list[str]]:
     monster_name = monster.get_name()
-    log = [t({"en": f"A wild {monster_name} appears!", "zh": f"一只野生的{monster_name}出现了！"})]
+    if monster.is_boss:
+        log = [t({"en": f"⚔️ BOSS BATTLE! {monster_name} appears!", "zh": f"⚔️ Boss战！{monster_name}出现了！"})]
+    else:
+        log = [t({"en": f"A wild {monster_name} appears!", "zh": f"一只野生的{monster_name}出现了！"})]
     round_number = 1
 
     while player.is_alive and monster.hp > 0:

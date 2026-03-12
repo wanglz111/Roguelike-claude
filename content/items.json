@@ -105,5 +105,22 @@
       "en": "+4 Defense, +10 HP",
       "zh": "+4防御力, +10生命值"
     }
+  },
+  {
+    "name": {
+      "en": "Plate Armor",
+      "zh": "板甲"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "armor",
+    "bonus_attack": 0,
+    "bonus_defense": 6,
+    "bonus_hp": 20,
+    "description": {
+      "en": "+6 Defense, +20 HP",
+      "zh": "+6防御力, +20生命值"
+    }
   }
 ]
