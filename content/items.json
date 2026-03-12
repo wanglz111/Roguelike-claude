@@ -173,5 +173,65 @@
       "en": "+2 Defense",
       "zh": "+2防御力"
     }
+  },
+  {
+    "name": {
+      "en": "Small Mana Potion",
+      "zh": "小型魔力药水"
+    },
+    "item_type": "consumable",
+    "effect_type": "restore_mp",
+    "effect_value": 15,
+    "description": {
+      "en": "Restores 15 MP",
+      "zh": "恢复15点魔力值"
+    }
+  },
+  {
+    "name": {
+      "en": "Medium Mana Potion",
+      "zh": "中型魔力药水"
+    },
+    "item_type": "consumable",
+    "effect_type": "restore_mp",
+    "effect_value": 30,
+    "description": {
+      "en": "Restores 30 MP",
+      "zh": "恢复30点魔力值"
+    }
+  },
+  {
+    "name": {
+      "en": "Mythril Sword",
+      "zh": "秘银剑"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "weapon",
+    "bonus_attack": 8,
+    "bonus_defense": 0,
+    "bonus_hp": 0,
+    "description": {
+      "en": "+8 Attack",
+      "zh": "+8攻击力"
+    }
+  },
+  {
+    "name": {
+      "en": "Balanced Ring",
+      "zh": "平衡指环"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "accessory",
+    "bonus_attack": 2,
+    "bonus_defense": 1,
+    "bonus_hp": 10,
+    "description": {
+      "en": "+2 Attack, +1 Defense, +10 HP",
+      "zh": "+2攻击力, +1防御力, +10生命值"
+    }
   }
 ]

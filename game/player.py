@@ -105,6 +105,11 @@ class Player:
             self.hp = min(self.total_max_hp, self.hp + item.effect_value)
             healed = self.hp - old_hp
             return t({"en": f"Used {item.get_name()}. Restored {healed} HP.", "zh": f"使用了{item.get_name()}。恢复了{healed}点生命值。"})
+        elif item.effect_type == "restore_mp":
+            old_mp = self.mp
+            self.mp = min(self.total_max_mp, self.mp + item.effect_value)
+            restored = self.mp - old_mp
+            return t({"en": f"Used {item.get_name()}. Restored {restored} MP.", "zh": f"使用了{item.get_name()}。恢复了{restored}点魔力值。"})
         return t({"en": f"Used {item.get_name()}.", "zh": f"使用了{item.get_name()}。"})
 
     def gain_rewards(self, exp: int, gold: int) -> list[str]:

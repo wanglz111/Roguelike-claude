@@ -16,6 +16,11 @@
         "stock": -1
       },
       {
+        "item_name": "Small Mana Potion",
+        "price": 15,
+        "stock": -1
+      },
+      {
         "item_name": "Medium Potion",
         "price": 35,
         "stock": -1
@@ -49,6 +54,11 @@
         "stock": -1
       },
       {
+        "item_name": "Medium Mana Potion",
+        "price": 35,
+        "stock": -1
+      },
+      {
         "item_name": "Large Potion",
         "price": 60,
         "stock": -1
@@ -61,6 +71,11 @@
       {
         "item_name": "Chain Mail",
         "price": 150,
+        "stock": 1
+      },
+      {
+        "item_name": "Health Ring",
+        "price": 100,
         "stock": 1
       }
     ]
@@ -82,8 +97,23 @@
         "stock": -1
       },
       {
+        "item_name": "Medium Mana Potion",
+        "price": 35,
+        "stock": -1
+      },
+      {
         "item_name": "Plate Armor",
         "price": 250,
+        "stock": 1
+      },
+      {
+        "item_name": "Mythril Sword",
+        "price": 200,
+        "stock": 1
+      },
+      {
+        "item_name": "Balanced Ring",
+        "price": 150,
         "stock": 1
       }
     ]

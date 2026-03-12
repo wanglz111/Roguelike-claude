@@ -1102,3 +1102,44 @@
 2. 添加装备稀有度系统（普通/稀有/史诗/传奇）
 3. 添加周目系统（通关后开始新周目）
 
+## 2026-03-13 Shop Item Expansion
+
+目标：
+扩展商店物品池，添加更多装备和消耗品，提升商店系统的内容丰富度。
+
+完成内容：
+
+1. 在 `content/items.json` 中添加 4 个新物品：
+   - Small Mana Potion（小型魔力药水）- 消耗品，恢复 15 MP
+   - Medium Mana Potion（中型魔力药水）- 消耗品，恢复 30 MP
+   - Mythril Sword（秘银剑）- 武器，+8 攻击力
+   - Balanced Ring（平衡指环）- 饰品，+2 攻击 +1 防御 +10 HP
+2. 物品总数从 11 个增加到 15 个
+3. 在 `game/player.py` 中添加 `restore_mp` 效果类型支持
+4. 更新 `content/shops.json` 中的 3 个商店：
+   - Wandering Merchant：添加 Small Mana Potion（15 金币）
+   - Blacksmith's Shop：添加 Medium Mana Potion（35 金币）和 Health Ring（100 金币）
+   - Master Armorer：添加 Medium Mana Potion（35 金币）、Mythril Sword（200 金币）、Balanced Ring（150 金币）
+5. 填补了 MP 恢复物品的空白（游戏有 MP 系统但之前没有 MP 药水）
+6. 为后期商店添加高级武器（Mythril Sword，+8 攻击）
+7. 为商店添加饰品销售（之前商店不卖饰品）
+8. 所有新物品支持中英文双语
+9. 更新 README.md 文档
+
+验证：
+
+1. items.json 格式正确，新增 4 个物品定义完整
+2. shops.json 更新正确，新物品合理分配到不同商店
+3. Player 类正确处理 restore_mp 效果
+4. 代码审查确认实现正确
+
+遗留问题：
+
+无。这是一个纯数据驱动的内容扩展。
+
+建议下一步：
+
+1. 添加装备稀有度系统（普通/稀有/史诗/传奇）
+2. 添加周目系统（通关后开始新周目）
+3. 继续扩展商店物品或其他内容
+
