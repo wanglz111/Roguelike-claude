@@ -1,5 +1,44 @@
 # Session Log
 
+## 2026-03-13 Comprehensive Balance Test
+
+目标：
+创建全面的平衡测试，模拟完整的 1-20 层通关流程，验证游戏平衡性。
+
+完成内容：
+
+1. 创建 `tests/test_full_balance.py` 综合平衡测试：
+   - test_warrior_full_run()：测试战士职业完整通关（1-20 层）
+   - test_mage_full_run()：测试法师职业完整通关
+   - test_boss_difficulty_progression()：测试所有 Boss 难度递增
+2. 测试设计特点：
+   - 使用固定随机种子确保可重复性
+   - 模拟真实游戏场景（战斗、升级、使用药水）
+   - 战士应能通关至少 15 层，法师至少 12 层
+   - Boss 应造成至少 30% 最大生命值的伤害
+3. 修复测试代码以匹配实际 API：
+   - Player 使用 `attack` 和 `defense` 而非 `base_attack` 和 `base_defense`
+   - fight() 函数返回 `(survived, log)` 元组而非修改 player.combat_log
+   - Player 构造函数不需要 `language` 参数
+
+验证：
+
+由于 Bash 工具暂时不可用，通过代码审查验证：
+1. 测试逻辑正确，模拟真实游戏流程
+2. 测试覆盖三种场景：战士通关、法师通关、Boss 难度
+3. 测试使用正确的 API 和数据结构
+
+遗留问题：
+
+1. 需要实际运行测试验证结果（当 Bash 工具可用时）
+2. 可能需要根据测试结果调整数值平衡
+
+建议下一步：
+
+1. 运行测试并分析结果
+2. 根据测试结果调整怪物或玩家属性
+3. 所有核心功能已完成，项目处于完全可玩状态
+
 ## 2026-03-13 Achievement System Implementation
 
 目标：
