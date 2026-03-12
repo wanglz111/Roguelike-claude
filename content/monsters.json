@@ -57,6 +57,132 @@
   },
   {
     "name": {
+      "en": "Wild Wolf",
+      "zh": "野狼"
+    },
+    "min_floor": 1,
+    "hp": 10,
+    "attack": 6,
+    "defense": 0,
+    "exp_reward": 5,
+    "gold_reward": 3,
+    "drop_item": "Small Potion",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Orc Warrior",
+      "zh": "兽人战士"
+    },
+    "min_floor": 2,
+    "hp": 20,
+    "attack": 8,
+    "defense": 3,
+    "exp_reward": 10,
+    "gold_reward": 7,
+    "drop_item": "Iron Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Dark Cultist",
+      "zh": "黑暗教徒"
+    },
+    "min_floor": 3,
+    "hp": 16,
+    "attack": 10,
+    "defense": 2,
+    "exp_reward": 11,
+    "gold_reward": 9,
+    "drop_item": "Medium Potion",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Armored Knight",
+      "zh": "重甲骑士"
+    },
+    "min_floor": 4,
+    "hp": 25,
+    "attack": 9,
+    "defense": 6,
+    "exp_reward": 15,
+    "gold_reward": 11,
+    "drop_item": "Leather Armor",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Fire Elemental",
+      "zh": "火元素"
+    },
+    "min_floor": 6,
+    "hp": 35,
+    "attack": 16,
+    "defense": 4,
+    "exp_reward": 22,
+    "gold_reward": 15,
+    "drop_item": "Medium Potion",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Vampire",
+      "zh": "吸血鬼"
+    },
+    "min_floor": 7,
+    "hp": 40,
+    "attack": 18,
+    "defense": 5,
+    "exp_reward": 26,
+    "gold_reward": 18,
+    "drop_item": "Steel Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Demon Guard",
+      "zh": "恶魔守卫"
+    },
+    "min_floor": 8,
+    "hp": 45,
+    "attack": 20,
+    "defense": 7,
+    "exp_reward": 30,
+    "gold_reward": 20,
+    "drop_item": "Plate Armor",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Ancient Dragon",
+      "zh": "远古巨龙"
+    },
+    "min_floor": 15,
+    "hp": 120,
+    "attack": 30,
+    "defense": 12,
+    "exp_reward": 80,
+    "gold_reward": 60,
+    "drop_item": "Steel Sword",
+    "is_boss": true
+  },
+  {
+    "name": {
+      "en": "Demon Lord",
+      "zh": "魔王"
+    },
+    "min_floor": 20,
+    "hp": 150,
+    "attack": 35,
+    "defense": 15,
+    "exp_reward": 100,
+    "gold_reward": 80,
+    "drop_item": "Plate Armor",
+    "is_boss": true
+  },
+  {
+    "name": {
       "en": "Goblin Warlord",
       "zh": "哥布林军阀"
     },
