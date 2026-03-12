@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
 
 @dataclass
@@ -11,6 +11,7 @@ class Player:
     level: int = 1
     exp: int = 0
     gold: int = 0
+    inventory: list = field(default_factory=list)
 
     @property
     def exp_to_next_level(self) -> int:
@@ -19,6 +20,21 @@ class Player:
     @property
     def is_alive(self) -> bool:
         return self.hp > 0
+
+    def add_item(self, item) -> str:
+        self.inventory.append(item)
+        return f"You obtained {item.name}!"
+
+    def use_item(self, index: int) -> str:
+        if index < 0 or index >= len(self.inventory):
+            return "Invalid item."
+        item = self.inventory.pop(index)
+        if item.effect_type == "heal":
+            old_hp = self.hp
+            self.hp = min(self.max_hp, self.hp + item.effect_value)
+            healed = self.hp - old_hp
+            return f"Used {item.name}. Restored {healed} HP."
+        return f"Used {item.name}."
 
     def gain_rewards(self, exp: int, gold: int) -> list[str]:
         self.exp += exp

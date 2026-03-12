@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Small Potion",
+    "item_type": "consumable",
+    "effect_type": "heal",
+    "effect_value": 15,
+    "description": "Restores 15 HP"
+  },
+  {
+    "name": "Medium Potion",
+    "item_type": "consumable",
+    "effect_type": "heal",
+    "effect_value": 30,
+    "description": "Restores 30 HP"
+  },
+  {
+    "name": "Large Potion",
+    "item_type": "consumable",
+    "effect_type": "heal",
+    "effect_value": 50,
+    "description": "Restores 50 HP"
+  }
+]

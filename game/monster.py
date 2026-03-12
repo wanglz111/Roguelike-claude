@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 
 @dataclass
@@ -9,3 +10,4 @@ class Monster:
     defense: int
     exp_reward: int
     gold_reward: int
+    drop_item: Optional[str] = None

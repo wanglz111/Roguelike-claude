@@ -6,7 +6,8 @@
     "attack": 5,
     "defense": 1,
     "exp_reward": 6,
-    "gold_reward": 4
+    "gold_reward": 4,
+    "drop_item": "Small Potion"
   },
   {
     "name": "Skeleton Guard",
@@ -15,7 +16,8 @@
     "attack": 7,
     "defense": 2,
     "exp_reward": 9,
-    "gold_reward": 6
+    "gold_reward": 6,
+    "drop_item": "Small Potion"
   },
   {
     "name": "Shadow Mage",
@@ -24,7 +26,8 @@
     "attack": 9,
     "defense": 3,
     "exp_reward": 12,
-    "gold_reward": 8
+    "gold_reward": 8,
+    "drop_item": "Medium Potion"
   },
   {
     "name": "Stone Golem",
@@ -33,6 +36,7 @@
     "attack": 10,
     "defense": 5,
     "exp_reward": 16,
-    "gold_reward": 10
+    "gold_reward": 10,
+    "drop_item": "Medium Potion"
   }
 ]

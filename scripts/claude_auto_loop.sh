@@ -64,8 +64,50 @@ for ((i = 1; i <= ITERATIONS; i++)); do
     cd "$ROOT_DIR"
     cat "$PROMPT_FILE" | claude -p \
       "${EXTRA_ARGS[@]}" \
+      --verbose \
+      --output-format stream-json \
+      --include-partial-messages \
       --add-dir "$ROOT_DIR"
-  ) | tee "$log_file"
+  ) | python3 -c '
+import json
+import sys
+
+for raw_line in sys.stdin:
+    line = raw_line.rstrip("\n")
+    if not line:
+        continue
+    try:
+        event = json.loads(line)
+    except json.JSONDecodeError:
+        print(line, flush=True)
+        continue
+
+    event_type = event.get("type", "")
+    if event_type in {"assistant", "message"}:
+        message = event.get("message", {})
+        content = message.get("content", [])
+        if isinstance(content, list):
+            for block in content:
+                if isinstance(block, dict) and block.get("type") == "text":
+                    text = block.get("text", "")
+                    if text:
+                        print(text, end="", flush=True)
+        elif isinstance(content, str) and content:
+            print(content, end="", flush=True)
+    elif event_type in {"content_block_delta", "delta"}:
+        delta = event.get("delta", {})
+        text = delta.get("text", "")
+        if text:
+            print(text, end="", flush=True)
+    elif event_type in {"content_block_stop", "message_stop"}:
+        print(flush=True)
+    elif event_type == "error":
+        print("\n[Claude error] {}".format(event.get("error", event)), flush=True)
+    else:
+        text = event.get("text", "")
+        if text:
+            print(text, end="", flush=True)
+' | tee "$log_file"
 
   if [[ "$AUTO_COMMIT" == "1" ]]; then
     if ! git -C "$ROOT_DIR" diff --quiet --exit-code || ! git -C "$ROOT_DIR" diff --cached --quiet --exit-code; then
@@ -73,7 +115,16 @@ for ((i = 1; i <= ITERATIONS; i++)); do
 
       if ! git -C "$ROOT_DIR" diff --cached --quiet --exit-code; then
         commit_message="$(
-          grep -E '^Commit message:' "$log_file" | tail -n 1 | sed 's/^Commit message:[[:space:]]*//'
+          python3 - "$log_file" <<'PY'
+import pathlib
+import re
+import sys
+
+text = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+match = re.search(r"\*?\*?Commit message:\*?\*?\s*(.+)", text, re.IGNORECASE)
+if match:
+    print(match.group(1).strip())
+PY
         )"
 
         if [[ -z "$commit_message" ]]; then
