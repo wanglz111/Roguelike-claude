@@ -116,6 +116,11 @@ def save_game(state: GameState) -> str:
                 "mp_per_level": state.player.mp_per_level,
                 "attack_per_level": state.player.attack_per_level,
                 "defense_per_level": state.player.defense_per_level,
+                "unlocked_achievements": list(state.player.unlocked_achievements),
+                "monsters_killed": state.player.monsters_killed,
+                "bosses_killed": state.player.bosses_killed,
+                "skills_used": state.player.skills_used,
+                "items_purchased": state.player.items_purchased,
             },
             "floor": state.floor,
             "max_floor": state.max_floor,
@@ -188,6 +193,11 @@ def load_game() -> tuple[Optional[GameState], str]:
             mp_per_level=save_data["player"].get("mp_per_level", 5),
             attack_per_level=save_data["player"].get("attack_per_level", 2),
             defense_per_level=save_data["player"].get("defense_per_level", 1),
+            unlocked_achievements=set(save_data["player"].get("unlocked_achievements", [])),
+            monsters_killed=save_data["player"].get("monsters_killed", 0),
+            bosses_killed=save_data["player"].get("bosses_killed", 0),
+            skills_used=save_data["player"].get("skills_used", 0),
+            items_purchased=save_data["player"].get("items_purchased", 0),
         )
 
         # Reconstruct game state

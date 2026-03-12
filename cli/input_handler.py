@@ -2,6 +2,57 @@ from cli.renderer import render_inventory
 from game.i18n import t
 
 
+def prompt_view_achievements(player, achievements_db) -> None:
+    """Display player's achievements."""
+    print(f"\n=== {t({'en': 'Achievements', 'zh': '成就'})} ===")
+
+    # Group achievements by category
+    categories = {}
+    for ach in achievements_db:
+        if ach.category not in categories:
+            categories[ach.category] = []
+        categories[ach.category].append(ach)
+
+    category_names = {
+        "combat": t({"en": "Combat", "zh": "战斗"}),
+        "exploration": t({"en": "Exploration", "zh": "探索"}),
+        "progression": t({"en": "Progression", "zh": "进度"}),
+        "collection": t({"en": "Collection", "zh": "收集"})
+    }
+
+    unlocked_count = len(player.unlocked_achievements)
+    total_count = len(achievements_db)
+    print(f"{t({'en': 'Unlocked', 'zh': '已解锁'})}: {unlocked_count}/{total_count}\n")
+
+    for category, ach_list in categories.items():
+        print(f"--- {category_names.get(category, category)} ---")
+        for ach in ach_list:
+            if ach.id in player.unlocked_achievements:
+                name = t({"en": ach.name_en, "zh": ach.name_zh})
+                desc = t({"en": ach.description_en, "zh": ach.description_zh})
+                print(f"✓ {name}")
+                print(f"  {desc}")
+            elif not ach.hidden:
+                name = t({"en": ach.name_en, "zh": ach.name_zh})
+                desc = t({"en": ach.description_en, "zh": ach.description_zh})
+                print(f"✗ {name}")
+                print(f"  {desc}")
+            else:
+                print(f"✗ {t({'en': '???', 'zh': '???'})}")
+                print(f"  {t({'en': 'Hidden achievement', 'zh': '隐藏成就'})}")
+        print()
+
+    # Show stats
+    print(f"--- {t({'en': 'Stats', 'zh': '统计'})} ---")
+    print(f"{t({'en': 'Monsters killed', 'zh': '击杀怪物'})}: {player.monsters_killed}")
+    print(f"{t({'en': 'Bosses defeated', 'zh': '击败Boss'})}: {player.bosses_killed}")
+    print(f"{t({'en': 'Skills used', 'zh': '使用技能'})}: {player.skills_used}")
+    print(f"{t({'en': 'Items purchased', 'zh': '购买物品'})}: {player.items_purchased}")
+    print()
+
+    input(t({"en": "Press Enter to continue...", "zh": "按回车继续..."}))
+
+
 def prompt_skill_use(player, skills_db) -> str:
     """Prompt player to use a skill before combat.
 
@@ -76,11 +127,11 @@ def confirm_start() -> bool:
 def prompt_item_use(player) -> str:
     if not player.inventory:
         print(f"\n{t({'en': 'HP', 'zh': '生命值'})}: {player.hp}/{player.total_max_hp}")
-        choice = input(t({"en": "Press Enter to continue or 's' to save: ", "zh": "按回车继续或输入's'保存："})).strip()
+        choice = input(t({"en": "Press Enter to continue, 's' to save, or 'a' for achievements: ", "zh": "按回车继续、输入's'保存或输入'a'查看成就："})).strip()
         return choice
     print(f"\n{t({'en': 'HP', 'zh': '生命值'})}: {player.hp}/{player.total_max_hp}")
     render_inventory(player)
-    choice = input(t({"en": "Use item (u<number>) or Equip (e<number>) or 's' to save or Enter to continue: ", "zh": "使用物品（u数字）或装备（e数字）或输入's'保存或回车继续："})).strip()
+    choice = input(t({"en": "Use item (u<number>), Equip (e<number>), 's' to save, 'a' for achievements, or Enter to continue: ", "zh": "使用物品（u数字）、装备（e数字）、输入's'保存、输入'a'查看成就或回车继续："})).strip()
     return choice
 
 

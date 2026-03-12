@@ -1,0 +1,199 @@
+{
+  "achievements": [
+    {
+      "id": "first_blood",
+      "name_en": "First Blood",
+      "name_zh": "初次击杀",
+      "description_en": "Defeat your first monster",
+      "description_zh": "击败你的第一个怪物",
+      "category": "combat"
+    },
+    {
+      "id": "boss_slayer",
+      "name_en": "Boss Slayer",
+      "name_zh": "Boss 杀手",
+      "description_en": "Defeat your first boss",
+      "description_zh": "击败你的第一个 Boss",
+      "category": "combat"
+    },
+    {
+      "id": "goblin_warlord_defeated",
+      "name_en": "Warlord's Bane",
+      "name_zh": "军阀克星",
+      "description_en": "Defeat the Goblin Warlord",
+      "description_zh": "击败哥布林军阀",
+      "category": "combat"
+    },
+    {
+      "id": "lich_king_defeated",
+      "name_en": "Undead Hunter",
+      "name_zh": "不死猎手",
+      "description_en": "Defeat the Lich King",
+      "description_zh": "击败巫妖王",
+      "category": "combat"
+    },
+    {
+      "id": "ancient_dragon_defeated",
+      "name_en": "Dragon Slayer",
+      "name_zh": "屠龙勇士",
+      "description_en": "Defeat the Ancient Dragon",
+      "description_zh": "击败远古巨龙",
+      "category": "combat"
+    },
+    {
+      "id": "demon_lord_defeated",
+      "name_en": "Demon's End",
+      "name_zh": "魔王终结者",
+      "description_en": "Defeat the Demon Lord",
+      "description_zh": "击败魔王",
+      "category": "combat"
+    },
+    {
+      "id": "floor_5",
+      "name_en": "Novice Explorer",
+      "name_zh": "新手探险家",
+      "description_en": "Reach floor 5",
+      "description_zh": "到达第 5 层",
+      "category": "exploration"
+    },
+    {
+      "id": "floor_10",
+      "name_en": "Experienced Adventurer",
+      "name_zh": "经验丰富的冒险者",
+      "description_en": "Reach floor 10",
+      "description_zh": "到达第 10 层",
+      "category": "exploration"
+    },
+    {
+      "id": "floor_15",
+      "name_en": "Veteran Delver",
+      "name_zh": "资深探索者",
+      "description_en": "Reach floor 15",
+      "description_zh": "到达第 15 层",
+      "category": "exploration"
+    },
+    {
+      "id": "floor_20",
+      "name_en": "Master of the Depths",
+      "name_zh": "深渊大师",
+      "description_en": "Reach floor 20",
+      "description_zh": "到达第 20 层",
+      "category": "exploration"
+    },
+    {
+      "id": "first_completion",
+      "name_en": "Dungeon Conqueror",
+      "name_zh": "地牢征服者",
+      "description_en": "Complete the dungeon for the first time",
+      "description_zh": "首次通关地牢",
+      "category": "progression"
+    },
+    {
+      "id": "new_game_plus",
+      "name_en": "Cycle Breaker",
+      "name_zh": "轮回破坏者",
+      "description_en": "Start a New Game+",
+      "description_zh": "开始新周目",
+      "category": "progression"
+    },
+    {
+      "id": "level_10",
+      "name_en": "Rising Hero",
+      "name_zh": "崛起英雄",
+      "description_en": "Reach level 10",
+      "description_zh": "到达 10 级",
+      "category": "progression"
+    },
+    {
+      "id": "level_20",
+      "name_en": "Legendary Warrior",
+      "name_zh": "传奇战士",
+      "description_en": "Reach level 20",
+      "description_zh": "到达 20 级",
+      "category": "progression"
+    },
+    {
+      "id": "first_equipment",
+      "name_en": "Geared Up",
+      "name_zh": "装备齐全",
+      "description_en": "Equip your first item",
+      "description_zh": "装备你的第一件物品",
+      "category": "collection"
+    },
+    {
+      "id": "full_equipment",
+      "name_en": "Fully Armed",
+      "name_zh": "全副武装",
+      "description_en": "Equip weapon, armor, and accessory",
+      "description_zh": "装备武器、护甲和饰品",
+      "category": "collection"
+    },
+    {
+      "id": "rare_collector",
+      "name_en": "Rare Collector",
+      "name_zh": "稀有收藏家",
+      "description_en": "Equip a rare or higher quality item",
+      "description_zh": "装备一件稀有或更高品质的物品",
+      "category": "collection"
+    },
+    {
+      "id": "epic_collector",
+      "name_en": "Epic Collector",
+      "name_zh": "史诗收藏家",
+      "description_en": "Equip an epic or higher quality item",
+      "description_zh": "装备一件史诗或更高品质的物品",
+      "category": "collection"
+    },
+    {
+      "id": "legendary_collector",
+      "name_en": "Legendary Collector",
+      "name_zh": "传奇收藏家",
+      "description_en": "Equip a legendary quality item",
+      "description_zh": "装备一件传奇品质的物品",
+      "category": "collection",
+      "hidden": true
+    },
+    {
+      "id": "gold_hoarder",
+      "name_en": "Gold Hoarder",
+      "name_zh": "黄金囤积者",
+      "description_en": "Accumulate 500 gold",
+      "description_zh": "积累 500 金币",
+      "category": "collection"
+    },
+    {
+      "id": "skill_master",
+      "name_en": "Skill Master",
+      "name_zh": "技能大师",
+      "description_en": "Use 50 skills in combat",
+      "description_zh": "在战斗中使用 50 次技能",
+      "category": "combat"
+    },
+    {
+      "id": "survivor",
+      "name_en": "Survivor",
+      "name_zh": "幸存者",
+      "description_en": "Win a battle with less than 10% HP remaining",
+      "description_zh": "以少于 10% 生命值赢得战斗",
+      "category": "combat",
+      "hidden": true
+    },
+    {
+      "id": "perfect_victory",
+      "name_en": "Perfect Victory",
+      "name_zh": "完美胜利",
+      "description_en": "Defeat a boss without taking damage",
+      "description_zh": "击败 Boss 且不受伤",
+      "category": "combat",
+      "hidden": true
+    },
+    {
+      "id": "shopaholic",
+      "name_en": "Shopaholic",
+      "name_zh": "购物狂",
+      "description_en": "Purchase 20 items from shops",
+      "description_zh": "从商店购买 20 件物品",
+      "category": "collection"
+    }
+  ]
+}

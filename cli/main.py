@@ -1,6 +1,6 @@
 import random
 
-from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use, prompt_event_choice, prompt_shop_purchase, prompt_skill_use, prompt_class_selection
+from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use, prompt_event_choice, prompt_shop_purchase, prompt_skill_use, prompt_class_selection, prompt_view_achievements
 from cli.renderer import render_intro, render_state
 from game.combat import fight
 from game.floor import generate_monster, load_items, generate_event, generate_shop
@@ -8,6 +8,8 @@ from game.game_state import GameState
 from game.player import Player
 from game.player_class import load_classes
 from game.skill import load_skills
+from game.achievement import load_achievements
+from game.achievement_checker import check_achievements, format_achievement_unlock
 from game.i18n import get_i18n, t
 from game.save_load import save_game, load_game, has_save_file
 
@@ -67,10 +69,17 @@ def main() -> None:
     rng = random.Random()
     items_db = load_items()
     skills_db = load_skills()
+    achievements_db = load_achievements()
     state.log.append(t({"en": f"Welcome, {state.player.name}.", "zh": f"欢迎，{state.player.name}。"}))
 
     while not state.game_over and state.floor <= state.max_floor:
         state.log.append(t({"en": f"Floor {state.floor} begins.", "zh": f"第{state.floor}层开始。"}))
+
+        # Check floor achievement
+        newly_unlocked = check_achievements(state.player, achievements_db, "floor_reached", floor=state.floor)
+        for _, ach in newly_unlocked:
+            print(format_achievement_unlock(ach))
+
         monster = generate_monster(state.floor, rng, state.cycle)
 
         # Prompt for skill usage
@@ -79,9 +88,37 @@ def main() -> None:
         if skill_id:
             skill = skills_db[skill_id]
             state.player.mp -= skill.mp_cost
+            state.player.skills_used += 1
 
+            # Check skill usage achievement
+            newly_unlocked = check_achievements(state.player, achievements_db, "skill_used")
+            for _, ach in newly_unlocked:
+                print(format_achievement_unlock(ach))
+
+        player_hp_before = state.player.hp
         victory, battle_log = fight(state.player, monster, skill)
         state.log.extend(battle_log)
+
+        if not victory:
+            state.game_over = True
+            break
+
+        # Track monster kills
+        state.player.monsters_killed += 1
+        if monster.is_boss:
+            state.player.bosses_killed += 1
+
+        # Check combat achievements
+        damage_taken = player_hp_before - state.player.hp
+        newly_unlocked = check_achievements(state.player, achievements_db, "monster_killed",
+                                           is_boss=monster.is_boss, monster_name=monster.get_name())
+        for _, ach in newly_unlocked:
+            print(format_achievement_unlock(ach))
+
+        newly_unlocked = check_achievements(state.player, achievements_db, "battle_won",
+                                           is_boss=monster.is_boss, damage_taken=damage_taken)
+        for _, ach in newly_unlocked:
+            print(format_achievement_unlock(ach))
 
         if not victory:
             state.game_over = True
@@ -92,13 +129,34 @@ def main() -> None:
             msg = state.player.add_item(item)
             state.log.append(msg)
 
+        # Check gold achievement
+        newly_unlocked = check_achievements(state.player, achievements_db, "gold_changed")
+        for _, ach in newly_unlocked:
+            print(format_achievement_unlock(ach))
+
+        # Check level up achievement
+        newly_unlocked = check_achievements(state.player, achievements_db, "level_up")
+        for _, ach in newly_unlocked:
+            print(format_achievement_unlock(ach))
+
         if state.floor == state.max_floor:
             state.log.append(t({"en": "You cleared the tower prototype.", "zh": "你通关了塔楼原型。"}))
+
+            # Check completion achievement
+            newly_unlocked = check_achievements(state.player, achievements_db, "floor_reached", floor=state.floor + 1)
+            for _, ach in newly_unlocked:
+                print(format_achievement_unlock(ach))
+
             render_state(state)
 
             # Offer New Game+
             ng_choice = input(t({"en": f"\nStart New Game+ (Cycle {state.cycle + 1})? [Y/n]: ", "zh": f"\n开始新周目（第{state.cycle + 1}周）？[Y/n]："})).strip().lower()
             if ng_choice in {"", "y", "yes", "是"}:
+                # Check New Game+ achievement
+                newly_unlocked = check_achievements(state.player, achievements_db, "new_game_plus")
+                for _, ach in newly_unlocked:
+                    print(format_achievement_unlock(ach))
+
                 # Start New Game+
                 state.cycle += 1
                 state.floor = 1
@@ -147,10 +205,16 @@ def main() -> None:
                     success, item_name = shop.purchase_item(item_idx)
                     if success and item_name in items_db:
                         state.player.gold -= shop_item.price
+                        state.player.items_purchased += 1
                         item = items_db[item_name]
                         msg = state.player.add_item(item)
                         state.log.append(t({"en": f"Purchased {item.get_name()} for {shop_item.price} gold.", "zh": f"花费{shop_item.price}金币购买了{item.get_name()}。"}))
                         print(msg)
+
+                        # Check purchase achievement
+                        newly_unlocked = check_achievements(state.player, achievements_db, "item_purchased")
+                        for _, ach in newly_unlocked:
+                            print(format_achievement_unlock(ach))
 
         choice = prompt_item_use(state.player)
         if choice.startswith('u') and choice[1:].isdigit():
@@ -159,8 +223,17 @@ def main() -> None:
             state.log.append(msg)
         elif choice.startswith('e') and choice[1:].isdigit():
             idx = int(choice[1:]) - 1
+            item = state.player.inventory[idx] if 0 <= idx < len(state.player.inventory) else None
             msg = state.player.equip_item(idx)
             state.log.append(msg)
+
+            # Check equipment achievements
+            if item:
+                newly_unlocked = check_achievements(state.player, achievements_db, "equipment_equipped", item=item)
+                for _, ach in newly_unlocked:
+                    print(format_achievement_unlock(ach))
+        elif choice.lower() in {'a', 'achievement', 'achievements'}:
+            prompt_view_achievements(state.player, achievements_db)
         elif choice.lower() in {'s', 'save'}:
             msg = save_game(state)
             print(msg)

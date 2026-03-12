@@ -1,5 +1,81 @@
 # Session Log
 
+## 2026-03-13 Achievement System Implementation
+
+目标：
+实现成就系统，追踪玩家里程碑和特殊成就，增加游戏可重玩性和目标感。
+
+完成内容：
+
+1. 创建 `game/achievement.py` 模块：
+   - 定义 Achievement 数据类（id、名称、描述、类别、隐藏标记）
+   - 实现 load_achievements() 函数从 JSON 加载成就
+   - 实现 get_achievement_by_id() 辅助函数
+2. 创建 `content/achievements.json` 定义 24 种成就：
+   - 战斗类（8 个）：首次击杀、Boss 击杀、特定 Boss 击败、技能大师、幸存者、完美胜利
+   - 探索类（4 个）：到达第 5/10/15/20 层
+   - 进度类（4 个）：首次通关、新周目、到达 10/20 级
+   - 收集类（8 个）：装备相关、稀有度收集、金币囤积、购物狂
+   - 包含 3 个隐藏成就（幸存者、完美胜利、传奇收藏家）
+3. 更新 Player 类支持成就追踪：
+   - 添加 unlocked_achievements 字段（Set[str]）
+   - 添加统计字段：monsters_killed、bosses_killed、skills_used、items_purchased
+   - 添加 unlock_achievement() 和 has_achievement() 方法
+4. 创建 `game/achievement_checker.py` 模块：
+   - 实现 check_achievements() 函数检查成就解锁条件
+   - 支持多种触发器：monster_killed、floor_reached、level_up、equipment_equipped、gold_changed、skill_used、battle_won、item_purchased、new_game_plus
+   - 实现 format_achievement_unlock() 格式化成就解锁消息
+5. 集成成就检查到游戏主循环：
+   - 在楼层开始时检查楼层里程碑成就
+   - 在战斗后检查击杀和战斗相关成就
+   - 在装备物品时检查装备相关成就
+   - 在购买物品时检查购买相关成就
+   - 在升级时检查等级成就
+   - 在通关和新周目时检查进度成就
+   - 追踪所有相关统计数据（击杀数、技能使用次数等）
+6. 添加成就查看功能到 CLI：
+   - 在 input_handler.py 添加 prompt_view_achievements() 函数
+   - 按类别显示成就（战斗、探索、进度、收集）
+   - 显示已解锁成就的详细信息
+   - 隐藏成就在解锁前显示为 "???"
+   - 显示玩家统计数据
+   - 更新提示信息，玩家可输入 'a' 查看成就
+7. 更新存档系统支持成就：
+   - 在 save_game() 中保存 unlocked_achievements 和统计数据
+   - 在 load_game() 中恢复成就和统计数据
+   - 向后兼容旧存档（默认值为空集合和 0）
+8. 创建 `tests/test_achievements.py` 测试成就系统：
+   - 测试成就加载（24 个成就）
+   - 测试各类成就解锁条件
+   - 测试成就不会重复解锁
+   - 测试 Player 成就追踪方法
+9. 更新文档：
+   - architecture.md：添加 Achievement 类说明，更新主循环描述
+   - README.md：在核心功能列表中添加成就系统
+   - next_tasks.md：标记成就系统为已完成
+
+验证：
+
+1. 成就系统成功加载 24 个成就
+2. 玩家成就追踪功能正常工作
+3. 成就检查逻辑正确触发
+4. 存档系统正确保存和加载成就数据
+5. CLI 成就查看界面正常显示
+6. 所有现有测试模块仍然正常导入
+7. 游戏主程序正常运行
+
+遗留问题：
+
+无
+
+建议下一步：
+
+1. 成就系统已完全实现，为游戏增加了长期目标和可重玩性
+2. 可选：进行完整的 1-20 层通关测试，调整数值平衡
+3. 可选：优化 UI 显示，改进战斗日志
+4. 可选：添加多存档槽位支持
+5. 项目已达到非常完整的可玩状态，所有 Milestone 4 扩展功能完成
+
 ## 2026-03-13 Equipment Rarity System Enhancement
 
 目标：

@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+from typing import Set
 
 from game.i18n import t
 
@@ -24,6 +25,12 @@ class Player:
     mp_per_level: int = 5
     attack_per_level: int = 2
     defense_per_level: int = 1
+    unlocked_achievements: Set[str] = field(default_factory=set)  # Set of achievement IDs
+    # Achievement tracking stats
+    monsters_killed: int = 0
+    bosses_killed: int = 0
+    skills_used: int = 0
+    items_purchased: int = 0
 
     @property
     def exp_to_next_level(self) -> int:
@@ -65,6 +72,22 @@ class Player:
         if self.accessory:
             bonus += self.accessory.effective_bonus_hp
         return self.max_hp + bonus
+
+    @property
+    def total_max_mp(self) -> int:
+        """Total max MP (for consistency with total_max_hp)."""
+        return self.max_mp
+
+    def unlock_achievement(self, achievement_id: str) -> bool:
+        """Unlock an achievement. Returns True if newly unlocked, False if already unlocked."""
+        if achievement_id in self.unlocked_achievements:
+            return False
+        self.unlocked_achievements.add(achievement_id)
+        return True
+
+    def has_achievement(self, achievement_id: str) -> bool:
+        """Check if an achievement is unlocked."""
+        return achievement_id in self.unlocked_achievements
 
     def add_item(self, item) -> str:
         self.inventory.append(item)
