@@ -10,7 +10,7 @@ STOP_FILE="$ROOT_DIR/ai_dev/STOP"
 ITERATIONS="${1:-5}"
 MODEL="${CLAUDE_MODEL:-}"
 EFFORT="${CLAUDE_EFFORT:-medium}"
-PERMISSION_MODE="${CLAUDE_PERMISSION_MODE:-default}"
+PERMISSION_MODE="${CLAUDE_PERMISSION_MODE:-auto}"
 AUTO_COMMIT="1"  # FORCED: Always commit after each iteration
 EXTRA_ARGS=()
 
@@ -42,6 +42,10 @@ fi
 
 if [[ -n "$PERMISSION_MODE" ]]; then
   EXTRA_ARGS+=(--permission-mode "$PERMISSION_MODE")
+fi
+
+if [[ "$PERMISSION_MODE" == "bypassPermissions" ]]; then
+  EXTRA_ARGS+=(--dangerously-skip-permissions)
 fi
 
 echo "============================================================"
