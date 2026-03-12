@@ -106,3 +106,54 @@ class Player:
                 t({"en": f"Level up! You reached level {self.level}. HP fully restored.", "zh": f"升级了！你达到了{self.level}级。生命值已完全恢复。"})
             )
         return messages
+
+    def apply_event_effect(self, effect_type: str, effect_value: int) -> str:
+        """Apply an event effect to the player.
+
+        Args:
+            effect_type: Type of effect (heal, damage, gold, trade_heal, etc.)
+            effect_value: Value of the effect
+
+        Returns:
+            Additional message if any (e.g., insufficient gold)
+        """
+        if effect_type == "heal":
+            old_hp = self.hp
+            self.hp = min(self.total_max_hp, self.hp + effect_value)
+            healed = self.hp - old_hp
+            if healed > 0:
+                return ""
+            return t({"en": " (Already at full HP)", "zh": "（生命值已满）"})
+
+        elif effect_type == "damage":
+            self.hp = max(0, self.hp - effect_value)
+            return ""
+
+        elif effect_type == "gold":
+            self.gold += effect_value
+            return ""
+
+        elif effect_type == "trade_heal":
+            cost = 20
+            if self.gold >= cost:
+                self.gold -= cost
+                old_hp = self.hp
+                self.hp = min(self.total_max_hp, self.hp + effect_value)
+                return ""
+            else:
+                return t({"en": " (Not enough gold!)", "zh": "（金币不足！）"})
+
+        elif effect_type == "trade_gold_for_heal":
+            cost = 50
+            if self.gold >= cost:
+                self.gold -= cost
+                old_hp = self.hp
+                self.hp = min(self.total_max_hp, self.hp + effect_value)
+                return ""
+            else:
+                return t({"en": " (Not enough gold!)", "zh": "（金币不足！）"})
+
+        elif effect_type == "nothing":
+            return ""
+
+        return ""

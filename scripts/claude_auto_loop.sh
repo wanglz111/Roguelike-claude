@@ -85,7 +85,10 @@ for ((i = 1; i <= ITERATIONS; i++)); do
 
   ITERATION_SUCCESS=true
 
+  # Temporarily disable pipefail for this command to capture exit code
+  set +e
   (
+    set -e
     cd "$ROOT_DIR"
     cat "$PROMPT_FILE" | claude -p \
       "${EXTRA_ARGS[@]}" \
@@ -132,7 +135,14 @@ for raw_line in sys.stdin:
         text = event.get("text", "")
         if text:
             print(text, end="", flush=True)
-' | tee "$log_file" || ITERATION_SUCCESS=false
+' | tee "$log_file"
+  PIPE_EXIT=$?
+  set -e
+
+  if [[ $PIPE_EXIT -ne 0 ]]; then
+    echo "⚠️  Claude command failed with exit code $PIPE_EXIT"
+    ITERATION_SUCCESS=false
+  fi
 
   echo
   echo "------------------------------------------------------------"

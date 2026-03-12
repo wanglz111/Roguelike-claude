@@ -1,9 +1,9 @@
 import random
 
-from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use
+from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use, prompt_event_choice
 from cli.renderer import render_intro, render_state
 from game.combat import fight
-from game.floor import generate_monster, load_items
+from game.floor import generate_monster, load_items, generate_event
 from game.game_state import GameState
 from game.player import Player
 from game.i18n import get_i18n, t
@@ -48,6 +48,20 @@ def main() -> None:
             state.log.append(t({"en": "You cleared the tower prototype.", "zh": "你通关了塔楼原型。"}))
             state.game_over = True
             break
+
+        # Check for random event
+        event = generate_event(state.floor, rng)
+        if event:
+            choice_idx = prompt_event_choice(event)
+            chosen = event.choices[choice_idx]
+            extra_msg = state.player.apply_event_effect(chosen.effect_type, chosen.effect_value)
+            state.log.append(chosen.get_result_text() + extra_msg)
+
+            # Check if player died from event damage
+            if not state.player.is_alive:
+                state.log.append(t({"en": "You have fallen...", "zh": "你倒下了……"}))
+                state.game_over = True
+                break
 
         choice = prompt_item_use(state.player)
         if choice.startswith('u') and choice[1:].isdigit():

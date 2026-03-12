@@ -1,0 +1,174 @@
+[
+  {
+    "name": {
+      "en": "Mysterious Fountain",
+      "zh": "神秘喷泉"
+    },
+    "description": {
+      "en": "You find a glowing fountain. The water looks inviting.",
+      "zh": "你发现了一个发光的喷泉。泉水看起来很诱人。"
+    },
+    "min_floor": 1,
+    "choices": [
+      {
+        "text": {
+          "en": "Drink from the fountain",
+          "zh": "喝泉水"
+        },
+        "effect_type": "heal",
+        "effect_value": 20,
+        "result_text": {
+          "en": "The water refreshes you! +20 HP",
+          "zh": "泉水让你恢复了活力！+20生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Ignore it and move on",
+          "zh": "无视它继续前进"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You continue your journey.",
+          "zh": "你继续你的旅程。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Treasure Chest",
+      "zh": "宝箱"
+    },
+    "description": {
+      "en": "You discover a locked chest. It might contain treasure... or a trap.",
+      "zh": "你发现了一个上锁的箱子。它可能装着宝藏……或者陷阱。"
+    },
+    "min_floor": 2,
+    "choices": [
+      {
+        "text": {
+          "en": "Open the chest carefully",
+          "zh": "小心地打开箱子"
+        },
+        "effect_type": "gold",
+        "effect_value": 30,
+        "result_text": {
+          "en": "You found gold! +30 gold",
+          "zh": "你找到了金币！+30金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Force it open",
+          "zh": "强行打开"
+        },
+        "effect_type": "damage",
+        "effect_value": 10,
+        "result_text": {
+          "en": "It was trapped! You take 10 damage.",
+          "zh": "这是个陷阱！你受到10点伤害。"
+        }
+      },
+      {
+        "text": {
+          "en": "Leave it alone",
+          "zh": "不管它"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "Better safe than sorry.",
+          "zh": "小心驶得万年船。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Wandering Merchant",
+      "zh": "流浪商人"
+    },
+    "description": {
+      "en": "A mysterious merchant offers you a deal.",
+      "zh": "一个神秘的商人向你提出交易。"
+    },
+    "min_floor": 3,
+    "choices": [
+      {
+        "text": {
+          "en": "Buy a healing potion (20 gold)",
+          "zh": "购买治疗药水（20金币）"
+        },
+        "effect_type": "trade_heal",
+        "effect_value": 25,
+        "result_text": {
+          "en": "You bought a potion and drank it. +25 HP, -20 gold",
+          "zh": "你买了药水并喝下。+25生命值，-20金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Decline the offer",
+          "zh": "拒绝交易"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "The merchant shrugs and disappears.",
+          "zh": "商人耸耸肩消失了。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Ancient Shrine",
+      "zh": "古老神殿"
+    },
+    "description": {
+      "en": "You find an ancient shrine. A voice whispers: 'Offer gold for power, or take a blessing.'",
+      "zh": "你发现了一座古老的神殿。一个声音低语道：'献上金币换取力量，或接受祝福。'"
+    },
+    "min_floor": 4,
+    "choices": [
+      {
+        "text": {
+          "en": "Offer 50 gold",
+          "zh": "献上50金币"
+        },
+        "effect_type": "trade_gold_for_heal",
+        "effect_value": 40,
+        "result_text": {
+          "en": "Divine energy flows through you! +40 HP, -50 gold",
+          "zh": "神圣的能量流过你的身体！+40生命值，-50金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Take the blessing",
+          "zh": "接受祝福"
+        },
+        "effect_type": "heal",
+        "effect_value": 15,
+        "result_text": {
+          "en": "You feel slightly stronger. +15 HP",
+          "zh": "你感觉稍微强壮了一些。+15生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Leave respectfully",
+          "zh": "恭敬地离开"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You bow and continue your journey.",
+          "zh": "你鞠躬后继续你的旅程。"
+        }
+      }
+    ]
+  }
+]

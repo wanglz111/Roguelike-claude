@@ -19,3 +19,25 @@ def prompt_item_use(player) -> str:
     render_inventory(player)
     choice = input(t({"en": "Use item (u<number>) or Equip (e<number>) or Enter to continue: ", "zh": "使用物品（u数字）或装备（e数字）或回车继续："})).strip()
     return choice
+
+
+def prompt_event_choice(event) -> int:
+    """Prompt player to choose an event option.
+
+    Returns:
+        Index of the chosen option (0-based)
+    """
+    print(f"\n=== {event.get_name()} ===")
+    print(event.get_description())
+    print()
+    for i, choice in enumerate(event.choices, 1):
+        print(f"{i}. {choice.get_text()}")
+    print()
+
+    while True:
+        choice = input(t({"en": "Choose an option: ", "zh": "选择一个选项："})).strip()
+        if choice.isdigit():
+            idx = int(choice) - 1
+            if 0 <= idx < len(event.choices):
+                return idx
+        print(t({"en": "Invalid choice. Try again.", "zh": "无效的选择。请重试。"}))
