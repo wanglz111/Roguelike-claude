@@ -21,9 +21,14 @@ def check_critical_hit(crit_chance: float = 0.1) -> bool:
 def fight(player: Player, monster: Monster, skill: Skill = None) -> tuple[bool, list[str]]:
     monster_name = monster.get_name()
     if monster.is_boss:
-        log = [t({"en": f"⚔️ BOSS BATTLE! {monster_name} appears!", "zh": f"⚔️ Boss战！{monster_name}出现了！"})]
+        log = [
+            "═" * 50,
+            t({"en": f"⚔️ BOSS BATTLE! {monster_name} appears!", "zh": f"⚔️ Boss战！{monster_name}出现了！"}),
+            t({"en": f"HP: {monster.hp} | ATK: {monster.attack} | DEF: {monster.defense}", "zh": f"生命值：{monster.hp} | 攻击：{monster.attack} | 防御：{monster.defense}"}),
+            "═" * 50
+        ]
     else:
-        log = [t({"en": f"A wild {monster_name} appears!", "zh": f"一只野生的{monster_name}出现了！"})]
+        log = [t({"en": f"⚔️ A wild {monster_name} appears!", "zh": f"⚔️ 一只野生的{monster_name}出现了！"})]
     round_number = 1
     defense_boost = 0.0
 
@@ -89,10 +94,12 @@ def fight(player: Player, monster: Monster, skill: Skill = None) -> tuple[bool, 
         round_number += 1
 
     if player.is_alive:
-        log.append(t({"en": f"You defeated {monster_name}.", "zh": f"你击败了{monster_name}。"}))
+        log.append("─" * 50)
+        log.append(t({"en": f"✓ Victory! You defeated {monster_name}.", "zh": f"✓ 胜利！你击败了{monster_name}。"}))
         log.extend(player.gain_rewards(monster.exp_reward, monster.gold_reward))
         return True, log
 
     player.hp = 0
-    log.append(t({"en": "You were defeated.", "zh": "你被击败了。"}))
+    log.append("─" * 50)
+    log.append(t({"en": "✗ Defeat! You were defeated.", "zh": "✗ 失败！你被击败了。"}))
     return False, log
