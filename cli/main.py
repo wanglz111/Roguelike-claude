@@ -38,7 +38,7 @@ def main() -> None:
         name = prompt_player_name()
         state = GameState(player=Player(name=name))
 
-    rng = random.Random(42)
+    rng = random.Random()
     items_db = load_items()
     state.log.append(t({"en": f"Welcome, {state.player.name}.", "zh": f"欢迎，{state.player.name}。"}))
 
