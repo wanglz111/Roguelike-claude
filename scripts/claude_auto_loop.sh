@@ -2,6 +2,9 @@
 
 set -euo pipefail
 
+# Global error handler to ensure graceful exit
+trap 'echo "⚠️  Unexpected error on line $LINENO. Exiting gracefully..."; exit 1' ERR
+
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 LOG_DIR="$ROOT_DIR/ai_dev/logs"
 PROMPT_FILE="$ROOT_DIR/ai_dev/claude_auto_loop_prompt.txt"
@@ -67,36 +70,40 @@ SUCCESS_COUNT=0
 FAIL_COUNT=0
 
 for ((i = 1; i <= ITERATIONS; i++)); do
-  if [[ -f "$STOP_FILE" ]]; then
-    echo "⚠️  Stop file detected before iteration $i. Exiting gracefully."
-    rm "$STOP_FILE"
-    break
-  fi
-
-  timestamp="$(date +%Y%m%d-%H%M%S)"
-  log_file="$LOG_DIR/claude-iteration-${i}-${timestamp}.log"
-
-  echo
-  echo "============================================================"
-  echo "=== Iteration $i / $ITERATIONS ($(date '+%Y-%m-%d %H:%M:%S')) ==="
-  echo "============================================================"
-  echo "Logging to: $log_file"
-  echo
-
-  ITERATION_SUCCESS=true
-
-  # Temporarily disable pipefail for this command to capture exit code
-  set +e
+  # Wrap entire iteration in error handling
   (
-    set -e
-    cd "$ROOT_DIR"
-    cat "$PROMPT_FILE" | claude -p \
-      "${EXTRA_ARGS[@]}" \
-      --verbose \
-      --output-format stream-json \
-      --include-partial-messages \
-      --add-dir "$ROOT_DIR"
-  ) | python3 -c '
+    set +e  # Disable exit on error for this iteration
+
+    if [[ -f "$STOP_FILE" ]]; then
+      echo "⚠️  Stop file detected before iteration $i. Exiting gracefully."
+      rm "$STOP_FILE"
+      exit 99  # Special exit code to break loop
+    fi
+
+    timestamp="$(date +%Y%m%d-%H%M%S)"
+    log_file="$LOG_DIR/claude-iteration-${i}-${timestamp}.log"
+
+    echo
+    echo "============================================================"
+    echo "=== Iteration $i / $ITERATIONS ($(date '+%Y-%m-%d %H:%M:%S')) ==="
+    echo "============================================================"
+    echo "Logging to: $log_file"
+    echo
+
+    ITERATION_SUCCESS=true
+
+    # Run Claude command with proper error handling
+    set -o pipefail  # Enable pipefail for this section
+    (
+      set -e
+      cd "$ROOT_DIR"
+      cat "$PROMPT_FILE" | claude -p \
+        "${EXTRA_ARGS[@]}" \
+        --verbose \
+        --output-format stream-json \
+        --include-partial-messages \
+        --add-dir "$ROOT_DIR"
+    ) 2>&1 | python3 -c '
 import json
 import sys
 
@@ -136,62 +143,89 @@ for raw_line in sys.stdin:
         if text:
             print(text, end="", flush=True)
 ' | tee "$log_file"
-  PIPE_EXIT=$?
-  set -e
+    PIPE_EXIT=${PIPESTATUS[0]}  # Get exit code of the first command in pipe
+    set +o pipefail  # Disable pipefail
 
-  if [[ $PIPE_EXIT -ne 0 ]]; then
-    echo "⚠️  Claude command failed with exit code $PIPE_EXIT"
-    ITERATION_SUCCESS=false
-  fi
+    if [[ $PIPE_EXIT -ne 0 ]]; then
+      echo "⚠️  Claude command failed with exit code $PIPE_EXIT"
+      ITERATION_SUCCESS=false
+    fi
 
-  echo
-  echo "------------------------------------------------------------"
+    echo
+    echo "------------------------------------------------------------"
 
-  # FORCED AUTO COMMIT: Always commit after each iteration
-  if ! git -C "$ROOT_DIR" diff --quiet --exit-code || ! git -C "$ROOT_DIR" diff --cached --quiet --exit-code; then
-    git -C "$ROOT_DIR" add -A
+    # FORCED AUTO COMMIT: Always commit after each iteration
+    git -C "$ROOT_DIR" diff --quiet --exit-code
+    UNSTAGED=$?
+    git -C "$ROOT_DIR" diff --cached --quiet --exit-code
+    STAGED=$?
 
-    if ! git -C "$ROOT_DIR" diff --cached --quiet --exit-code; then
-      commit_message="$(
-        python3 - "$log_file" <<'PY'
+    if [[ $UNSTAGED -ne 0 ]] || [[ $STAGED -ne 0 ]]; then
+      git -C "$ROOT_DIR" add -A
+
+      git -C "$ROOT_DIR" diff --cached --quiet --exit-code
+      HAS_CHANGES=$?
+
+      if [[ $HAS_CHANGES -ne 0 ]]; then
+        commit_message="$(
+          python3 - "$log_file" <<'PY' 2>/dev/null || echo ""
 import pathlib
 import re
 import sys
 
-text = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
-match = re.search(r"\*?\*?Commit message:\*?\*?\s*(.+)", text, re.IGNORECASE)
-if match:
-    print(match.group(1).strip())
+try:
+    text = pathlib.Path(sys.argv[1]).read_text(encoding="utf-8")
+    match = re.search(r"\*?\*?Commit message:\*?\*?\s*(.+)", text, re.IGNORECASE)
+    if match:
+        print(match.group(1).strip())
+except Exception:
+    pass
 PY
-      )"
+        )"
 
-      if [[ -z "$commit_message" ]]; then
-        echo "⚠️  WARNING: No commit message found in Claude output. Using default message."
-        commit_message="AI iteration $i - auto commit"
-      fi
+        if [[ -z "$commit_message" ]]; then
+          echo "⚠️  WARNING: No commit message found in Claude output. Using default message."
+          commit_message="AI iteration $i - auto commit"
+        fi
 
-      echo "📝 Committing changes with message: $commit_message"
-      if git -C "$ROOT_DIR" commit -m "$commit_message"; then
-        echo "✅ Changes committed successfully"
-        ((SUCCESS_COUNT++))
+        echo "📝 Committing changes with message: $commit_message"
+        if git -C "$ROOT_DIR" commit -m "$commit_message" 2>&1; then
+          echo "✅ Changes committed successfully"
+          exit 0  # Success
+        else
+          echo "❌ Commit failed, but continuing..."
+          ITERATION_SUCCESS=false
+          exit 1  # Failure
+        fi
       else
-        echo "❌ Commit failed"
-        ((FAIL_COUNT++))
-        ITERATION_SUCCESS=false
+        echo "ℹ️  No staged changes to commit after iteration $i."
+        exit 0  # Success (no changes)
       fi
     else
-      echo "ℹ️  No staged changes to commit after iteration $i."
+      echo "ℹ️  No repository changes detected after iteration $i."
+      exit 0  # Success (no changes)
     fi
-  else
-    echo "ℹ️  No repository changes detected after iteration $i."
-  fi
+  )
 
-  if [[ "$ITERATION_SUCCESS" == false ]]; then
-    echo "⚠️  Iteration $i completed with errors"
+  ITER_EXIT=$?
+
+  if [[ $ITER_EXIT -eq 99 ]]; then
+    # Stop file detected
+    break
+  elif [[ $ITER_EXIT -eq 0 ]]; then
+    ((SUCCESS_COUNT++))
+    echo "✅ Iteration $i completed successfully"
+  else
     ((FAIL_COUNT++))
+    echo "⚠️  Iteration $i completed with errors, but continuing to next iteration..."
   fi
 
   echo "------------------------------------------------------------"
+
+  # Small delay between iterations to avoid rate limiting
+  if [[ $i -lt $ITERATIONS ]]; then
+    sleep 2
+  fi
 done
 
 echo
