@@ -566,3 +566,52 @@
 2. 或者进行更深入的数值平衡和内容扩展
 3. 或者优化 CLI 界面和用户体验
 4. 项目已可以作为完整的最小可玩版本交付
+
+## 2026-03-13 Permanent Attribute Boost Events
+
+目标：
+实现永久属性提升事件系统，让玩家可以通过事件获得永久的属性加成。
+
+完成内容：
+
+1. 在 `game/player.py` 中添加 3 个新的事件效果类型：
+   - boost_attack（永久增加攻击力）
+   - boost_defense（永久增加防御力）
+   - boost_max_hp（永久增加最大生命值，同时恢复相应生命值）
+2. 添加 trade_boost_attack 效果类型（花费金币永久增加攻击力）
+3. 在 `content/events.json` 中添加 4 个新事件：
+   - Training Grounds（训练场）- 第 6 层，提供攻击或防御训练
+   - Sacred Pool（圣池）- 第 9 层，提供最大生命值提升或治疗
+   - Weapon Master（武器大师）- 第 11 层，付费获得攻击力提升
+   - Ancient Forge（远古熔炉）- 第 14 层，提供最大生命值或防御力提升
+4. 事件总数从 10 个增加到 14 个
+5. 在 `tests/test_events.py` 中添加 5 个新测试：
+   - test_event_boost_attack
+   - test_event_boost_defense
+   - test_event_boost_max_hp
+   - test_event_boost_max_hp_at_full
+   - test_event_trade_boost_attack_success
+   - test_event_trade_boost_attack_insufficient_gold
+6. 所有新事件支持中英文双语
+7. 更新 architecture.md 和 README.md 文档
+
+验证：
+
+1. 所有 41 个测试通过（包括 19 个事件测试）
+2. 游戏主程序正常导入和运行
+3. 事件系统成功加载 14 个事件
+4. 永久属性提升效果正确实现
+5. 付费提升效果正确处理金币不足的情况
+
+遗留问题：
+
+1. 技能系统尚未实现
+2. 职业系统尚未实现
+3. 可以继续添加更多装备类型
+
+建议下一步：
+
+1. 添加技能系统（可选）
+2. 添加职业系统（可选）
+3. 添加更多装备类型（可选）
+4. 项目已达到非常完整的可玩状态

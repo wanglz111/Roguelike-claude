@@ -111,7 +111,7 @@ class Player:
         """Apply an event effect to the player.
 
         Args:
-            effect_type: Type of effect (heal, damage, gold, trade_heal, etc.)
+            effect_type: Type of effect (heal, damage, gold, trade_heal, boost_attack, etc.)
             effect_value: Value of the effect
 
         Returns:
@@ -156,6 +156,32 @@ class Player:
                 self.gold -= cost
                 old_hp = self.hp
                 self.hp = min(self.total_max_hp, self.hp + effect_value)
+                return ""
+            else:
+                return t({"en": " (Not enough gold!)", "zh": "（金币不足！）"})
+
+        elif effect_type == "boost_attack":
+            # Permanently increase attack
+            self.attack += effect_value
+            return ""
+
+        elif effect_type == "boost_defense":
+            # Permanently increase defense
+            self.defense += effect_value
+            return ""
+
+        elif effect_type == "boost_max_hp":
+            # Permanently increase max HP and heal to new max
+            self.max_hp += effect_value
+            self.hp = min(self.total_max_hp, self.hp + effect_value)
+            return ""
+
+        elif effect_type == "trade_boost_attack":
+            # Pay gold for permanent attack boost
+            cost = 60
+            if self.gold >= cost:
+                self.gold -= cost
+                self.attack += effect_value
                 return ""
             else:
                 return t({"en": " (Not enough gold!)", "zh": "（金币不足！）"})

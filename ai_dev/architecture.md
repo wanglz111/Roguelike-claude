@@ -33,7 +33,7 @@
 
 `EventChoice`
 持有选项文本、效果类型、效果值、结果文本。
-支持的效果类型：heal（治疗）、damage（伤害）、gold（金币）、gold_with_hp_cost（金币但消耗生命值）、trade_heal（花钱治疗）、trade_gold_for_heal（花更多钱治疗）、nothing（无效果）。
+支持的效果类型：heal（治疗）、damage（伤害）、gold（金币）、gold_with_hp_cost（金币但消耗生命值）、trade_heal（花钱治疗）、trade_gold_for_heal（花更多钱治疗）、boost_attack（永久增加攻击力）、boost_defense（永久增加防御力）、boost_max_hp（永久增加最大生命值）、trade_boost_attack（花钱永久增加攻击力）、nothing（无效果）。
 
 `Shop`
 持有商店名称、描述、商品列表、最低楼层。

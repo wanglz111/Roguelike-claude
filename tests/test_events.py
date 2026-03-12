@@ -126,3 +126,60 @@ def test_event_choice_structure():
             assert "effect_type" in choice
             assert "effect_value" in choice
             assert "result_text" in choice
+
+
+def test_event_boost_attack():
+    """Test permanent attack boost event effect."""
+    player = Player(name="Test", attack=10)
+    old_attack = player.attack
+    result = player.apply_event_effect("boost_attack", 2)
+    assert player.attack == old_attack + 2
+    assert result == ""
+
+
+def test_event_boost_defense():
+    """Test permanent defense boost event effect."""
+    player = Player(name="Test", defense=5)
+    old_defense = player.defense
+    result = player.apply_event_effect("boost_defense", 1)
+    assert player.defense == old_defense + 1
+    assert result == ""
+
+
+def test_event_boost_max_hp():
+    """Test permanent max HP boost event effect."""
+    player = Player(name="Test", hp=30, max_hp=50)
+    old_max_hp = player.max_hp
+    old_hp = player.hp
+    result = player.apply_event_effect("boost_max_hp", 10)
+    assert player.max_hp == old_max_hp + 10
+    assert player.hp == old_hp + 10  # HP should also increase
+    assert result == ""
+
+
+def test_event_boost_max_hp_at_full():
+    """Test permanent max HP boost when at full HP."""
+    player = Player(name="Test", hp=50, max_hp=50)
+    result = player.apply_event_effect("boost_max_hp", 10)
+    assert player.max_hp == 60
+    assert player.hp == 60  # Should be at new max
+    assert result == ""
+
+
+def test_event_trade_boost_attack_success():
+    """Test trade gold for permanent attack boost with sufficient gold."""
+    player = Player(name="Test", attack=10, gold=100)
+    result = player.apply_event_effect("trade_boost_attack", 3)
+    assert player.attack == 13
+    assert player.gold == 40  # 100 - 60
+    assert result == ""
+
+
+def test_event_trade_boost_attack_insufficient_gold():
+    """Test trade gold for permanent attack boost with insufficient gold."""
+    player = Player(name="Test", attack=10, gold=30)
+    old_attack = player.attack
+    result = player.apply_event_effect("trade_boost_attack", 3)
+    assert player.attack == old_attack  # Attack should not change
+    assert player.gold == 30  # Gold should not change
+    assert len(result) > 0  # Should return error message

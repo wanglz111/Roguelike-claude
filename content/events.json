@@ -428,5 +428,189 @@
         }
       }
     ]
+  },
+  {
+    "name": {
+      "en": "Training Grounds",
+      "zh": "训练场"
+    },
+    "description": {
+      "en": "You find an abandoned training ground with practice dummies and weapons. You could train here.",
+      "zh": "你发现了一个废弃的训练场，里面有训练假人和武器。你可以在这里训练。"
+    },
+    "min_floor": 6,
+    "choices": [
+      {
+        "text": {
+          "en": "Practice combat techniques",
+          "zh": "练习战斗技巧"
+        },
+        "effect_type": "boost_attack",
+        "effect_value": 2,
+        "result_text": {
+          "en": "Your combat skills improve! Permanent +2 Attack",
+          "zh": "你的战斗技巧提升了！永久+2攻击力"
+        }
+      },
+      {
+        "text": {
+          "en": "Practice defensive maneuvers",
+          "zh": "练习防御技巧"
+        },
+        "effect_type": "boost_defense",
+        "effect_value": 1,
+        "result_text": {
+          "en": "You learn to better protect yourself! Permanent +1 Defense",
+          "zh": "你学会了更好地保护自己！永久+1防御力"
+        }
+      },
+      {
+        "text": {
+          "en": "Skip training",
+          "zh": "跳过训练"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You decide not to waste time here.",
+          "zh": "你决定不在这里浪费时间。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Sacred Pool",
+      "zh": "圣池"
+    },
+    "description": {
+      "en": "A sacred pool radiates divine energy. Bathing in it might grant permanent blessings.",
+      "zh": "一个圣池散发着神圣的能量。在其中沐浴可能会获得永久的祝福。"
+    },
+    "min_floor": 9,
+    "choices": [
+      {
+        "text": {
+          "en": "Bathe in the pool",
+          "zh": "在池中沐浴"
+        },
+        "effect_type": "boost_max_hp",
+        "effect_value": 10,
+        "result_text": {
+          "en": "Divine power strengthens your body! Permanent +10 Max HP",
+          "zh": "神圣的力量强化了你的身体！永久+10最大生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Drink from the pool",
+          "zh": "饮用池水"
+        },
+        "effect_type": "heal",
+        "effect_value": 30,
+        "result_text": {
+          "en": "The water heals your wounds. +30 HP",
+          "zh": "池水治愈了你的伤口。+30生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Leave the pool alone",
+          "zh": "不碰圣池"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You respectfully leave the sacred place.",
+          "zh": "你恭敬地离开了这个神圣的地方。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Weapon Master",
+      "zh": "武器大师"
+    },
+    "description": {
+      "en": "A legendary weapon master offers to teach you advanced techniques for a price.",
+      "zh": "一位传奇武器大师愿意付费教你高级技巧。"
+    },
+    "min_floor": 11,
+    "choices": [
+      {
+        "text": {
+          "en": "Pay 60 gold for training",
+          "zh": "支付60金币接受训练"
+        },
+        "effect_type": "trade_boost_attack",
+        "effect_value": 3,
+        "result_text": {
+          "en": "The master teaches you deadly techniques! Permanent +3 Attack, -60 gold",
+          "zh": "大师教给你致命的技巧！永久+3攻击力，-60金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Decline the offer",
+          "zh": "拒绝提议"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "The master nods and disappears.",
+          "zh": "大师点点头后消失了。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Ancient Forge",
+      "zh": "远古熔炉"
+    },
+    "description": {
+      "en": "You discover an ancient forge still burning with magical flames. The heat is intense.",
+      "zh": "你发现了一座仍在燃烧魔法火焰的远古熔炉。热度非常强烈。"
+    },
+    "min_floor": 14,
+    "choices": [
+      {
+        "text": {
+          "en": "Temper your body in the flames",
+          "zh": "在火焰中锤炼身体"
+        },
+        "effect_type": "boost_max_hp",
+        "effect_value": 15,
+        "result_text": {
+          "en": "The flames forge your body like steel! Permanent +15 Max HP",
+          "zh": "火焰像锻造钢铁一样锤炼了你的身体！永久+15最大生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Study the forge's techniques",
+          "zh": "研究熔炉的技术"
+        },
+        "effect_type": "boost_defense",
+        "effect_value": 2,
+        "result_text": {
+          "en": "You learn ancient smithing secrets! Permanent +2 Defense",
+          "zh": "你学会了古老的锻造秘密！永久+2防御力"
+        }
+      },
+      {
+        "text": {
+          "en": "Leave the forge",
+          "zh": "离开熔炉"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "The heat is too intense. You leave.",
+          "zh": "热度太强烈了。你离开了。"
+        }
+      }
+    ]
   }
 ]
