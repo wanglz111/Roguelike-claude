@@ -359,11 +359,11 @@
           "en": "Help them (costs 10 HP)",
           "zh": "帮助他们（消耗10生命值）"
         },
-        "effect_type": "gold",
+        "effect_type": "gold_with_hp_cost",
         "effect_value": 60,
         "result_text": {
-          "en": "They thank you and give you gold. +60 gold (but you spent energy helping)",
-          "zh": "他们感谢你并给了你金币。+60金币（但你消耗了体力帮助他们）"
+          "en": "They thank you and give you gold. +60 gold, -10 HP",
+          "zh": "他们感谢你并给了你金币。+60金币，-10生命值"
         }
       },
       {

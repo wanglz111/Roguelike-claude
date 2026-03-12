@@ -133,6 +133,13 @@ class Player:
             self.gold += effect_value
             return ""
 
+        elif effect_type == "gold_with_hp_cost":
+            # Give gold but cost HP (e.g., helping wounded adventurer)
+            hp_cost = 10
+            self.hp = max(0, self.hp - hp_cost)
+            self.gold += effect_value
+            return ""
+
         elif effect_type == "trade_heal":
             cost = 20
             if self.gold >= cost:

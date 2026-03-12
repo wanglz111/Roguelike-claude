@@ -33,6 +33,7 @@
 
 `EventChoice`
 持有选项文本、效果类型、效果值、结果文本。
+支持的效果类型：heal（治疗）、damage（伤害）、gold（金币）、gold_with_hp_cost（金币但消耗生命值）、trade_heal（花钱治疗）、trade_gold_for_heal（花更多钱治疗）、nothing（无效果）。
 
 `GameState`
 持有楼层、玩家、战斗日志、是否结束。

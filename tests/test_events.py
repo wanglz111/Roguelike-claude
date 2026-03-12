@@ -57,6 +57,15 @@ def test_event_gold_effect():
     assert result == ""
 
 
+def test_event_gold_with_hp_cost():
+    """Test gold with HP cost event effect (e.g., helping wounded adventurer)."""
+    player = Player(name="Test", hp=30, max_hp=50, gold=10)
+    result = player.apply_event_effect("gold_with_hp_cost", 60)
+    assert player.hp == 20  # 30 - 10
+    assert player.gold == 70  # 10 + 60
+    assert result == ""
+
+
 def test_event_trade_heal_success():
     """Test trade heal event with sufficient gold."""
     player = Player(name="Test", hp=20, max_hp=50, gold=50)
