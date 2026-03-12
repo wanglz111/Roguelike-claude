@@ -50,9 +50,13 @@ def main() -> None:
             break
 
         choice = prompt_item_use(state.player)
-        if choice.isdigit():
-            idx = int(choice) - 1
+        if choice.startswith('u') and choice[1:].isdigit():
+            idx = int(choice[1:]) - 1
             msg = state.player.use_item(idx)
+            state.log.append(msg)
+        elif choice.startswith('e') and choice[1:].isdigit():
+            idx = int(choice[1:]) - 1
+            msg = state.player.equip_item(idx)
             state.log.append(msg)
 
         state.floor += 1

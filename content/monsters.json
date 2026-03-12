@@ -23,7 +23,7 @@
     "defense": 2,
     "exp_reward": 9,
     "gold_reward": 6,
-    "drop_item": "Small Potion"
+    "drop_item": "Iron Sword"
   },
   {
     "name": {
@@ -36,7 +36,7 @@
     "defense": 3,
     "exp_reward": 12,
     "gold_reward": 8,
-    "drop_item": "Medium Potion"
+    "drop_item": "Leather Armor"
   },
   {
     "name": {

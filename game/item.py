@@ -11,6 +11,10 @@ class Item:
     effect_type: str  # "heal", "buff_attack", etc.
     effect_value: int
     description: Union[str, Dict[str, str]]
+    equipment_slot: str = ""  # "weapon", "armor", "" for non-equipment
+    bonus_attack: int = 0
+    bonus_defense: int = 0
+    bonus_hp: int = 0
 
     def get_name(self) -> str:
         """Get localized name."""

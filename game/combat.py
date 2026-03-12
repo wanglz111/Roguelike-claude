@@ -13,7 +13,7 @@ def fight(player: Player, monster: Monster) -> tuple[bool, list[str]]:
     round_number = 1
 
     while player.is_alive and monster.hp > 0:
-        player_damage = calculate_damage(player.attack, monster.defense)
+        player_damage = calculate_damage(player.total_attack, monster.defense)
         monster.hp -= player_damage
         log.append(
             t({"en": f"Round {round_number}: You hit {monster_name} for {player_damage} damage.", "zh": f"第{round_number}回合：你对{monster_name}造成了{player_damage}点伤害。"})
@@ -21,7 +21,7 @@ def fight(player: Player, monster: Monster) -> tuple[bool, list[str]]:
         if monster.hp <= 0:
             break
 
-        monster_damage = calculate_damage(monster.attack, player.defense)
+        monster_damage = calculate_damage(monster.attack, player.total_defense)
         player.hp -= monster_damage
         log.append(t({"en": f"{monster_name} hits you for {monster_damage} damage.", "zh": f"{monster_name}对你造成了{monster_damage}点伤害。"}))
         round_number += 1
