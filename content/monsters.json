@@ -155,6 +155,62 @@
   },
   {
     "name": {
+      "en": "Wraith",
+      "zh": "幽灵"
+    },
+    "min_floor": 9,
+    "hp": 50,
+    "attack": 22,
+    "defense": 6,
+    "exp_reward": 34,
+    "gold_reward": 22,
+    "drop_item": "Medium Potion",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Minotaur",
+      "zh": "牛头人"
+    },
+    "min_floor": 11,
+    "hp": 65,
+    "attack": 24,
+    "defense": 9,
+    "exp_reward": 42,
+    "gold_reward": 28,
+    "drop_item": "Steel Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Dark Paladin",
+      "zh": "黑暗圣骑士"
+    },
+    "min_floor": 13,
+    "hp": 75,
+    "attack": 26,
+    "defense": 10,
+    "exp_reward": 48,
+    "gold_reward": 32,
+    "drop_item": "Plate Armor",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Infernal Beast",
+      "zh": "地狱魔兽"
+    },
+    "min_floor": 16,
+    "hp": 95,
+    "attack": 32,
+    "defense": 11,
+    "exp_reward": 65,
+    "gold_reward": 45,
+    "drop_item": "Steel Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
       "en": "Ancient Dragon",
       "zh": "远古巨龙"
     },
