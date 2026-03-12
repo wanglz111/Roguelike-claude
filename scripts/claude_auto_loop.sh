@@ -16,6 +16,12 @@ EXTRA_ARGS=()
 
 mkdir -p "$LOG_DIR"
 
+# Remove STOP file if it exists from previous run
+if [[ -f "$STOP_FILE" ]]; then
+  echo "Removing existing STOP file from previous run..."
+  rm "$STOP_FILE"
+fi
+
 if [[ ! -f "$PROMPT_FILE" ]]; then
   echo "Missing prompt file: $PROMPT_FILE" >&2
   exit 1
@@ -38,27 +44,42 @@ if [[ -n "$PERMISSION_MODE" ]]; then
   EXTRA_ARGS+=(--permission-mode "$PERMISSION_MODE")
 fi
 
+echo "============================================================"
+echo "Claude Auto Loop - AI Development Session"
+echo "============================================================"
 echo "Root: $ROOT_DIR"
 echo "Logs: $LOG_DIR"
 echo "Iterations: $ITERATIONS"
 echo "Permission mode: $PERMISSION_MODE"
 echo "Auto commit: FORCED (always enabled)"
 [[ -n "$MODEL" ]] && echo "Model: $MODEL"
+[[ -n "$EFFORT" ]] && echo "Effort: $EFFORT"
 echo
-echo "Create $STOP_FILE to stop the loop after the current iteration."
+echo "To stop the loop after current iteration: touch $STOP_FILE"
+echo "============================================================"
 echo
+
+SUCCESS_COUNT=0
+FAIL_COUNT=0
 
 for ((i = 1; i <= ITERATIONS; i++)); do
   if [[ -f "$STOP_FILE" ]]; then
-    echo "Stop file detected before iteration $i. Exiting."
+    echo "⚠️  Stop file detected before iteration $i. Exiting gracefully."
+    rm "$STOP_FILE"
     break
   fi
 
   timestamp="$(date +%Y%m%d-%H%M%S)"
   log_file="$LOG_DIR/claude-iteration-${i}-${timestamp}.log"
 
-  echo "=== Iteration $i / $ITERATIONS ==="
-  echo "Logging to $log_file"
+  echo
+  echo "============================================================"
+  echo "=== Iteration $i / $ITERATIONS ($(date '+%Y-%m-%d %H:%M:%S')) ==="
+  echo "============================================================"
+  echo "Logging to: $log_file"
+  echo
+
+  ITERATION_SUCCESS=true
 
   (
     cd "$ROOT_DIR"
@@ -107,7 +128,10 @@ for raw_line in sys.stdin:
         text = event.get("text", "")
         if text:
             print(text, end="", flush=True)
-' | tee "$log_file"
+' | tee "$log_file" || ITERATION_SUCCESS=false
+
+  echo
+  echo "------------------------------------------------------------"
 
   # FORCED AUTO COMMIT: Always commit after each iteration
   if ! git -C "$ROOT_DIR" diff --quiet --exit-code || ! git -C "$ROOT_DIR" diff --cached --quiet --exit-code; then
@@ -128,19 +152,41 @@ PY
       )"
 
       if [[ -z "$commit_message" ]]; then
-        echo "WARNING: No commit message found in Claude output. Using default message."
+        echo "⚠️  WARNING: No commit message found in Claude output. Using default message."
         commit_message="AI iteration $i - auto commit"
       fi
 
-      echo "Committing changes with message: $commit_message"
-      git -C "$ROOT_DIR" commit -m "$commit_message"
-      echo "✓ Changes committed successfully"
+      echo "📝 Committing changes with message: $commit_message"
+      if git -C "$ROOT_DIR" commit -m "$commit_message"; then
+        echo "✅ Changes committed successfully"
+        ((SUCCESS_COUNT++))
+      else
+        echo "❌ Commit failed"
+        ((FAIL_COUNT++))
+        ITERATION_SUCCESS=false
+      fi
     else
-      echo "No staged changes to commit after iteration $i."
+      echo "ℹ️  No staged changes to commit after iteration $i."
     fi
   else
-    echo "No repository changes detected after iteration $i."
+    echo "ℹ️  No repository changes detected after iteration $i."
   fi
 
-  echo
+  if [[ "$ITERATION_SUCCESS" == false ]]; then
+    echo "⚠️  Iteration $i completed with errors"
+    ((FAIL_COUNT++))
+  fi
+
+  echo "------------------------------------------------------------"
 done
+
+echo
+echo "============================================================"
+echo "Session Summary"
+echo "============================================================"
+echo "Total iterations: $((SUCCESS_COUNT + FAIL_COUNT))"
+echo "Successful: $SUCCESS_COUNT"
+echo "Failed: $FAIL_COUNT"
+echo "Logs saved to: $LOG_DIR"
+echo "============================================================"
+echo
