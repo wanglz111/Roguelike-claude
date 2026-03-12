@@ -2,6 +2,32 @@ from cli.renderer import render_inventory
 from game.i18n import t
 
 
+def prompt_save_slot() -> int:
+    """Prompt player to select a save slot.
+
+    Returns:
+        slot number (1-3)
+    """
+    from game.save_load import list_save_slots
+
+    print(f"\n=== {t({'en': 'Save Slots', 'zh': '存档槽位'})} ===")
+    slots = list_save_slots()
+
+    for slot, exists, metadata in slots:
+        if exists:
+            print(f"{slot}. {metadata['name']} - {t({'en': 'Level', 'zh': '等级'})} {metadata['level']}, "
+                  f"{t({'en': 'Floor', 'zh': '楼层'})} {metadata['floor']}, "
+                  f"{t({'en': 'Cycle', 'zh': '周目'})} {metadata['cycle']}")
+        else:
+            print(f"{slot}. {t({'en': 'Empty', 'zh': '空'})}")
+
+    while True:
+        choice = input(t({"en": "\nSelect slot (1-3): ", "zh": "\n选择槽位（1-3）："})).strip()
+        if choice.isdigit() and 1 <= int(choice) <= 3:
+            return int(choice)
+        print(t({"en": "Invalid choice.", "zh": "无效的选择。"}))
+
+
 def prompt_view_achievements(player, achievements_db) -> None:
     """Display player's achievements."""
     print(f"\n=== {t({'en': 'Achievements', 'zh': '成就'})} ===")

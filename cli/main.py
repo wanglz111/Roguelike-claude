@@ -1,6 +1,6 @@
 import random
 
-from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use, prompt_event_choice, prompt_shop_purchase, prompt_skill_use, prompt_class_selection, prompt_view_achievements
+from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use, prompt_event_choice, prompt_shop_purchase, prompt_skill_use, prompt_class_selection, prompt_view_achievements, prompt_save_slot
 from cli.renderer import render_intro, render_state
 from game.combat import fight
 from game.floor import generate_monster, load_items, generate_event, generate_shop
@@ -11,7 +11,7 @@ from game.skill import load_skills
 from game.achievement import load_achievements
 from game.achievement_checker import check_achievements, format_achievement_unlock
 from game.i18n import get_i18n, t
-from game.save_load import save_game, load_game, has_save_file
+from game.save_load import save_game, load_game, has_any_save
 
 
 def main() -> None:
@@ -26,10 +26,12 @@ def main() -> None:
 
     # Check for existing save file
     state = None
-    if has_save_file():
+    current_slot = 1
+    if has_any_save():
         load_choice = input(t({"en": "Load saved game? [Y/n]: ", "zh": "加载存档？[Y/n]："})).strip().lower()
         if load_choice in {"", "y", "yes", "是"}:
-            state, msg = load_game()
+            current_slot = prompt_save_slot()
+            state, msg = load_game(current_slot)
             print(msg)
             if state is None:
                 return
@@ -235,8 +237,10 @@ def main() -> None:
         elif choice.lower() in {'a', 'achievement', 'achievements'}:
             prompt_view_achievements(state.player, achievements_db)
         elif choice.lower() in {'s', 'save'}:
-            msg = save_game(state)
+            save_slot = prompt_save_slot()
+            msg = save_game(state, save_slot)
             print(msg)
+            current_slot = save_slot
 
         state.floor += 1
         state.log.append(t({"en": "You descend to the next floor.", "zh": "你下到了下一层。"}))

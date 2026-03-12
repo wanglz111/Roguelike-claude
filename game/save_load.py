@@ -11,7 +11,7 @@ from game.i18n import t
 
 
 SAVE_DIR = Path.home() / ".roguelike_saves"
-SAVE_FILE = "save.json"
+MAX_SLOTS = 3
 
 
 def ensure_save_dir() -> Path:
@@ -20,7 +20,40 @@ def ensure_save_dir() -> Path:
     return SAVE_DIR
 
 
-def save_game(state: GameState) -> str:
+def get_save_path(slot: int) -> Path:
+    """Get save file path for a specific slot."""
+    return SAVE_DIR / f"save_slot_{slot}.json"
+
+
+def list_save_slots() -> list[tuple[int, bool, dict]]:
+    """List all save slots with their status.
+
+    Returns:
+        List of tuples (slot_number, exists, metadata)
+    """
+    ensure_save_dir()
+    slots = []
+    for slot in range(1, MAX_SLOTS + 1):
+        save_path = get_save_path(slot)
+        if save_path.exists():
+            try:
+                with open(save_path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                    metadata = {
+                        "name": data["player"]["name"],
+                        "level": data["player"]["level"],
+                        "floor": data["floor"],
+                        "cycle": data.get("cycle", 1),
+                    }
+                    slots.append((slot, True, metadata))
+            except:
+                slots.append((slot, False, {}))
+        else:
+            slots.append((slot, False, {}))
+    return slots
+
+
+def save_game(state: GameState, slot: int = 1) -> str:
     """Save game state to JSON file.
 
     Args:
@@ -30,8 +63,8 @@ def save_game(state: GameState) -> str:
         Success or error message
     """
     try:
-        save_dir = ensure_save_dir()
-        save_path = save_dir / SAVE_FILE
+        ensure_save_dir()
+        save_path = get_save_path(slot)
 
         # Serialize player inventory and equipment
         inventory_data = []
@@ -138,15 +171,15 @@ def save_game(state: GameState) -> str:
         return t({"en": f"Failed to save game: {e}", "zh": f"保存游戏失败：{e}"})
 
 
-def load_game() -> tuple[Optional[GameState], str]:
+def load_game(slot: int = 1) -> tuple[Optional[GameState], str]:
     """Load game state from JSON file.
 
     Returns:
         Tuple of (GameState or None, message)
     """
     try:
-        save_dir = ensure_save_dir()
-        save_path = save_dir / SAVE_FILE
+        ensure_save_dir()
+        save_path = get_save_path(slot)
 
         if not save_path.exists():
             return None, t({"en": "No save file found.", "zh": "未找到存档文件。"})
@@ -216,7 +249,12 @@ def load_game() -> tuple[Optional[GameState], str]:
         return None, t({"en": f"Failed to load game: {e}", "zh": f"加载游戏失败：{e}"})
 
 
-def has_save_file() -> bool:
-    """Check if a save file exists."""
-    save_path = SAVE_DIR / SAVE_FILE
+def has_save_file(slot: int = 1) -> bool:
+    """Check if a save file exists for a specific slot."""
+    save_path = get_save_path(slot)
     return save_path.exists()
+
+
+def has_any_save() -> bool:
+    """Check if any save file exists."""
+    return any(has_save_file(slot) for slot in range(1, MAX_SLOTS + 1))

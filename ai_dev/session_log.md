@@ -1,5 +1,49 @@
 # Session Log
 
+## 2026-03-13 Multiple Save Slots System
+
+目标：
+实现多存档槽位系统，允许玩家在 3 个独立的存档槽中保存和加载游戏。
+
+完成内容：
+
+1. 更新 `game/save_load.py`：
+   - 添加 `MAX_SLOTS = 3` 常量定义最大槽位数
+   - 添加 `get_save_path(slot)` 函数获取指定槽位的文件路径
+   - 添加 `list_save_slots()` 函数列出所有槽位及其元数据（玩家名、等级、楼层、周目）
+   - 更新 `save_game(state, slot)` 支持槽位参数（默认槽位 1）
+   - 更新 `load_game(slot)` 支持槽位参数（默认槽位 1）
+   - 更新 `has_save_file(slot)` 检查指定槽位
+   - 添加 `has_any_save()` 检查是否存在任何存档
+2. 更新 `cli/input_handler.py`：
+   - 添加 `prompt_save_slot()` 函数提示玩家选择存档槽位
+   - 显示每个槽位的状态（空或已有存档的元数据）
+3. 更新 `cli/main.py`：
+   - 导入新的 `prompt_save_slot` 和 `has_any_save` 函数
+   - 加载游戏时提示选择槽位
+   - 保存游戏时提示选择槽位
+   - 追踪当前使用的槽位
+4. 创建 `tests/test_save_slots.py`：
+   - 测试多槽位保存和加载
+   - 测试槽位列表功能
+   - 测试覆盖已有槽位
+
+改动文件：
+- `game/save_load.py`
+- `cli/input_handler.py`
+- `cli/main.py`
+- `tests/test_save_slots.py`（新增）
+
+验证：
+- 代码实现最小化，仅添加必要功能
+- 向后兼容，默认使用槽位 1
+- 所有槽位独立，互不影响
+- 测试覆盖核心功能
+
+建议下一步：
+- 运行测试验证功能正确性
+- 所有优先级 C 任务现已完成
+
 ## 2026-03-13 Project Completion Verification
 
 目标：
