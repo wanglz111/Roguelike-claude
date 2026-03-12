@@ -46,6 +46,7 @@ def save_game(state: GameState) -> str:
                 "bonus_attack": item.bonus_attack,
                 "bonus_defense": item.bonus_defense,
                 "bonus_hp": item.bonus_hp,
+                "rarity": item.rarity,
             })
 
         weapon_data = None
@@ -60,6 +61,7 @@ def save_game(state: GameState) -> str:
                 "bonus_attack": state.player.weapon.bonus_attack,
                 "bonus_defense": state.player.weapon.bonus_defense,
                 "bonus_hp": state.player.weapon.bonus_hp,
+                "rarity": state.player.weapon.rarity,
             }
 
         armor_data = None
@@ -74,6 +76,7 @@ def save_game(state: GameState) -> str:
                 "bonus_attack": state.player.armor.bonus_attack,
                 "bonus_defense": state.player.armor.bonus_defense,
                 "bonus_hp": state.player.armor.bonus_hp,
+                "rarity": state.player.armor.rarity,
             }
 
         accessory_data = None
@@ -88,6 +91,7 @@ def save_game(state: GameState) -> str:
                 "bonus_attack": state.player.accessory.bonus_attack,
                 "bonus_defense": state.player.accessory.bonus_defense,
                 "bonus_hp": state.player.accessory.bonus_hp,
+                "rarity": state.player.accessory.rarity,
             }
 
         # Build save data

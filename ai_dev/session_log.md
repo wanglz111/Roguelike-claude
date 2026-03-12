@@ -1,5 +1,46 @@
 # Session Log
 
+## 2026-03-13 Equipment Rarity System Enhancement
+
+目标：
+完善装备稀有度系统，确保存档系统完整支持稀有度字段。
+
+完成内容：
+
+1. 确认 Item 类已实现稀有度系统：
+   - 4 个稀有度等级：common（1.0x）、rare（1.3x）、epic（1.6x）、legendary（2.0x）
+   - effective_bonus_attack/defense/hp 属性自动应用稀有度倍率
+2. 确认 items.json 中已有 4 件稀有/史诗装备：
+   - Steel Sword（稀有，+5 攻击 → 实际 +6.5）
+   - Plate Armor（稀有，+6 防御 +20 HP → 实际 +7.8 防御 +26 HP）
+   - Mythril Sword（史诗，+8 攻击 → 实际 +12.8）
+   - Balanced Ring（史诗，+2 攻击 +1 防御 +10 HP → 实际 +3.2 攻击 +1.6 防御 +16 HP）
+3. 确认 CLI 渲染器已实现稀有度显示：
+   - 稀有装备显示 [★]
+   - 史诗装备显示 [★★]
+   - 传奇装备显示 [★★★]
+4. 更新存档系统支持稀有度字段：
+   - 在 save_game() 中为 inventory、weapon、armor、accessory 添加 rarity 字段
+   - 确保旧存档向后兼容（Item 类默认 rarity="common"）
+5. 验证游戏模块导入正常
+
+验证：
+
+1. 游戏主程序正常导入
+2. 稀有度系统完整实现并集成到所有相关系统
+3. 存档系统完整支持稀有度保存和加载
+4. CLI 正确显示装备稀有度
+
+遗留问题：
+
+无
+
+建议下一步：
+
+1. 装备稀有度系统已完全实现，可以继续其他可选任务
+2. 可选：添加成就系统
+3. 可选：优化 UI 或平衡性测试
+
 ## 2026-03-13 New Game+ System
 
 目标：

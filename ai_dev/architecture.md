@@ -35,6 +35,7 @@
 装备槽类型：weapon（武器）、armor（护甲）、accessory（饰品）。
 稀有度系统：common（普通，1.0x）、rare（稀有，1.3x）、epic（史诗，1.6x）、legendary（传奇，2.0x）。
 稀有度倍率应用于装备的所有属性加成（攻击、防御、生命值）。
+当前已有 4 件稀有/史诗装备：Steel Sword（稀有）、Plate Armor（稀有）、Mythril Sword（史诗）、Balanced Ring（史诗）。
 
 `Skill`
 持有技能名称、描述、MP 消耗、效果类型、效果值、职业限制（可选）。
