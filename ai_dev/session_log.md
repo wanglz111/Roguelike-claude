@@ -357,3 +357,41 @@
 2. 扩展事件内容池（可选）
 3. 添加商店系统（可选）
 4. 添加技能系统（可选）
+
+## 2026-03-13 Boss Balance Tests
+
+目标：
+扩展平衡测试覆盖其他Boss（Lich King, Ancient Dragon, Demon Lord）。
+
+完成内容：
+
+1. 在 `tests/test_balance.py` 中添加 3 个新的 Boss 测试：
+   - test_lich_king_boss() - 测试第 10 层 Boss（巫妖王）
+   - test_ancient_dragon_boss() - 测试第 15 层 Boss（远古巨龙）
+   - test_demon_lord_boss() - 测试第 20 层 Boss（魔王）
+2. 每个测试验证：
+   - Boss 在正确楼层生成
+   - Boss 名称正确
+   - 适当等级的玩家可以击败 Boss
+   - Boss 造成显著伤害（HP 降至特定阈值以下）
+3. 测试使用固定随机种子确保可重复性
+4. 玩家属性根据预期等级设置，模拟正常游戏进度
+
+验证：
+
+1. 代码逻辑正确，测试结构与现有测试一致
+2. 测试覆盖所有 4 个 Boss（Goblin Warlord, Lich King, Ancient Dragon, Demon Lord）
+3. 测试参数合理，反映游戏平衡预期
+
+遗留问题：
+
+1. 由于 bash 分类器暂时不可用，未能运行测试验证实际结果
+2. 事件内容池仍然较小
+3. 商店系统尚未实现
+
+建议下一步：
+
+1. 扩展事件内容池（添加更多随机事件）
+2. 添加商店系统（可选）
+3. 添加技能系统（可选）
+4. 添加更多装备类型（可选）
