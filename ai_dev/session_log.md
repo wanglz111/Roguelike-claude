@@ -1067,3 +1067,38 @@
 2. 扩展商店物品（添加更多装备和消耗品）
 3. 添加装备稀有度系统（普通/稀有/史诗/传奇）
 
+## 2026-03-13 Class-Specific Skills
+
+目标：
+为每个职业添加专属技能，增加职业差异化和战术深度。
+
+完成内容：
+
+1. 在 `content/skills.json` 中添加 6 个职业专属技能：
+   - 战士技能：Shield Bash（盾击，1.8x伤害，7 MP）、Iron Will（钢铁意志，80%减伤，8 MP）
+   - 法师技能：Fireball（火球术，2.5x伤害，12 MP）、Mana Surge（魔力涌动，恢复15 HP，6 MP）
+   - 盗贼技能：Backstab（背刺，2.2x伤害，9 MP）、Evasion（闪避，60%减伤，5 MP）
+2. 为 Skill 类添加 `class_required` 字段（可选，默认 None）
+3. 更新 `game/skill.py` 的 `load_skills()` 函数支持 class_required 字段
+4. 更新 `cli/input_handler.py` 的 `prompt_skill_use()` 函数过滤职业专属技能
+5. 技能总数从 6 个增加到 12 个（6 个通用 + 6 个职业专属）
+6. 新增 `tests/test_class_skills.py` 测试职业专属技能系统
+7. 所有技能支持中英文双语
+
+验证：
+
+1. 职业专属技能正确添加到 skills.json
+2. Skill 类正确支持 class_required 字段
+3. CLI 正确过滤和显示可用技能
+4. 测试覆盖职业专属技能加载和通用技能验证
+
+遗留问题：
+
+无。功能完整实现。
+
+建议下一步：
+
+1. 扩展商店物品（添加更多装备和消耗品）
+2. 添加装备稀有度系统（普通/稀有/史诗/传奇）
+3. 添加周目系统（通关后开始新周目）
+

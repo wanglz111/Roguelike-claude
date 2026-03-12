@@ -13,6 +13,9 @@ def prompt_skill_use(player, skills_db) -> str:
 
     available_skills = []
     for skill_id, skill in skills_db.items():
+        # Filter by class requirement and MP cost
+        if skill.class_required and skill.class_required != player.player_class:
+            continue
         if player.mp >= skill.mp_cost:
             available_skills.append((skill_id, skill))
             print(f"  {skill_id}: {skill.get_name()} (MP: {skill.mp_cost}) - {skill.get_description()}")
@@ -25,8 +28,10 @@ def prompt_skill_use(player, skills_db) -> str:
     print()
     choice = input(t({"en": "Use skill (skill_id) or Enter to attack normally: ", "zh": "使用技能（技能ID）或回车普通攻击："})).strip()
 
-    if choice in skills_db and player.mp >= skills_db[choice].mp_cost:
-        return choice
+    if choice in skills_db:
+        skill = skills_db[choice]
+        if player.mp >= skill.mp_cost and (not skill.class_required or skill.class_required == player.player_class):
+            return choice
     return ""
 
 

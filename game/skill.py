@@ -11,6 +11,7 @@ class Skill:
     mp_cost: int
     effect_type: str
     effect_value: float
+    class_required: str = None
 
     def get_name(self) -> str:
         return t(self.name)
@@ -30,6 +31,7 @@ def load_skills() -> dict[str, Skill]:
             mp_cost=skill_data["mp_cost"],
             effect_type=skill_data["effect_type"],
             effect_value=skill_data["effect_value"],
+            class_required=skill_data.get("class_required"),
         )
         for skill_id, skill_data in data.items()
     }

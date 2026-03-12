@@ -40,5 +40,53 @@
     "mp_cost": 6,
     "effect_type": "defense_boost",
     "effect_value": 0.7
+  },
+  "shield_bash": {
+    "name": {"en": "Shield Bash", "zh": "盾击"},
+    "description": {"en": "Warrior skill: Deal 1.8x damage", "zh": "战士技能：造成1.8倍伤害"},
+    "mp_cost": 7,
+    "effect_type": "damage_multiplier",
+    "effect_value": 1.8,
+    "class_required": "warrior"
+  },
+  "iron_will": {
+    "name": {"en": "Iron Will", "zh": "钢铁意志"},
+    "description": {"en": "Warrior skill: Reduce damage by 80% this turn", "zh": "战士技能：本回合减少80%受到的伤害"},
+    "mp_cost": 8,
+    "effect_type": "defense_boost",
+    "effect_value": 0.8,
+    "class_required": "warrior"
+  },
+  "fireball": {
+    "name": {"en": "Fireball", "zh": "火球术"},
+    "description": {"en": "Mage skill: Deal 2.5x damage", "zh": "法师技能：造成2.5倍伤害"},
+    "mp_cost": 12,
+    "effect_type": "damage_multiplier",
+    "effect_value": 2.5,
+    "class_required": "mage"
+  },
+  "mana_surge": {
+    "name": {"en": "Mana Surge", "zh": "魔力涌动"},
+    "description": {"en": "Mage skill: Restore 15 HP", "zh": "法师技能：恢复15点生命值"},
+    "mp_cost": 6,
+    "effect_type": "heal",
+    "effect_value": 15,
+    "class_required": "mage"
+  },
+  "backstab": {
+    "name": {"en": "Backstab", "zh": "背刺"},
+    "description": {"en": "Rogue skill: Deal 2.2x damage", "zh": "盗贼技能：造成2.2倍伤害"},
+    "mp_cost": 9,
+    "effect_type": "damage_multiplier",
+    "effect_value": 2.2,
+    "class_required": "rogue"
+  },
+  "evasion": {
+    "name": {"en": "Evasion", "zh": "闪避"},
+    "description": {"en": "Rogue skill: Reduce damage by 60% this turn", "zh": "盗贼技能：本回合减少60%受到的伤害"},
+    "mp_cost": 5,
+    "effect_type": "defense_boost",
+    "effect_value": 0.6,
+    "class_required": "rogue"
   }
 }
