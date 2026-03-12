@@ -14,10 +14,12 @@ def confirm_start() -> bool:
 
 def prompt_item_use(player) -> str:
     if not player.inventory:
-        return ""
+        print(f"\n{t({'en': 'HP', 'zh': '生命值'})}: {player.hp}/{player.total_max_hp}")
+        choice = input(t({"en": "Press Enter to continue or 's' to save: ", "zh": "按回车继续或输入's'保存："})).strip()
+        return choice
     print(f"\n{t({'en': 'HP', 'zh': '生命值'})}: {player.hp}/{player.total_max_hp}")
     render_inventory(player)
-    choice = input(t({"en": "Use item (u<number>) or Equip (e<number>) or Enter to continue: ", "zh": "使用物品（u数字）或装备（e数字）或回车继续："})).strip()
+    choice = input(t({"en": "Use item (u<number>) or Equip (e<number>) or 's' to save or Enter to continue: ", "zh": "使用物品（u数字）或装备（e数字）或输入's'保存或回车继续："})).strip()
     return choice
 
 

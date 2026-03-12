@@ -7,6 +7,7 @@ from game.floor import generate_monster, load_items, generate_event
 from game.game_state import GameState
 from game.player import Player
 from game.i18n import get_i18n, t
+from game.save_load import save_game, load_game, has_save_file
 
 
 def main() -> None:
@@ -18,12 +19,24 @@ def main() -> None:
         get_i18n().set_language("en")
 
     render_intro()
-    if not confirm_start():
-        print(t({"en": "Run cancelled.", "zh": "运行已取消。"}))
-        return
 
-    name = prompt_player_name()
-    state = GameState(player=Player(name=name))
+    # Check for existing save file
+    state = None
+    if has_save_file():
+        load_choice = input(t({"en": "Load saved game? [Y/n]: ", "zh": "加载存档？[Y/n]："})).strip().lower()
+        if load_choice in {"", "y", "yes", "是"}:
+            state, msg = load_game()
+            print(msg)
+            if state is None:
+                return
+
+    # Start new game if no save loaded
+    if state is None:
+        if not confirm_start():
+            print(t({"en": "Run cancelled.", "zh": "运行已取消。"}))
+            return
+        name = prompt_player_name()
+        state = GameState(player=Player(name=name))
 
     rng = random.Random(42)
     items_db = load_items()
@@ -72,6 +85,9 @@ def main() -> None:
             idx = int(choice[1:]) - 1
             msg = state.player.equip_item(idx)
             state.log.append(msg)
+        elif choice.lower() in {'s', 'save'}:
+            msg = save_game(state)
+            print(msg)
 
         state.floor += 1
         state.log.append(t({"en": "You descend to the next floor.", "zh": "你下到了下一层。"}))
