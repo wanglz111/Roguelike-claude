@@ -3,15 +3,16 @@ import random
 from game.combat import fight
 from game.floor import generate_monster, load_items
 from game.game_state import GameState
+from game.i18n import t
 
 
 def run_game(state: GameState, seed: int = 42) -> GameState:
     rng = random.Random(seed)
     items_db = load_items()
-    state.log.append(f"Welcome, {state.player.name}.")
+    state.log.append(t({"en": f"Welcome, {state.player.name}.", "zh": f"欢迎，{state.player.name}。"}))
 
     while not state.game_over and state.floor <= state.max_floor:
-        state.log.append(f"Floor {state.floor} begins.")
+        state.log.append(t({"en": f"Floor {state.floor} begins.", "zh": f"第{state.floor}层开始。"}))
         monster = generate_monster(state.floor, rng)
         victory, battle_log = fight(state.player, monster)
         state.log.extend(battle_log)
@@ -26,11 +27,11 @@ def run_game(state: GameState, seed: int = 42) -> GameState:
             state.log.append(msg)
 
         if state.floor == state.max_floor:
-            state.log.append("You cleared the tower prototype.")
+            state.log.append(t({"en": "You cleared the tower prototype.", "zh": "你通关了塔楼原型。"}))
             state.game_over = True
             break
 
         state.floor += 1
-        state.log.append("You descend to the next floor.")
+        state.log.append(t({"en": "You descend to the next floor.", "zh": "你下到了下一层。"}))
 
     return state

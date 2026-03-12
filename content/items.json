@@ -1,23 +1,41 @@
 [
   {
-    "name": "Small Potion",
+    "name": {
+      "en": "Small Potion",
+      "zh": "小型药水"
+    },
     "item_type": "consumable",
     "effect_type": "heal",
     "effect_value": 15,
-    "description": "Restores 15 HP"
+    "description": {
+      "en": "Restores 15 HP",
+      "zh": "恢复15点生命值"
+    }
   },
   {
-    "name": "Medium Potion",
+    "name": {
+      "en": "Medium Potion",
+      "zh": "中型药水"
+    },
     "item_type": "consumable",
     "effect_type": "heal",
     "effect_value": 30,
-    "description": "Restores 30 HP"
+    "description": {
+      "en": "Restores 30 HP",
+      "zh": "恢复30点生命值"
+    }
   },
   {
-    "name": "Large Potion",
+    "name": {
+      "en": "Large Potion",
+      "zh": "大型药水"
+    },
     "item_type": "consumable",
     "effect_type": "heal",
     "effect_value": 50,
-    "description": "Restores 50 HP"
+    "description": {
+      "en": "Restores 50 HP",
+      "zh": "恢复50点生命值"
+    }
   }
 ]

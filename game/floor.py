@@ -18,7 +18,14 @@ def load_monster_pool() -> list[dict]:
 def load_items() -> dict[str, Item]:
     with ITEMS_PATH.open("r", encoding="utf-8") as handle:
         items_data = json.load(handle)
-        return {item["name"]: Item(**item) for item in items_data}
+        # Use English name as key for backward compatibility
+        result = {}
+        for item_data in items_data:
+            item = Item(**item_data)
+            # Use English name as dictionary key
+            key = item_data["name"]["en"] if isinstance(item_data["name"], dict) else item_data["name"]
+            result[key] = item
+        return result
 
 
 def generate_monster(floor: int, rng: random.Random) -> Monster:

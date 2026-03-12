@@ -1,5 +1,7 @@
 from dataclasses import dataclass, field
 
+from game.i18n import t
+
 
 @dataclass
 class Player:
@@ -23,23 +25,23 @@ class Player:
 
     def add_item(self, item) -> str:
         self.inventory.append(item)
-        return f"You obtained {item.name}!"
+        return t({"en": f"You obtained {item.get_name()}!", "zh": f"你获得了{item.get_name()}！"})
 
     def use_item(self, index: int) -> str:
         if index < 0 or index >= len(self.inventory):
-            return "Invalid item."
+            return t({"en": "Invalid item.", "zh": "无效的物品。"})
         item = self.inventory.pop(index)
         if item.effect_type == "heal":
             old_hp = self.hp
             self.hp = min(self.max_hp, self.hp + item.effect_value)
             healed = self.hp - old_hp
-            return f"Used {item.name}. Restored {healed} HP."
-        return f"Used {item.name}."
+            return t({"en": f"Used {item.get_name()}. Restored {healed} HP.", "zh": f"使用了{item.get_name()}。恢复了{healed}点生命值。"})
+        return t({"en": f"Used {item.get_name()}.", "zh": f"使用了{item.get_name()}。"})
 
     def gain_rewards(self, exp: int, gold: int) -> list[str]:
         self.exp += exp
         self.gold += gold
-        messages = [f"You gain {exp} EXP and {gold} gold."]
+        messages = [t({"en": f"You gain {exp} EXP and {gold} gold.", "zh": f"你获得了{exp}点经验和{gold}金币。"})]
         while self.exp >= self.exp_to_next_level:
             threshold = self.exp_to_next_level
             self.exp -= threshold
@@ -49,6 +51,6 @@ class Player:
             self.defense += 1
             self.hp = self.max_hp
             messages.append(
-                f"Level up! You reached level {self.level}. HP fully restored."
+                t({"en": f"Level up! You reached level {self.level}. HP fully restored.", "zh": f"升级了！你达到了{self.level}级。生命值已完全恢复。"})
             )
         return messages

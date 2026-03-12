@@ -11,7 +11,7 @@ ITERATIONS="${1:-5}"
 MODEL="${CLAUDE_MODEL:-}"
 EFFORT="${CLAUDE_EFFORT:-medium}"
 PERMISSION_MODE="${CLAUDE_PERMISSION_MODE:-default}"
-AUTO_COMMIT="${CLAUDE_AUTO_COMMIT:-1}"
+AUTO_COMMIT="1"  # FORCED: Always commit after each iteration
 EXTRA_ARGS=()
 
 mkdir -p "$LOG_DIR"
@@ -42,7 +42,7 @@ echo "Root: $ROOT_DIR"
 echo "Logs: $LOG_DIR"
 echo "Iterations: $ITERATIONS"
 echo "Permission mode: $PERMISSION_MODE"
-echo "Auto commit: $AUTO_COMMIT"
+echo "Auto commit: FORCED (always enabled)"
 [[ -n "$MODEL" ]] && echo "Model: $MODEL"
 echo
 echo "Create $STOP_FILE to stop the loop after the current iteration."
@@ -109,13 +109,13 @@ for raw_line in sys.stdin:
             print(text, end="", flush=True)
 ' | tee "$log_file"
 
-  if [[ "$AUTO_COMMIT" == "1" ]]; then
-    if ! git -C "$ROOT_DIR" diff --quiet --exit-code || ! git -C "$ROOT_DIR" diff --cached --quiet --exit-code; then
-      git -C "$ROOT_DIR" add -A
+  # FORCED AUTO COMMIT: Always commit after each iteration
+  if ! git -C "$ROOT_DIR" diff --quiet --exit-code || ! git -C "$ROOT_DIR" diff --cached --quiet --exit-code; then
+    git -C "$ROOT_DIR" add -A
 
-      if ! git -C "$ROOT_DIR" diff --cached --quiet --exit-code; then
-        commit_message="$(
-          python3 - "$log_file" <<'PY'
+    if ! git -C "$ROOT_DIR" diff --cached --quiet --exit-code; then
+      commit_message="$(
+        python3 - "$log_file" <<'PY'
 import pathlib
 import re
 import sys
@@ -125,17 +125,21 @@ match = re.search(r"\*?\*?Commit message:\*?\*?\s*(.+)", text, re.IGNORECASE)
 if match:
     print(match.group(1).strip())
 PY
-        )"
+      )"
 
-        if [[ -z "$commit_message" ]]; then
-          commit_message="claude: iteration $i"
-        fi
-
-        git -C "$ROOT_DIR" commit -m "$commit_message"
+      if [[ -z "$commit_message" ]]; then
+        echo "WARNING: No commit message found in Claude output. Using default message."
+        commit_message="AI iteration $i - auto commit"
       fi
+
+      echo "Committing changes with message: $commit_message"
+      git -C "$ROOT_DIR" commit -m "$commit_message"
+      echo "✓ Changes committed successfully"
     else
-      echo "No repository changes detected after iteration $i. Skipping commit."
+      echo "No staged changes to commit after iteration $i."
     fi
+  else
+    echo "No repository changes detected after iteration $i."
   fi
 
   echo

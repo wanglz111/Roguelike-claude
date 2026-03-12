@@ -1,20 +1,21 @@
 from cli.renderer import render_inventory
+from game.i18n import t
 
 
 def prompt_player_name() -> str:
-    name = input("Enter your hero name: ").strip()
-    return name or "Hero"
+    name = input(t({"en": "Enter your hero name: ", "zh": "输入你的英雄名字："})).strip()
+    return name or t({"en": "Hero", "zh": "英雄"})
 
 
 def confirm_start() -> bool:
-    choice = input("Start the tower run? [Y/n]: ").strip().lower()
+    choice = input(t({"en": "Start the tower run? [Y/n]: ", "zh": "开始塔楼冒险？[Y/n]："})).strip().lower()
     return choice in {"", "y", "yes"}
 
 
 def prompt_item_use(player) -> str:
     if not player.inventory:
         return ""
-    print(f"\nHP: {player.hp}/{player.max_hp}")
+    print(f"\n{t({'en': 'HP', 'zh': '生命值'})}: {player.hp}/{player.max_hp}")
     render_inventory(player)
-    choice = input("Use item? (number or Enter to continue): ").strip()
+    choice = input(t({"en": "Use item? (number or Enter to continue): ", "zh": "使用物品？（输入数字或回车继续）："})).strip()
     return choice

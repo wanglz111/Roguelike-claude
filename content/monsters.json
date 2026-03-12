@@ -1,6 +1,9 @@
 [
   {
-    "name": "Goblin Scout",
+    "name": {
+      "en": "Goblin Scout",
+      "zh": "哥布林侦察兵"
+    },
     "min_floor": 1,
     "hp": 12,
     "attack": 5,
@@ -10,7 +13,10 @@
     "drop_item": "Small Potion"
   },
   {
-    "name": "Skeleton Guard",
+    "name": {
+      "en": "Skeleton Guard",
+      "zh": "骷髅守卫"
+    },
     "min_floor": 2,
     "hp": 18,
     "attack": 7,
@@ -20,7 +26,10 @@
     "drop_item": "Small Potion"
   },
   {
-    "name": "Shadow Mage",
+    "name": {
+      "en": "Shadow Mage",
+      "zh": "暗影法师"
+    },
     "min_floor": 3,
     "hp": 20,
     "attack": 9,
@@ -30,7 +39,10 @@
     "drop_item": "Medium Potion"
   },
   {
-    "name": "Stone Golem",
+    "name": {
+      "en": "Stone Golem",
+      "zh": "石头傀儡"
+    },
     "min_floor": 4,
     "hp": 28,
     "attack": 10,

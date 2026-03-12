@@ -55,10 +55,11 @@ Development constraints:
 7. Preserve backward compatibility where practical, especially for save data and core gameplay flow.
 
 Project goals:
-1. Build a CLI roguelike / tower RPG.
+1. Build a CLI roguelike / tower RPG with Chinese and English language support.
 2. Support long-term incremental expansion.
 3. Keep systems modular and data-driven.
 4. Make it easy for future AI sessions to continue development.
+5. All player-facing text must support both Chinese and English.
 
 At the end of each session, you must output:
 1. What you changed

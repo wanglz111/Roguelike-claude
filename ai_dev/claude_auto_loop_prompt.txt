@@ -24,12 +24,14 @@ Rules:
 2. Do not perform broad refactors.
 3. If a task is too large, split it first and implement only the first smaller part.
 4. Prefer data-driven additions.
-5. End with:
-   - summary of changes
-   - files changed
-   - verification performed
-   - remaining risks
-   - next recommended tasks
-   - Commit message: a short git commit title in one line
+5. MANDATORY: End with a complete summary section containing:
+   - Summary of changes (what was done)
+   - Files changed (list all modified files)
+   - Verification performed (how you tested)
+   - Remaining risks (if any)
+   - Next recommended tasks
+   - Commit message: a short, descriptive git commit title in one line (REQUIRED)
+
+IMPORTANT: The commit message is MANDATORY. Every iteration MUST end with "Commit message: <your message>" so the changes can be automatically committed. Without this, your work will not be saved to git history.
 
 If ai_dev/next_tasks.md is empty or all listed tasks are already complete, stop and say so clearly without making unrelated changes.
