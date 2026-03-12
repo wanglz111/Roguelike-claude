@@ -18,6 +18,7 @@ class Player:
     inventory: list = field(default_factory=list)
     weapon: object = None
     armor: object = None
+    accessory: object = None
     player_class: str = "rogue"  # Default class
     hp_per_level: int = 6
     mp_per_level: int = 5
@@ -39,6 +40,8 @@ class Player:
             bonus += self.weapon.bonus_attack
         if self.armor:
             bonus += self.armor.bonus_attack
+        if self.accessory:
+            bonus += self.accessory.bonus_attack
         return self.attack + bonus
 
     @property
@@ -48,6 +51,8 @@ class Player:
             bonus += self.weapon.bonus_defense
         if self.armor:
             bonus += self.armor.bonus_defense
+        if self.accessory:
+            bonus += self.accessory.bonus_defense
         return self.defense + bonus
 
     @property
@@ -57,6 +62,8 @@ class Player:
             bonus += self.weapon.bonus_hp
         if self.armor:
             bonus += self.armor.bonus_hp
+        if self.accessory:
+            bonus += self.accessory.bonus_hp
         return self.max_hp + bonus
 
     def add_item(self, item) -> str:
@@ -77,6 +84,9 @@ class Player:
         elif item.equipment_slot == "armor":
             old_item = self.armor
             self.armor = item
+        elif item.equipment_slot == "accessory":
+            old_item = self.accessory
+            self.accessory = item
         else:
             return t({"en": "Unknown equipment slot.", "zh": "未知的装备槽。"})
 

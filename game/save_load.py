@@ -76,6 +76,20 @@ def save_game(state: GameState) -> str:
                 "bonus_hp": state.player.armor.bonus_hp,
             }
 
+        accessory_data = None
+        if state.player.accessory:
+            accessory_data = {
+                "name": state.player.accessory.name,
+                "item_type": state.player.accessory.item_type,
+                "effect_type": state.player.accessory.effect_type,
+                "effect_value": state.player.accessory.effect_value,
+                "description": state.player.accessory.description,
+                "equipment_slot": state.player.accessory.equipment_slot,
+                "bonus_attack": state.player.accessory.bonus_attack,
+                "bonus_defense": state.player.accessory.bonus_defense,
+                "bonus_hp": state.player.accessory.bonus_hp,
+            }
+
         # Build save data
         save_data = {
             "player": {
@@ -90,6 +104,7 @@ def save_game(state: GameState) -> str:
                 "inventory": inventory_data,
                 "weapon": weapon_data,
                 "armor": armor_data,
+                "accessory": accessory_data,
             },
             "floor": state.floor,
             "max_floor": state.max_floor,
@@ -136,6 +151,10 @@ def load_game() -> tuple[Optional[GameState], str]:
         if save_data["player"]["armor"]:
             armor = Item(**save_data["player"]["armor"])
 
+        accessory = None
+        if save_data["player"].get("accessory"):
+            accessory = Item(**save_data["player"]["accessory"])
+
         # Reconstruct player
         player = Player(
             name=save_data["player"]["name"],
@@ -149,6 +168,7 @@ def load_game() -> tuple[Optional[GameState], str]:
             inventory=inventory,
             weapon=weapon,
             armor=armor,
+            accessory=accessory,
         )
 
         # Reconstruct game state

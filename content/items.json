@@ -122,5 +122,56 @@
       "en": "+6 Defense, +20 HP",
       "zh": "+6防御力, +20生命值"
     }
+  },
+  {
+    "name": {
+      "en": "Health Ring",
+      "zh": "生命戒指"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "accessory",
+    "bonus_attack": 0,
+    "bonus_defense": 0,
+    "bonus_hp": 15,
+    "description": {
+      "en": "+15 HP",
+      "zh": "+15生命值"
+    }
+  },
+  {
+    "name": {
+      "en": "Power Amulet",
+      "zh": "力量护符"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "accessory",
+    "bonus_attack": 3,
+    "bonus_defense": 0,
+    "bonus_hp": 0,
+    "description": {
+      "en": "+3 Attack",
+      "zh": "+3攻击力"
+    }
+  },
+  {
+    "name": {
+      "en": "Guardian Charm",
+      "zh": "守护符咒"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "accessory",
+    "bonus_attack": 0,
+    "bonus_defense": 2,
+    "bonus_hp": 0,
+    "description": {
+      "en": "+2 Defense",
+      "zh": "+2防御力"
+    }
   }
 ]

@@ -11,8 +11,10 @@ def render_inventory(player) -> None:
     print(t({"en": "Equipment:", "zh": "装备："}))
     weapon_name = player.weapon.get_name() if player.weapon else t({"en": "(none)", "zh": "（无）"})
     armor_name = player.armor.get_name() if player.armor else t({"en": "(none)", "zh": "（无）"})
+    accessory_name = player.accessory.get_name() if player.accessory else t({"en": "(none)", "zh": "（无）"})
     print(f"  {t({'en': 'Weapon', 'zh': '武器'})}: {weapon_name}")
     print(f"  {t({'en': 'Armor', 'zh': '护甲'})}: {armor_name}")
+    print(f"  {t({'en': 'Accessory', 'zh': '饰品'})}: {accessory_name}")
 
     if not player.inventory:
         print(t({"en": "Inventory: (empty)", "zh": "背包：（空）"}))
