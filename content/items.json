@@ -67,6 +67,7 @@
     "bonus_attack": 5,
     "bonus_defense": 0,
     "bonus_hp": 0,
+    "rarity": "rare",
     "description": {
       "en": "+5 Attack",
       "zh": "+5攻击力"
@@ -118,6 +119,7 @@
     "bonus_attack": 0,
     "bonus_defense": 6,
     "bonus_hp": 20,
+    "rarity": "rare",
     "description": {
       "en": "+6 Defense, +20 HP",
       "zh": "+6防御力, +20生命值"
@@ -212,6 +214,7 @@
     "bonus_attack": 8,
     "bonus_defense": 0,
     "bonus_hp": 0,
+    "rarity": "epic",
     "description": {
       "en": "+8 Attack",
       "zh": "+8攻击力"
@@ -229,6 +232,7 @@
     "bonus_attack": 2,
     "bonus_defense": 1,
     "bonus_hp": 10,
+    "rarity": "epic",
     "description": {
       "en": "+2 Attack, +1 Defense, +10 HP",
       "zh": "+2攻击力, +1防御力, +10生命值"

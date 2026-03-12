@@ -9,9 +9,9 @@ def render_intro() -> None:
 
 def render_inventory(player) -> None:
     print(t({"en": "Equipment:", "zh": "装备："}))
-    weapon_name = player.weapon.get_name() if player.weapon else t({"en": "(none)", "zh": "（无）"})
-    armor_name = player.armor.get_name() if player.armor else t({"en": "(none)", "zh": "（无）"})
-    accessory_name = player.accessory.get_name() if player.accessory else t({"en": "(none)", "zh": "（无）"})
+    weapon_name = _format_item_with_rarity(player.weapon) if player.weapon else t({"en": "(none)", "zh": "（无）"})
+    armor_name = _format_item_with_rarity(player.armor) if player.armor else t({"en": "(none)", "zh": "（无）"})
+    accessory_name = _format_item_with_rarity(player.accessory) if player.accessory else t({"en": "(none)", "zh": "（无）"})
     print(f"  {t({'en': 'Weapon', 'zh': '武器'})}: {weapon_name}")
     print(f"  {t({'en': 'Armor', 'zh': '护甲'})}: {armor_name}")
     print(f"  {t({'en': 'Accessory', 'zh': '饰品'})}: {accessory_name}")
@@ -21,7 +21,21 @@ def render_inventory(player) -> None:
         return
     print(t({"en": "Inventory:", "zh": "背包："}))
     for i, item in enumerate(player.inventory):
-        print(f"  {i+1}. {item.get_name()} - {item.get_description()}")
+        item_display = _format_item_with_rarity(item)
+        print(f"  {i+1}. {item_display} - {item.get_description()}")
+
+
+def _format_item_with_rarity(item) -> str:
+    """Format item name with rarity indicator."""
+    name = item.get_name()
+    rarity = getattr(item, 'rarity', 'common')
+    if rarity == 'rare':
+        return f"[★] {name}"
+    elif rarity == 'epic':
+        return f"[★★] {name}"
+    elif rarity == 'legendary':
+        return f"[★★★] {name}"
+    return name
 
 
 def render_state(state: GameState) -> None:

@@ -37,33 +37,33 @@ class Player:
     def total_attack(self) -> int:
         bonus = 0
         if self.weapon:
-            bonus += self.weapon.bonus_attack
+            bonus += self.weapon.effective_bonus_attack
         if self.armor:
-            bonus += self.armor.bonus_attack
+            bonus += self.armor.effective_bonus_attack
         if self.accessory:
-            bonus += self.accessory.bonus_attack
+            bonus += self.accessory.effective_bonus_attack
         return self.attack + bonus
 
     @property
     def total_defense(self) -> int:
         bonus = 0
         if self.weapon:
-            bonus += self.weapon.bonus_defense
+            bonus += self.weapon.effective_bonus_defense
         if self.armor:
-            bonus += self.armor.bonus_defense
+            bonus += self.armor.effective_bonus_defense
         if self.accessory:
-            bonus += self.accessory.bonus_defense
+            bonus += self.accessory.effective_bonus_defense
         return self.defense + bonus
 
     @property
     def total_max_hp(self) -> int:
         bonus = 0
         if self.weapon:
-            bonus += self.weapon.bonus_hp
+            bonus += self.weapon.effective_bonus_hp
         if self.armor:
-            bonus += self.armor.bonus_hp
+            bonus += self.armor.effective_bonus_hp
         if self.accessory:
-            bonus += self.accessory.bonus_hp
+            bonus += self.accessory.effective_bonus_hp
         return self.max_hp + bonus
 
     def add_item(self, item) -> str:
