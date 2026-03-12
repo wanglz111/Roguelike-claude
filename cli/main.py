@@ -71,7 +71,7 @@ def main() -> None:
 
     while not state.game_over and state.floor <= state.max_floor:
         state.log.append(t({"en": f"Floor {state.floor} begins.", "zh": f"第{state.floor}层开始。"}))
-        monster = generate_monster(state.floor, rng)
+        monster = generate_monster(state.floor, rng, state.cycle)
 
         # Prompt for skill usage
         skill_id = prompt_skill_use(state.player, skills_db)
@@ -94,8 +94,24 @@ def main() -> None:
 
         if state.floor == state.max_floor:
             state.log.append(t({"en": "You cleared the tower prototype.", "zh": "你通关了塔楼原型。"}))
-            state.game_over = True
-            break
+            render_state(state)
+
+            # Offer New Game+
+            ng_choice = input(t({"en": f"\nStart New Game+ (Cycle {state.cycle + 1})? [Y/n]: ", "zh": f"\n开始新周目（第{state.cycle + 1}周）？[Y/n]："})).strip().lower()
+            if ng_choice in {"", "y", "yes", "是"}:
+                # Start New Game+
+                state.cycle += 1
+                state.floor = 1
+                state.game_over = False
+                state.log = []
+                state.player.hp = state.player.max_hp
+                state.player.mp = state.player.max_mp
+                state.player.gold = state.player.gold // 2  # Keep half gold
+                state.log.append(t({"en": f"New Game+ Cycle {state.cycle} begins! Monster difficulty increased.", "zh": f"新周目第{state.cycle}周开始！怪物难度提升。"}))
+                continue
+            else:
+                state.game_over = True
+                break
 
         # Check for random event
         event = generate_event(state.floor, rng)

@@ -42,9 +42,12 @@ def load_shops() -> list[dict]:
         return json.load(handle)
 
 
-def generate_monster(floor: int, rng: random.Random) -> Monster:
+def generate_monster(floor: int, rng: random.Random, cycle: int = 1) -> Monster:
     # Boss floors: every 5th floor (5, 10, 15, ...)
     is_boss_floor = (floor % 5 == 0)
+
+    # Cycle multiplier: 1.0 for cycle 1, 1.3 for cycle 2, 1.6 for cycle 3, etc.
+    cycle_mult = 1.0 + (cycle - 1) * 0.3
 
     if is_boss_floor:
         # Generate boss monster
@@ -57,11 +60,11 @@ def generate_monster(floor: int, rng: random.Random) -> Monster:
             scale = max(0, floor - template["min_floor"])
             return Monster(
                 name=template["name"],
-                hp=template["hp"] + scale * 3,
-                attack=template["attack"] + scale * 2,
-                defense=template["defense"] + scale,
-                exp_reward=template["exp_reward"] + scale * 3,
-                gold_reward=template["gold_reward"] + scale * 2,
+                hp=int((template["hp"] + scale * 3) * cycle_mult),
+                attack=int((template["attack"] + scale * 2) * cycle_mult),
+                defense=int((template["defense"] + scale) * cycle_mult),
+                exp_reward=int((template["exp_reward"] + scale * 3) * cycle_mult),
+                gold_reward=int((template["gold_reward"] + scale * 2) * cycle_mult),
                 drop_item=template.get("drop_item"),
                 is_boss=True,
             )
@@ -75,11 +78,11 @@ def generate_monster(floor: int, rng: random.Random) -> Monster:
     scale = max(0, floor - template["min_floor"])
     return Monster(
         name=template["name"],
-        hp=template["hp"] + scale * 2,
-        attack=template["attack"] + scale,
-        defense=template["defense"] + scale // 2,
-        exp_reward=template["exp_reward"] + scale * 2,
-        gold_reward=template["gold_reward"] + scale,
+        hp=int((template["hp"] + scale * 2) * cycle_mult),
+        attack=int((template["attack"] + scale) * cycle_mult),
+        defense=int((template["defense"] + scale // 2) * cycle_mult),
+        exp_reward=int((template["exp_reward"] + scale * 2) * cycle_mult),
+        gold_reward=int((template["gold_reward"] + scale) * cycle_mult),
         drop_item=template.get("drop_item"),
         is_boss=False,
     )

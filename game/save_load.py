@@ -96,6 +96,8 @@ def save_game(state: GameState) -> str:
                 "name": state.player.name,
                 "max_hp": state.player.max_hp,
                 "hp": state.player.hp,
+                "max_mp": state.player.max_mp,
+                "mp": state.player.mp,
                 "attack": state.player.attack,
                 "defense": state.player.defense,
                 "level": state.player.level,
@@ -105,11 +107,17 @@ def save_game(state: GameState) -> str:
                 "weapon": weapon_data,
                 "armor": armor_data,
                 "accessory": accessory_data,
+                "player_class": state.player.player_class,
+                "hp_per_level": state.player.hp_per_level,
+                "mp_per_level": state.player.mp_per_level,
+                "attack_per_level": state.player.attack_per_level,
+                "defense_per_level": state.player.defense_per_level,
             },
             "floor": state.floor,
             "max_floor": state.max_floor,
             "game_over": state.game_over,
             "log": state.log,
+            "cycle": state.cycle,
         }
 
         with open(save_path, 'w', encoding='utf-8') as f:
@@ -160,6 +168,8 @@ def load_game() -> tuple[Optional[GameState], str]:
             name=save_data["player"]["name"],
             max_hp=save_data["player"]["max_hp"],
             hp=save_data["player"]["hp"],
+            max_mp=save_data["player"].get("max_mp", 20),
+            mp=save_data["player"].get("mp", 20),
             attack=save_data["player"]["attack"],
             defense=save_data["player"]["defense"],
             level=save_data["player"]["level"],
@@ -169,6 +179,11 @@ def load_game() -> tuple[Optional[GameState], str]:
             weapon=weapon,
             armor=armor,
             accessory=accessory,
+            player_class=save_data["player"].get("player_class", "rogue"),
+            hp_per_level=save_data["player"].get("hp_per_level", 6),
+            mp_per_level=save_data["player"].get("mp_per_level", 5),
+            attack_per_level=save_data["player"].get("attack_per_level", 2),
+            defense_per_level=save_data["player"].get("defense_per_level", 1),
         )
 
         # Reconstruct game state
@@ -178,6 +193,7 @@ def load_game() -> tuple[Optional[GameState], str]:
             max_floor=save_data["max_floor"],
             game_over=save_data["game_over"],
             log=save_data["log"],
+            cycle=save_data.get("cycle", 1),
         )
 
         return state, t({"en": f"Game loaded from {save_path}", "zh": f"游戏已从 {save_path} 加载"})
