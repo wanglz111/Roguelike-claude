@@ -1,0 +1,91 @@
+[
+  {
+    "name": {
+      "en": "Wandering Merchant",
+      "zh": "流浪商人"
+    },
+    "description": {
+      "en": "A traveling merchant with various goods for sale.",
+      "zh": "一位旅行商人，出售各种商品。"
+    },
+    "min_floor": 1,
+    "items": [
+      {
+        "item_name": "Small Potion",
+        "price": 15,
+        "stock": -1
+      },
+      {
+        "item_name": "Medium Potion",
+        "price": 35,
+        "stock": -1
+      },
+      {
+        "item_name": "Iron Sword",
+        "price": 50,
+        "stock": 1
+      },
+      {
+        "item_name": "Leather Armor",
+        "price": 60,
+        "stock": 1
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Blacksmith's Shop",
+      "zh": "铁匠铺"
+    },
+    "description": {
+      "en": "A skilled blacksmith offering quality equipment.",
+      "zh": "一位技艺精湛的铁匠，提供优质装备。"
+    },
+    "min_floor": 5,
+    "items": [
+      {
+        "item_name": "Medium Potion",
+        "price": 35,
+        "stock": -1
+      },
+      {
+        "item_name": "Large Potion",
+        "price": 60,
+        "stock": -1
+      },
+      {
+        "item_name": "Steel Sword",
+        "price": 120,
+        "stock": 1
+      },
+      {
+        "item_name": "Chain Mail",
+        "price": 150,
+        "stock": 1
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Master Armorer",
+      "zh": "大师工匠"
+    },
+    "description": {
+      "en": "A master craftsman with the finest equipment.",
+      "zh": "一位大师级工匠，拥有最好的装备。"
+    },
+    "min_floor": 10,
+    "items": [
+      {
+        "item_name": "Large Potion",
+        "price": 60,
+        "stock": -1
+      },
+      {
+        "item_name": "Plate Armor",
+        "price": 250,
+        "stock": 1
+      }
+    ]
+  }
+]

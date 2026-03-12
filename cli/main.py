@@ -1,9 +1,9 @@
 import random
 
-from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use, prompt_event_choice
+from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use, prompt_event_choice, prompt_shop_purchase
 from cli.renderer import render_intro, render_state
 from game.combat import fight
-from game.floor import generate_monster, load_items, generate_event
+from game.floor import generate_monster, load_items, generate_event, generate_shop
 from game.game_state import GameState
 from game.player import Player
 from game.i18n import get_i18n, t
@@ -75,6 +75,31 @@ def main() -> None:
                 state.log.append(t({"en": "You have fallen...", "zh": "你倒下了……"}))
                 state.game_over = True
                 break
+
+        # Check for shop
+        shop = generate_shop(state.floor, rng)
+        if shop:
+            while True:
+                item_idx, should_leave = prompt_shop_purchase(shop, state.player, items_db)
+                if should_leave:
+                    state.log.append(t({"en": "You leave the shop.", "zh": "你离开了商店。"}))
+                    break
+                if item_idx >= 0:
+                    shop_item = shop.items[item_idx]
+                    if not shop_item.is_available():
+                        print(t({"en": "That item is out of stock.", "zh": "该物品已售罄。"}))
+                        continue
+                    if state.player.gold < shop_item.price:
+                        print(t({"en": "Not enough gold!", "zh": "金币不足！"}))
+                        continue
+                    # Purchase successful
+                    success, item_name = shop.purchase_item(item_idx)
+                    if success and item_name in items_db:
+                        state.player.gold -= shop_item.price
+                        item = items_db[item_name]
+                        msg = state.player.add_item(item)
+                        state.log.append(t({"en": f"Purchased {item.get_name()} for {shop_item.price} gold.", "zh": f"花费{shop_item.price}金币购买了{item.get_name()}。"}))
+                        print(msg)
 
         choice = prompt_item_use(state.player)
         if choice.startswith('u') and choice[1:].isdigit():

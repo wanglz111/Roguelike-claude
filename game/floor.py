@@ -5,11 +5,13 @@ from pathlib import Path
 from game.monster import Monster
 from game.item import Item
 from game.event import Event, EventChoice
+from game.shop import Shop, ShopItem
 
 
 CONTENT_PATH = Path(__file__).resolve().parent.parent / "content" / "monsters.json"
 ITEMS_PATH = Path(__file__).resolve().parent.parent / "content" / "items.json"
 EVENTS_PATH = Path(__file__).resolve().parent.parent / "content" / "events.json"
+SHOPS_PATH = Path(__file__).resolve().parent.parent / "content" / "shops.json"
 
 
 def load_monster_pool() -> list[dict]:
@@ -32,6 +34,11 @@ def load_items() -> dict[str, Item]:
 
 def load_events() -> list[dict]:
     with EVENTS_PATH.open("r", encoding="utf-8") as handle:
+        return json.load(handle)
+
+
+def load_shops() -> list[dict]:
+    with SHOPS_PATH.open("r", encoding="utf-8") as handle:
         return json.load(handle)
 
 
@@ -100,5 +107,36 @@ def generate_event(floor: int, rng: random.Random) -> Event | None:
         name=template["name"],
         description=template["description"],
         choices=choices,
+        min_floor=template["min_floor"]
+    )
+
+
+def generate_shop(floor: int, rng: random.Random) -> Shop | None:
+    """Generate a shop for the current floor.
+
+    Returns None if no shop should appear (70% chance).
+    Shops appear after boss floors with higher probability.
+    """
+    # Higher chance after boss floors
+    is_after_boss = (floor - 1) % 5 == 0 and floor > 1
+    chance = 0.5 if is_after_boss else 0.3
+
+    if rng.random() > chance:
+        return None
+
+    candidates = [
+        shop for shop in load_shops() if shop["min_floor"] <= floor
+    ]
+
+    if not candidates:
+        return None
+
+    template = rng.choice(candidates)
+    shop_items = [ShopItem(**item) for item in template["items"]]
+
+    return Shop(
+        name=template["name"],
+        description=template["description"],
+        items=shop_items,
         min_floor=template["min_floor"]
     )

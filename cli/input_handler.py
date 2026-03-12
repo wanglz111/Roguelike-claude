@@ -43,3 +43,39 @@ def prompt_event_choice(event) -> int:
             if 0 <= idx < len(event.choices):
                 return idx
         print(t({"en": "Invalid choice. Try again.", "zh": "无效的选择。请重试。"}))
+
+
+def prompt_shop_purchase(shop, player, items_db) -> tuple[int, bool]:
+    """Prompt player to purchase from shop.
+
+    Returns:
+        (item_index, should_leave) - item_index is -1 if no purchase, should_leave indicates if player wants to exit shop
+    """
+    print(f"\n=== {shop.get_name()} ===")
+    print(shop.get_description())
+    print(f"{t({'en': 'Your gold', 'zh': '你的金币'})}: {player.gold}")
+    print()
+
+    for i, shop_item in enumerate(shop.items, 1):
+        if shop_item.is_available():
+            item = items_db.get(shop_item.item_name)
+            if item:
+                stock_text = ""
+                if shop_item.stock > 0:
+                    stock_text = f" ({t({'en': 'stock', 'zh': '库存'})}: {shop_item.stock})"
+                print(f"{i}. {item.get_name()} - {shop_item.price} {t({'en': 'gold', 'zh': '金币'})}{stock_text}")
+                print(f"   {item.get_description()}")
+
+    print()
+    choice = input(t({"en": "Buy item (number) or Enter to leave: ", "zh": "购买物品（数字）或回车离开："})).strip()
+
+    if not choice:
+        return -1, True
+
+    if choice.isdigit():
+        idx = int(choice) - 1
+        if 0 <= idx < len(shop.items):
+            return idx, False
+
+    print(t({"en": "Invalid choice.", "zh": "无效的选择。"}))
+    return -1, False
