@@ -1,11 +1,12 @@
 import random
 
-from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use, prompt_event_choice, prompt_shop_purchase, prompt_skill_use
+from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use, prompt_event_choice, prompt_shop_purchase, prompt_skill_use, prompt_class_selection
 from cli.renderer import render_intro, render_state
 from game.combat import fight
 from game.floor import generate_monster, load_items, generate_event, generate_shop
 from game.game_state import GameState
 from game.player import Player
+from game.player_class import load_classes
 from game.skill import load_skills
 from game.i18n import get_i18n, t
 from game.save_load import save_game, load_game, has_save_file
@@ -37,7 +38,31 @@ def main() -> None:
             print(t({"en": "Run cancelled.", "zh": "运行已取消。"}))
             return
         name = prompt_player_name()
-        state = GameState(player=Player(name=name))
+
+        # Load classes and prompt for class selection
+        classes_db = load_classes()
+        class_id = prompt_class_selection(classes_db)
+        selected_class = classes_db[class_id]
+
+        # Create player with class-specific stats
+        state = GameState(player=Player(
+            name=name,
+            max_hp=selected_class.base_hp,
+            hp=selected_class.base_hp,
+            max_mp=selected_class.base_mp,
+            mp=selected_class.base_mp,
+            attack=selected_class.base_attack,
+            defense=selected_class.base_defense,
+            player_class=class_id,
+            hp_per_level=selected_class.hp_per_level,
+            mp_per_level=selected_class.mp_per_level,
+            attack_per_level=selected_class.attack_per_level,
+            defense_per_level=selected_class.defense_per_level
+        ))
+
+        print(t({"en": f"\nYou are now a {selected_class.get_name()}!", "zh": f"\n你现在是一名{selected_class.get_name()}！"}))
+        input(t({"en": "Press Enter to begin your adventure...", "zh": "按回车开始你的冒险..."}))
+
 
     rng = random.Random()
     items_db = load_items()

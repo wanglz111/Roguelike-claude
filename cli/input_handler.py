@@ -35,6 +35,34 @@ def prompt_player_name() -> str:
     return name or t({"en": "Hero", "zh": "英雄"})
 
 
+def prompt_class_selection(classes_db) -> str:
+    """Prompt player to select a class.
+
+    Returns:
+        class_id of the selected class
+    """
+    print(t({"en": "\nChoose your class:", "zh": "\n选择你的职业："}))
+    print()
+
+    class_list = list(classes_db.items())
+    for i, (class_id, player_class) in enumerate(class_list, 1):
+        print(f"{i}. {player_class.get_name()}")
+        print(f"   {player_class.get_description()}")
+        print(f"   HP: {player_class.base_hp} (+{player_class.hp_per_level}/{t({'en': 'level', 'zh': '级'})}), "
+              f"MP: {player_class.base_mp} (+{player_class.mp_per_level}/{t({'en': 'level', 'zh': '级'})})")
+        print(f"   {t({'en': 'ATK', 'zh': '攻击'})}: {player_class.base_attack} (+{player_class.attack_per_level}/{t({'en': 'level', 'zh': '级'})}), "
+              f"{t({'en': 'DEF', 'zh': '防御'})}: {player_class.base_defense} (+{player_class.defense_per_level}/{t({'en': 'level', 'zh': '级'})})")
+        print()
+
+    while True:
+        choice = input(t({"en": "Select class (1-3): ", "zh": "选择职业（1-3）："})).strip()
+        if choice.isdigit():
+            idx = int(choice) - 1
+            if 0 <= idx < len(class_list):
+                return class_list[idx][0]
+        print(t({"en": "Invalid choice. Try again.", "zh": "无效的选择。请重试。"}))
+
+
 def confirm_start() -> bool:
     choice = input(t({"en": "Start the tower run? [Y/n]: ", "zh": "开始塔楼冒险？[Y/n]："})).strip().lower()
     return choice in {"", "y", "yes"}

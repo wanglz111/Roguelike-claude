@@ -884,3 +884,55 @@
 2. 可选扩展：职业系统、更多装备类型（Milestone 4）
 3. 或继续扩展其他内容（事件、商店、怪物）
 
+## 2026-03-13 Class System Implementation
+
+目标：
+实现基础职业系统，让玩家在游戏开始时选择职业，不同职业有不同的基础属性和成长速率。
+
+完成内容：
+
+1. 创建 `content/classes.json` 定义 3 种职业：
+   - Warrior（战士）- 高 HP 和攻击（HP:35 MP:15 ATK:10 DEF:4），每级 +7 HP, +3 MP, +3 ATK, +1 DEF
+   - Mage（法师）- 高 MP 和技能（HP:25 MP:30 ATK:6 DEF:2），每级 +5 HP, +8 MP, +2 ATK, +1 DEF
+   - Rogue（盗贼）- 平衡型（HP:30 MP:20 ATK:8 DEF:3），每级 +6 HP, +5 MP, +2 ATK, +1 DEF
+2. 创建 `game/player_class.py` 模块：
+   - 定义 PlayerClass 数据类
+   - 实现 load_classes() 函数从 JSON 加载职业
+3. 更新 Player 类支持职业系统：
+   - 添加 player_class 字段存储职业 ID
+   - 添加 hp_per_level, mp_per_level, attack_per_level, defense_per_level 字段
+   - 修改 gain_rewards() 方法使用职业特定的成长速率
+4. 更新 CLI 交互：
+   - 在 input_handler.py 添加 prompt_class_selection() 函数
+   - 显示所有职业的详细信息（基础属性和成长速率）
+   - 玩家选择职业后创建对应属性的角色
+5. 更新主循环 `cli/main.py`：
+   - 导入 load_classes 和 prompt_class_selection
+   - 在创建新游戏时提示玩家选择职业
+   - 根据选择的职业初始化玩家属性
+6. 创建 `tests/test_class.py` 测试职业系统：
+   - 测试职业加载（3 种职业）
+   - 测试每种职业的属性正确性
+   - 测试玩家创建时使用职业属性
+   - 测试玩家升级时使用职业成长速率
+7. 所有职业支持中英文双语
+8. 更新 architecture.md 和 README.md 文档
+
+验证：
+
+1. 所有 21 个测试通过（新增 6 个职业测试）
+2. 游戏主程序正常导入
+3. 职业系统完全数据驱动，易于扩展
+4. 不同职业提供不同的游戏体验和策略选择
+
+遗留问题：
+
+无。职业系统已完整实现并测试通过。
+
+建议下一步：
+
+1. 可选：添加更多装备类型（饰品、戒指等）
+2. 可选：添加职业专属技能或装备
+3. 可选：实现周目系统
+4. 项目已达到非常完整的可玩状态，可以作为完整项目交付
+

@@ -18,6 +18,11 @@ class Player:
     inventory: list = field(default_factory=list)
     weapon: object = None
     armor: object = None
+    player_class: str = "rogue"  # Default class
+    hp_per_level: int = 6
+    mp_per_level: int = 5
+    attack_per_level: int = 2
+    defense_per_level: int = 1
 
     @property
     def exp_to_next_level(self) -> int:
@@ -100,10 +105,10 @@ class Player:
             threshold = self.exp_to_next_level
             self.exp -= threshold
             self.level += 1
-            self.max_hp += 6
-            self.max_mp += 5
-            self.attack += 2
-            self.defense += 1
+            self.max_hp += self.hp_per_level
+            self.max_mp += self.mp_per_level
+            self.attack += self.attack_per_level
+            self.defense += self.defense_per_level
             self.hp = self.max_hp
             self.mp = self.max_mp
             messages.append(
