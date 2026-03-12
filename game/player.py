@@ -8,6 +8,8 @@ class Player:
     name: str
     max_hp: int = 30
     hp: int = 30
+    max_mp: int = 20
+    mp: int = 20
     attack: int = 8
     defense: int = 3
     level: int = 1
@@ -99,11 +101,13 @@ class Player:
             self.exp -= threshold
             self.level += 1
             self.max_hp += 6
+            self.max_mp += 5
             self.attack += 2
             self.defense += 1
             self.hp = self.max_hp
+            self.mp = self.max_mp
             messages.append(
-                t({"en": f"Level up! You reached level {self.level}. HP fully restored.", "zh": f"升级了！你达到了{self.level}级。生命值已完全恢复。"})
+                t({"en": f"Level up! You reached level {self.level}. HP and MP fully restored.", "zh": f"升级了！你达到了{self.level}级。生命值和魔法值已完全恢复。"})
             )
         return messages
 

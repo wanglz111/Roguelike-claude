@@ -2,6 +2,34 @@ from cli.renderer import render_inventory
 from game.i18n import t
 
 
+def prompt_skill_use(player, skills_db) -> str:
+    """Prompt player to use a skill before combat.
+
+    Returns:
+        skill_id or empty string if no skill used
+    """
+    print(f"\n{t({'en': 'MP', 'zh': '魔法值'})}: {player.mp}/{player.max_mp}")
+    print(t({"en": "Available skills:", "zh": "可用技能："}))
+
+    available_skills = []
+    for skill_id, skill in skills_db.items():
+        if player.mp >= skill.mp_cost:
+            available_skills.append((skill_id, skill))
+            print(f"  {skill_id}: {skill.get_name()} (MP: {skill.mp_cost}) - {skill.get_description()}")
+
+    if not available_skills:
+        print(t({"en": "  (Not enough MP for any skill)", "zh": "  （魔法值不足，无法使用技能）"}))
+        input(t({"en": "Press Enter to continue...", "zh": "按回车继续..."}))
+        return ""
+
+    print()
+    choice = input(t({"en": "Use skill (skill_id) or Enter to attack normally: ", "zh": "使用技能（技能ID）或回车普通攻击："})).strip()
+
+    if choice in skills_db and player.mp >= skills_db[choice].mp_cost:
+        return choice
+    return ""
+
+
 def prompt_player_name() -> str:
     name = input(t({"en": "Enter your hero name: ", "zh": "输入你的英雄名字："})).strip()
     return name or t({"en": "Hero", "zh": "英雄"})

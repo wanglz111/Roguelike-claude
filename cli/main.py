@@ -1,11 +1,12 @@
 import random
 
-from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use, prompt_event_choice, prompt_shop_purchase
+from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use, prompt_event_choice, prompt_shop_purchase, prompt_skill_use
 from cli.renderer import render_intro, render_state
 from game.combat import fight
 from game.floor import generate_monster, load_items, generate_event, generate_shop
 from game.game_state import GameState
 from game.player import Player
+from game.skill import load_skills
 from game.i18n import get_i18n, t
 from game.save_load import save_game, load_game, has_save_file
 
@@ -40,12 +41,21 @@ def main() -> None:
 
     rng = random.Random()
     items_db = load_items()
+    skills_db = load_skills()
     state.log.append(t({"en": f"Welcome, {state.player.name}.", "zh": f"欢迎，{state.player.name}。"}))
 
     while not state.game_over and state.floor <= state.max_floor:
         state.log.append(t({"en": f"Floor {state.floor} begins.", "zh": f"第{state.floor}层开始。"}))
         monster = generate_monster(state.floor, rng)
-        victory, battle_log = fight(state.player, monster)
+
+        # Prompt for skill usage
+        skill_id = prompt_skill_use(state.player, skills_db)
+        skill = None
+        if skill_id:
+            skill = skills_db[skill_id]
+            state.player.mp -= skill.mp_cost
+
+        victory, battle_log = fight(state.player, monster, skill)
         state.log.extend(battle_log)
 
         if not victory:

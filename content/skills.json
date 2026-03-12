@@ -1,0 +1,23 @@
+{
+  "power_strike": {
+    "name": {"en": "Power Strike", "zh": "强力打击"},
+    "description": {"en": "A powerful attack dealing 1.5x damage", "zh": "强力攻击，造成1.5倍伤害"},
+    "mp_cost": 5,
+    "effect_type": "damage_multiplier",
+    "effect_value": 1.5
+  },
+  "heal": {
+    "name": {"en": "Heal", "zh": "治疗术"},
+    "description": {"en": "Restore 20 HP", "zh": "恢复20点生命值"},
+    "mp_cost": 8,
+    "effect_type": "heal",
+    "effect_value": 20
+  },
+  "defend": {
+    "name": {"en": "Defend", "zh": "防御"},
+    "description": {"en": "Reduce incoming damage by 50% this turn", "zh": "本回合减少50%受到的伤害"},
+    "mp_cost": 3,
+    "effect_type": "defense_boost",
+    "effect_value": 0.5
+  }
+}

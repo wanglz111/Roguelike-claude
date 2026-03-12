@@ -2,6 +2,7 @@ import random
 
 from game.monster import Monster
 from game.player import Player
+from game.skill import Skill
 from game.i18n import t
 
 
@@ -17,30 +18,51 @@ def check_critical_hit(crit_chance: float = 0.1) -> bool:
     return random.random() < crit_chance
 
 
-def fight(player: Player, monster: Monster) -> tuple[bool, list[str]]:
+def fight(player: Player, monster: Monster, skill: Skill = None) -> tuple[bool, list[str]]:
     monster_name = monster.get_name()
     if monster.is_boss:
         log = [t({"en": f"⚔️ BOSS BATTLE! {monster_name} appears!", "zh": f"⚔️ Boss战！{monster_name}出现了！"})]
     else:
         log = [t({"en": f"A wild {monster_name} appears!", "zh": f"一只野生的{monster_name}出现了！"})]
     round_number = 1
+    defense_boost = 0.0
 
     while player.is_alive and monster.hp > 0:
         # Player's turn
-        player_crit = check_critical_hit()
-        player_damage = calculate_damage(player.total_attack, monster.defense, player_crit)
-        monster.hp -= player_damage
-
-        if player_crit:
-            log.append(
-                t({"en": f"Round {round_number}: Critical hit! You hit {monster_name} for {player_damage} damage.",
-                   "zh": f"第{round_number}回合：暴击！你对{monster_name}造成了{player_damage}点伤害。"})
-            )
+        if skill and round_number == 1:
+            # Use skill on first round
+            if skill.effect_type == "damage_multiplier":
+                player_crit = check_critical_hit()
+                player_damage = int(calculate_damage(player.total_attack, monster.defense, player_crit) * skill.effect_value)
+                monster.hp -= player_damage
+                log.append(t({"en": f"Round {round_number}: You use {skill.get_name()}! {player_damage} damage to {monster_name}.",
+                             "zh": f"第{round_number}回合：你使用了{skill.get_name()}！对{monster_name}造成{player_damage}点伤害。"}))
+            elif skill.effect_type == "heal":
+                old_hp = player.hp
+                player.hp = min(player.hp + int(skill.effect_value), player.max_hp)
+                healed = player.hp - old_hp
+                log.append(t({"en": f"Round {round_number}: You use {skill.get_name()}! Restored {healed} HP.",
+                             "zh": f"第{round_number}回合：你使用了{skill.get_name()}！恢复了{healed}点生命值。"}))
+            elif skill.effect_type == "defense_boost":
+                defense_boost = skill.effect_value
+                log.append(t({"en": f"Round {round_number}: You use {skill.get_name()}! Defense increased.",
+                             "zh": f"第{round_number}回合：你使用了{skill.get_name()}！防御力提升。"}))
         else:
-            log.append(
-                t({"en": f"Round {round_number}: You hit {monster_name} for {player_damage} damage.",
-                   "zh": f"第{round_number}回合：你对{monster_name}造成了{player_damage}点伤害。"})
-            )
+            # Normal attack
+            player_crit = check_critical_hit()
+            player_damage = calculate_damage(player.total_attack, monster.defense, player_crit)
+            monster.hp -= player_damage
+
+            if player_crit:
+                log.append(
+                    t({"en": f"Round {round_number}: Critical hit! You hit {monster_name} for {player_damage} damage.",
+                       "zh": f"第{round_number}回合：暴击！你对{monster_name}造成了{player_damage}点伤害。"})
+                )
+            else:
+                log.append(
+                    t({"en": f"Round {round_number}: You hit {monster_name} for {player_damage} damage.",
+                       "zh": f"第{round_number}回合：你对{monster_name}造成了{player_damage}点伤害。"})
+                )
 
         if monster.hp <= 0:
             break
@@ -48,6 +70,9 @@ def fight(player: Player, monster: Monster) -> tuple[bool, list[str]]:
         # Monster's turn
         monster_crit = check_critical_hit()
         monster_damage = calculate_damage(monster.attack, player.total_defense, monster_crit)
+        if defense_boost > 0:
+            monster_damage = int(monster_damage * (1 - defense_boost))
+            defense_boost = 0.0
         player.hp -= monster_damage
 
         if monster_crit:
