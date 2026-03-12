@@ -170,5 +170,263 @@
         }
       }
     ]
+  },
+  {
+    "name": {
+      "en": "Mysterious Stranger",
+      "zh": "神秘陌生人"
+    },
+    "description": {
+      "en": "A hooded figure approaches you. 'I can share knowledge... for a price.'",
+      "zh": "一个戴兜帽的人向你走来。'我可以分享知识……但需要付出代价。'"
+    },
+    "min_floor": 5,
+    "choices": [
+      {
+        "text": {
+          "en": "Pay 30 gold for advice",
+          "zh": "支付30金币获取建议"
+        },
+        "effect_type": "trade_heal",
+        "effect_value": 30,
+        "result_text": {
+          "en": "The stranger teaches you survival techniques. +30 HP, -20 gold",
+          "zh": "陌生人教给你生存技巧。+30生命值，-20金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Refuse and walk away",
+          "zh": "拒绝并离开"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "The stranger vanishes into the shadows.",
+          "zh": "陌生人消失在阴影中。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Cursed Altar",
+      "zh": "诅咒祭坛"
+    },
+    "description": {
+      "en": "A dark altar radiates malevolent energy. Gold coins are scattered around it.",
+      "zh": "一座黑暗的祭坛散发着邪恶的能量。周围散落着金币。"
+    },
+    "min_floor": 6,
+    "choices": [
+      {
+        "text": {
+          "en": "Take the gold",
+          "zh": "拿走金币"
+        },
+        "effect_type": "gold",
+        "effect_value": 50,
+        "result_text": {
+          "en": "You grab the gold quickly. +50 gold",
+          "zh": "你迅速拿走了金币。+50金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Touch the altar",
+          "zh": "触摸祭坛"
+        },
+        "effect_type": "damage",
+        "effect_value": 15,
+        "result_text": {
+          "en": "Dark energy surges through you! -15 HP",
+          "zh": "黑暗能量涌入你的身体！-15生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Leave immediately",
+          "zh": "立即离开"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You wisely avoid the cursed place.",
+          "zh": "你明智地避开了这个被诅咒的地方。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Healing Spring",
+      "zh": "治愈之泉"
+    },
+    "description": {
+      "en": "You discover a natural spring with crystal-clear water. The air feels rejuvenating.",
+      "zh": "你发现了一处天然泉水，水质清澈见底。空气中弥漫着恢复活力的气息。"
+    },
+    "min_floor": 7,
+    "choices": [
+      {
+        "text": {
+          "en": "Rest and drink",
+          "zh": "休息并饮水"
+        },
+        "effect_type": "heal",
+        "effect_value": 35,
+        "result_text": {
+          "en": "You feel greatly refreshed! +35 HP",
+          "zh": "你感到精神焕发！+35生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Continue without stopping",
+          "zh": "不停留继续前进"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You press onward.",
+          "zh": "你继续前进。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Gambling Den",
+      "zh": "赌场"
+    },
+    "description": {
+      "en": "You stumble upon a hidden gambling den. A dealer offers you a game of chance.",
+      "zh": "你偶然发现了一个隐秘的赌场。一个荷官邀请你玩一局。"
+    },
+    "min_floor": 8,
+    "choices": [
+      {
+        "text": {
+          "en": "Bet 40 gold (high risk)",
+          "zh": "下注40金币（高风险）"
+        },
+        "effect_type": "gold",
+        "effect_value": 80,
+        "result_text": {
+          "en": "You win big! +80 gold",
+          "zh": "你大获全胜！+80金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Bet 20 gold (low risk)",
+          "zh": "下注20金币（低风险）"
+        },
+        "effect_type": "gold",
+        "effect_value": 30,
+        "result_text": {
+          "en": "You win a modest amount. +30 gold",
+          "zh": "你赢得了一些金币。+30金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Don't gamble",
+          "zh": "不赌博"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You walk away from the temptation.",
+          "zh": "你抵制住了诱惑。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Wounded Adventurer",
+      "zh": "受伤的冒险者"
+    },
+    "description": {
+      "en": "You find an injured adventurer. They offer to share their supplies if you help them.",
+      "zh": "你发现了一个受伤的冒险者。如果你帮助他们，他们愿意分享补给。"
+    },
+    "min_floor": 10,
+    "choices": [
+      {
+        "text": {
+          "en": "Help them (costs 10 HP)",
+          "zh": "帮助他们（消耗10生命值）"
+        },
+        "effect_type": "gold",
+        "effect_value": 60,
+        "result_text": {
+          "en": "They thank you and give you gold. +60 gold (but you spent energy helping)",
+          "zh": "他们感谢你并给了你金币。+60金币（但你消耗了体力帮助他们）"
+        }
+      },
+      {
+        "text": {
+          "en": "Ignore them",
+          "zh": "无视他们"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You continue on your way.",
+          "zh": "你继续你的路。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Ancient Library",
+      "zh": "古老图书馆"
+    },
+    "description": {
+      "en": "You discover a dusty library filled with ancient tomes. One book glows with magical energy.",
+      "zh": "你发现了一座布满灰尘的图书馆，里面摆满了古老的典籍。一本书散发着魔法能量。"
+    },
+    "min_floor": 12,
+    "choices": [
+      {
+        "text": {
+          "en": "Read the glowing book",
+          "zh": "阅读发光的书"
+        },
+        "effect_type": "heal",
+        "effect_value": 40,
+        "result_text": {
+          "en": "Ancient wisdom fills your mind! +40 HP",
+          "zh": "古老的智慧充盈你的心灵！+40生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Search for treasure",
+          "zh": "搜寻宝藏"
+        },
+        "effect_type": "gold",
+        "effect_value": 40,
+        "result_text": {
+          "en": "You find hidden gold among the books. +40 gold",
+          "zh": "你在书籍中找到了隐藏的金币。+40金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Leave the library",
+          "zh": "离开图书馆"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You decide not to disturb this place.",
+          "zh": "你决定不打扰这个地方。"
+        }
+      }
+    ]
   }
 ]
