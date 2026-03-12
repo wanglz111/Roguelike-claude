@@ -45,6 +45,7 @@ class BalanceTests(unittest.TestCase):
         initial_attack = player.attack
         initial_defense = player.defense
         initial_max_hp = player.max_hp
+        initial_max_mp = player.max_mp
 
         player.gain_rewards(exp=100, gold=0)
 
@@ -52,6 +53,7 @@ class BalanceTests(unittest.TestCase):
         self.assertEqual(player.attack, initial_attack + (player.level - 1) * 2)
         self.assertEqual(player.defense, initial_defense + (player.level - 1) * 1)
         self.assertEqual(player.max_hp, initial_max_hp + (player.level - 1) * 6)
+        self.assertEqual(player.max_mp, initial_max_mp + (player.level - 1) * 5)
 
     def test_floor_10_boss(self):
         """Test floor 10 boss encounter."""
