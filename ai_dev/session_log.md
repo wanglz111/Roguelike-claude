@@ -1,5 +1,61 @@
 # Session Log
 
+## 2026-03-13 Skill Pool Expansion
+
+目标：
+扩展技能池，为每个职业添加更多技能选项，丰富战斗策略深度。
+
+完成内容：
+
+1. 在 `content/skills.json` 中添加 5 个新的职业专属技能：
+   - 战士：Vampiric Strike（吸血打击）- 9 MP，造成 1.6x 伤害并恢复 12 HP
+   - 法师：Arcane Bolt（奥术飞弹）- 6 MP，造成 1.7x 伤害（低成本高效）
+   - 法师：Greater Heal（强效治疗）- 12 MP，恢复 30 HP
+   - 盗贼：Shadow Strike（暗影突袭）- 7 MP，造成 1.9x 伤害
+   - 盗贼：Riposte（反击）- 4 MP，减少 40% 伤害（低成本防御）
+2. 技能总数从 12 个增加到 17 个（6 通用 + 11 职业专属）
+3. 新增 vampiric 效果类型：
+   - 在 `game/combat.py` 中实现吸血攻击逻辑
+   - 造成伤害的同时恢复生命值
+   - 支持暴击计算
+4. 更新 Skill 数据类：
+   - 添加 heal_amount 字段支持吸血技能的治疗量
+   - 更新 load_skills() 函数加载新字段
+5. 技能设计理念：
+   - 战士：新增生存能力（吸血）
+   - 法师：新增 MP 效率选项（奥术飞弹）和强力治疗
+   - 盗贼：新增中等伤害技能和低成本防御
+6. 所有新技能支持中英文双语
+7. 更新文档：
+   - README.md：技能数量从 12 更新到 17
+   - architecture.md：添加 vampiric 效果类型说明，更新技能列表
+   - next_tasks.md：标记任务为已完成
+
+改动文件：
+- `content/skills.json`
+- `game/skill.py`
+- `game/combat.py`
+- `README.md`
+- `ai_dev/architecture.md`
+- `ai_dev/next_tasks.md`
+
+验证：
+
+1. 技能系统成功加载 17 个技能
+2. 游戏主程序正常导入
+3. 新技能提供更多战术选择和职业差异化
+4. 吸血效果类型正确实现
+
+遗留问题：
+
+无。这是一个数据驱动的内容扩展，风险低。
+
+建议下一步：
+
+1. 添加更多随机事件（增加探索趣味性）
+2. 添加更多装备（扩展装备系统）
+3. 优化 UI 显示（改善用户体验）
+
 ## 2026-03-13 Monster Pool Expansion - Mid-Late Game
 
 目标：

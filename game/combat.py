@@ -52,6 +52,16 @@ def fight(player: Player, monster: Monster, skill: Skill = None) -> tuple[bool, 
                 defense_boost = skill.effect_value
                 log.append(t({"en": f"Round {round_number}: You use {skill.get_name()}! Defense increased.",
                              "zh": f"第{round_number}回合：你使用了{skill.get_name()}！防御力提升。"}))
+            elif skill.effect_type == "vampiric":
+                player_crit = check_critical_hit()
+                player_damage = int(calculate_damage(player.total_attack, monster.defense, player_crit) * skill.effect_value)
+                monster.hp -= player_damage
+                old_hp = player.hp
+                heal_amount = getattr(skill, 'heal_amount', 10)
+                player.hp = min(player.hp + heal_amount, player.total_max_hp)
+                healed = player.hp - old_hp
+                log.append(t({"en": f"Round {round_number}: You use {skill.get_name()}! {player_damage} damage to {monster_name}, restored {healed} HP.",
+                             "zh": f"第{round_number}回合：你使用了{skill.get_name()}！对{monster_name}造成{player_damage}点伤害，恢复了{healed}点生命值。"}))
         else:
             # Normal attack
             player_crit = check_critical_hit()
