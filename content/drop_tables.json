@@ -1,0 +1,59 @@
+[
+  {
+    "floor_range": [1, 4],
+    "drop_chance": 0.3,
+    "boss_drop_chance": 0.8,
+    "items": [
+      {"name": "Small Potion", "weight": 50},
+      {"name": "Iron Sword", "weight": 20},
+      {"name": "Leather Armor", "weight": 20},
+      {"name": "Health Ring", "weight": 10}
+    ]
+  },
+  {
+    "floor_range": [5, 9],
+    "drop_chance": 0.35,
+    "boss_drop_chance": 0.85,
+    "items": [
+      {"name": "Small Potion", "weight": 30},
+      {"name": "Medium Potion", "weight": 20},
+      {"name": "Iron Sword", "weight": 15},
+      {"name": "Steel Sword", "weight": 10},
+      {"name": "Leather Armor", "weight": 15},
+      {"name": "Chain Mail", "weight": 10},
+      {"name": "Health Ring", "weight": 5},
+      {"name": "Power Amulet", "weight": 5}
+    ]
+  },
+  {
+    "floor_range": [10, 14],
+    "drop_chance": 0.4,
+    "boss_drop_chance": 0.9,
+    "items": [
+      {"name": "Medium Potion", "weight": 30},
+      {"name": "Large Potion", "weight": 15},
+      {"name": "Steel Sword", "weight": 15},
+      {"name": "Mythril Sword", "weight": 10},
+      {"name": "Chain Mail", "weight": 15},
+      {"name": "Plate Armor", "weight": 10},
+      {"name": "Power Amulet", "weight": 10},
+      {"name": "Defense Ring", "weight": 10},
+      {"name": "Balanced Ring", "weight": 5}
+    ]
+  },
+  {
+    "floor_range": [15, 20],
+    "drop_chance": 0.45,
+    "boss_drop_chance": 0.95,
+    "items": [
+      {"name": "Large Potion", "weight": 25},
+      {"name": "Mana Potion", "weight": 20},
+      {"name": "Mythril Sword", "weight": 15},
+      {"name": "Excalibur", "weight": 5},
+      {"name": "Plate Armor", "weight": 15},
+      {"name": "Dragon Scale", "weight": 5},
+      {"name": "Balanced Ring", "weight": 10},
+      {"name": "Legendary Amulet", "weight": 5}
+    ]
+  }
+]

@@ -1,5 +1,47 @@
 # Session Log
 
+## 2026-03-13 Drop System Optimization
+
+目标：
+优化掉落系统，让掉落更有趣和平衡，根据楼层调整掉落物品稀有度，Boss 掉落更好的装备。
+
+完成内容：
+
+1. 创建掉落表配置文件 `content/drop_tables.json`：
+   - 定义 4 个楼层范围的掉落表（1-4、5-9、10-14、15-20）
+   - 每个掉落表包含掉落概率、Boss 掉落概率和物品权重列表
+   - 早期楼层掉落基础装备和小型药水
+   - 后期楼层掉落稀有装备和高级药水
+   - Boss 掉落概率显著高于普通怪物（80-95% vs 30-45%）
+
+2. 实现掉落生成函数 `game/floor.py:generate_drop()`：
+   - 根据楼层选择合适的掉落表
+   - 根据 Boss 状态和难度调整掉落概率
+   - 使用权重系统随机选择掉落物品
+   - 支持难度系统的掉落率倍率
+
+3. 更新主游戏循环 `cli/main.py`：
+   - 移除旧的固定掉落逻辑（monster.drop_item）
+   - 集成新的掉落生成系统
+   - 战斗胜利后调用 generate_drop() 生成掉落
+
+4. 更新文档：
+   - 更新 `README.md` 添加掉落系统说明
+   - 更新 `ai_dev/architecture.md` 描述新的掉落机制
+
+验证：
+- 掉落表加载正常，包含 4 个楼层范围配置
+- 普通怪物掉落率约 30-45%，Boss 掉落率约 80-95%
+- 早期楼层掉落基础物品，后期楼层掉落稀有物品
+- 游戏集成测试通过，掉落系统正常工作
+
+影响范围：
+- 新增文件：content/drop_tables.json
+- 修改文件：game/floor.py, cli/main.py, README.md, ai_dev/architecture.md, ai_dev/session_log.md, ai_dev/next_tasks.md
+- 游戏体验改进：掉落更有趣，Boss 战奖励更丰厚，楼层进度感更强
+
+---
+
 ## 2026-03-13 Monster Pool Expansion
 
 目标：

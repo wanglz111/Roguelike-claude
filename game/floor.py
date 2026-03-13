@@ -14,6 +14,7 @@ ITEMS_PATH = Path(__file__).resolve().parent.parent / "content" / "items.json"
 EVENTS_PATH = Path(__file__).resolve().parent.parent / "content" / "events.json"
 SHOPS_PATH = Path(__file__).resolve().parent.parent / "content" / "shops.json"
 EQUIPMENT_SETS_PATH = Path(__file__).resolve().parent.parent / "content" / "equipment_sets.json"
+DROP_TABLES_PATH = Path(__file__).resolve().parent.parent / "content" / "drop_tables.json"
 
 
 def load_monster_pool() -> list[dict]:
@@ -48,6 +49,11 @@ def load_equipment_sets() -> list[EquipmentSet]:
     with EQUIPMENT_SETS_PATH.open("r", encoding="utf-8") as handle:
         sets_data = json.load(handle)
         return [EquipmentSet(**set_data) for set_data in sets_data]
+
+
+def load_drop_tables() -> list[dict]:
+    with DROP_TABLES_PATH.open("r", encoding="utf-8") as handle:
+        return json.load(handle)
 
 
 def generate_monster(floor: int, rng: random.Random, cycle: int = 1, difficulty=None) -> Monster:
@@ -155,3 +161,42 @@ def generate_shop(floor: int, rng: random.Random) -> Shop | None:
         items=shop_items,
         min_floor=template["min_floor"]
     )
+
+
+def generate_drop(floor: int, is_boss: bool, rng: random.Random, difficulty=None) -> str | None:
+    """Generate a random item drop based on floor and boss status.
+
+    Returns the item name (English) or None if no drop.
+    Uses drop tables to determine drop chance and item pool based on floor.
+    Bosses have higher drop rates and better items.
+    """
+    from game.difficulty import Difficulty
+    if difficulty is None:
+        difficulty = Difficulty.NORMAL
+
+    drop_tables = load_drop_tables()
+
+    # Find the appropriate drop table for this floor
+    drop_table = None
+    for table in drop_tables:
+        floor_min, floor_max = table["floor_range"]
+        if floor_min <= floor <= floor_max:
+            drop_table = table
+            break
+
+    if not drop_table:
+        return None
+
+    # Determine drop chance based on boss status and difficulty
+    base_chance = drop_table["boss_drop_chance"] if is_boss else drop_table["drop_chance"]
+    drop_chance = base_chance * difficulty.get_drop_rate_mult()
+
+    if rng.random() > drop_chance:
+        return None
+
+    # Select item based on weights
+    items = drop_table["items"]
+    weights = [item["weight"] for item in items]
+    selected = rng.choices(items, weights=weights, k=1)[0]
+
+    return selected["name"]

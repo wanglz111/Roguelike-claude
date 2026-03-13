@@ -4,7 +4,7 @@ from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use
 from cli.renderer import render_intro, render_state
 from cli.colors import Color, colorize, hp_color
 from game.combat import fight
-from game.floor import generate_monster, load_items, generate_event, generate_shop
+from game.floor import generate_monster, load_items, generate_event, generate_shop, generate_drop
 from game.game_state import GameState
 from game.player import Player
 from game.player_class import load_classes
@@ -148,8 +148,10 @@ def main() -> None:
             state.game_over = True
             break
 
-        if monster.drop_item and monster.drop_item in items_db:
-            item = items_db[monster.drop_item]
+        # Generate drop using new drop system
+        dropped_item_name = generate_drop(state.floor, monster.is_boss, rng, state.difficulty)
+        if dropped_item_name and dropped_item_name in items_db:
+            item = items_db[dropped_item_name]
             msg = state.player.add_item(item)
             state.log.append(msg)
 
