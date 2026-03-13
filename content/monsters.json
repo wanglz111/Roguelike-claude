@@ -500,5 +500,75 @@
     "gold_reward": 44,
     "drop_item": "Plate Armor",
     "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Venomous Spider",
+      "zh": "剧毒蜘蛛"
+    },
+    "min_floor": 3,
+    "hp": 15,
+    "attack": 8,
+    "defense": 2,
+    "exp_reward": 10,
+    "gold_reward": 7,
+    "drop_item": "Small Potion",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Thunder Hawk",
+      "zh": "雷霆之鹰"
+    },
+    "min_floor": 7,
+    "hp": 36,
+    "attack": 17,
+    "defense": 4,
+    "exp_reward": 24,
+    "gold_reward": 16,
+    "drop_item": "Medium Potion",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Corrupted Shaman",
+      "zh": "腐化萨满"
+    },
+    "min_floor": 9,
+    "hp": 48,
+    "attack": 21,
+    "defense": 6,
+    "exp_reward": 32,
+    "gold_reward": 21,
+    "drop_item": "Steel Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Bone Dragon",
+      "zh": "骸骨巨龙"
+    },
+    "min_floor": 12,
+    "hp": 68,
+    "attack": 26,
+    "defense": 9,
+    "exp_reward": 44,
+    "gold_reward": 29,
+    "drop_item": "Plate Armor",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Celestial Guardian",
+      "zh": "天界守护者"
+    },
+    "min_floor": 18,
+    "hp": 115,
+    "attack": 35,
+    "defense": 14,
+    "exp_reward": 74,
+    "gold_reward": 54,
+    "drop_item": "Plate Armor",
+    "is_boss": false
   }
 ]

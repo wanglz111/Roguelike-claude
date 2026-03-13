@@ -1,5 +1,42 @@
 # Session Log
 
+## 2026-03-13 Monster Pool Expansion (35→40)
+
+目标：
+扩展怪物池，添加 5 个新怪物，增加怪物多样性和战斗体验。
+
+完成内容：
+
+1. 添加 5 个新怪物到 `content/monsters.json`：
+   - Venomous Spider（剧毒蜘蛛，楼层 3）：15 HP, 8 ATK, 2 DEF，掉落 Small Potion
+   - Thunder Hawk（雷霆之鹰，楼层 7）：36 HP, 17 ATK, 4 DEF，掉落 Medium Potion
+   - Corrupted Shaman（腐化萨满，楼层 9）：48 HP, 21 ATK, 6 DEF，掉落 Steel Sword
+   - Bone Dragon（骸骨巨龙，楼层 12）：68 HP, 26 ATK, 9 DEF，掉落 Plate Armor
+   - Celestial Guardian（天界守护者，楼层 18）：115 HP, 35 ATK, 14 DEF，掉落 Plate Armor
+
+2. 怪物分布优化：
+   - 怪物总数：从 35 种增加到 40 种（36 普通 + 4 Boss）
+   - 楼层分布：填补了楼层 3、7、9、12、18 的怪物选择
+   - 属性平衡：新怪物属性与同楼层现有怪物保持平衡
+   - 掉落物品：合理分配药水和装备掉落
+
+3. 平衡考虑：
+   - 新怪物属性曲线与现有怪物保持一致
+   - 增加了早期（楼层 3）、中期（楼层 7-12）和后期（楼层 18）的怪物多样性
+   - 保持中英文双语支持
+   - 所有新怪物都是普通怪物，Boss 数量保持 4 个不变
+
+验证：
+- monsters.json 格式正确，包含所有 40 种怪物
+- JSON 语法验证通过
+- 怪物属性曲线合理，楼层分布均衡
+
+影响范围：
+- 修改文件：content/monsters.json, ai_dev/architecture.md, ai_dev/next_tasks.md, README.md
+- 游戏体验改进：更多怪物种类，更丰富的战斗体验，减少重复遭遇
+
+---
+
 ## 2026-03-13 Equipment Pool Expansion (25→30)
 
 目标：
