@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 
 from game.player import Player
+from game.difficulty import Difficulty
 
 
 @dataclass
@@ -11,3 +12,4 @@ class GameState:
     game_over: bool = False
     log: list[str] = field(default_factory=list)
     cycle: int = 1
+    difficulty: Difficulty = Difficulty.NORMAL

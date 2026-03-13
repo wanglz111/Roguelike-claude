@@ -1,6 +1,6 @@
 import random
 
-from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use, prompt_event_choice, prompt_shop_purchase, prompt_skill_use, prompt_class_selection, prompt_view_achievements, prompt_save_slot
+from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use, prompt_event_choice, prompt_shop_purchase, prompt_skill_use, prompt_class_selection, prompt_view_achievements, prompt_save_slot, prompt_difficulty_selection
 from cli.renderer import render_intro, render_state
 from cli.colors import Color, colorize, hp_color
 from game.combat import fight
@@ -44,26 +44,32 @@ def main() -> None:
             return
         name = prompt_player_name()
 
+        # Prompt for difficulty selection
+        difficulty = prompt_difficulty_selection()
+
         # Load classes and prompt for class selection
         classes_db = load_classes()
         class_id = prompt_class_selection(classes_db)
         selected_class = classes_db[class_id]
 
         # Create player with class-specific stats
-        state = GameState(player=Player(
-            name=name,
-            max_hp=selected_class.base_hp,
-            hp=selected_class.base_hp,
-            max_mp=selected_class.base_mp,
-            mp=selected_class.base_mp,
-            attack=selected_class.base_attack,
-            defense=selected_class.base_defense,
-            player_class=class_id,
-            hp_per_level=selected_class.hp_per_level,
-            mp_per_level=selected_class.mp_per_level,
-            attack_per_level=selected_class.attack_per_level,
-            defense_per_level=selected_class.defense_per_level
-        ))
+        state = GameState(
+            player=Player(
+                name=name,
+                max_hp=selected_class.base_hp,
+                hp=selected_class.base_hp,
+                max_mp=selected_class.base_mp,
+                mp=selected_class.base_mp,
+                attack=selected_class.base_attack,
+                defense=selected_class.base_defense,
+                player_class=class_id,
+                hp_per_level=selected_class.hp_per_level,
+                mp_per_level=selected_class.mp_per_level,
+                attack_per_level=selected_class.attack_per_level,
+                defense_per_level=selected_class.defense_per_level
+            ),
+            difficulty=difficulty
+        )
 
         print(t({"en": f"\nYou are now a {selected_class.get_name()}!", "zh": f"\n你现在是一名{selected_class.get_name()}！"}))
         input(t({"en": "Press Enter to begin your adventure...", "zh": "按回车开始你的冒险..."}))
@@ -94,11 +100,11 @@ def main() -> None:
         state.log.append(t({"en": f"Floor {state.floor} begins.", "zh": f"第{state.floor}层开始。"}))
 
         # Check floor achievement
-        newly_unlocked = check_achievements(state.player, achievements_db, "floor_reached", floor=state.floor, cycle=state.cycle)
+        newly_unlocked = check_achievements(state.player, achievements_db, "floor_reached", floor=state.floor, cycle=state.cycle, difficulty=state.difficulty)
         for _, ach in newly_unlocked:
             print(format_achievement_unlock(ach))
 
-        monster = generate_monster(state.floor, rng, state.cycle)
+        monster = generate_monster(state.floor, rng, state.cycle, state.difficulty)
 
         # Prompt for skill usage
         skill_id = prompt_skill_use(state.player, skills_db)
@@ -161,7 +167,7 @@ def main() -> None:
             state.log.append(t({"en": "You cleared the tower prototype.", "zh": "你通关了塔楼原型。"}))
 
             # Check completion achievement
-            newly_unlocked = check_achievements(state.player, achievements_db, "floor_reached", floor=state.floor + 1)
+            newly_unlocked = check_achievements(state.player, achievements_db, "floor_reached", floor=state.floor + 1, difficulty=state.difficulty, cycle=state.cycle)
             for _, ach in newly_unlocked:
                 print(format_achievement_unlock(ach))
 

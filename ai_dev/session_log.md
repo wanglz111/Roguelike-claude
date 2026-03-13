@@ -1,5 +1,54 @@
 # Session Log
 
+## 2026-03-13 Difficulty Selection System Implementation
+
+目标：
+添加难度选择系统，增加游戏可重玩性，让玩家可以选择不同的挑战级别。
+
+完成内容：
+
+1. 创建难度系统 `game/difficulty.py`：
+   - 定义 3 种难度：Easy（简单）、Normal（普通）、Hard（困难）
+   - 简单难度：怪物 HP 0.7x，攻击 0.8x，金币 1.2x，掉落率 1.3x
+   - 普通难度：所有倍率 1.0x（基准）
+   - 困难难度：怪物 HP 1.4x，攻击 1.3x，金币 0.8x，掉落率 0.7x
+
+2. 更新 GameState 支持难度：
+   - 修改 `game/game_state.py` 添加 difficulty 字段
+   - 难度在游戏开始时选择，保存在游戏状态中
+
+3. 添加难度选择 UI：
+   - 在 `cli/input_handler.py` 添加 `prompt_difficulty_selection()` 函数
+   - 在游戏开始时提示玩家选择难度（在职业选择之前）
+   - 支持中英文双语显示
+
+4. 应用难度到怪物生成：
+   - 修改 `game/floor.py` 的 `generate_monster()` 函数接受 difficulty 参数
+   - 怪物 HP、攻击力、金币奖励根据难度倍率调整
+   - 难度倍率与周目倍率叠加计算
+
+5. 添加 3 个难度相关成就到 `content/achievements.json`：
+   - easy_completion：在简单难度下通关
+   - hard_completion：在困难难度下通关
+   - hard_survivor：在困难难度下到达第 10 层（隐藏成就）
+   - 成就总数从 30 增加到 33
+
+6. 更新成就检测逻辑：
+   - 修改 `game/achievement_checker.py` 支持难度相关成就
+   - 在通关和楼层检查时传递 difficulty 参数
+
+7. 更新文档：
+   - 更新 `README.md` 反映新的难度系统和成就数量
+   - 更新 `ai_dev/architecture.md` 添加 Difficulty 和 GameState 说明
+   - 更新 `ai_dev/next_tasks.md` 标记任务完成
+
+技术细节：
+- 难度系统完全模块化，易于调整平衡性
+- 难度倍率在怪物生成时应用，不影响玩家属性
+- 简单难度降低挑战，增加奖励；困难难度提高挑战，减少奖励
+- 难度选择保存在存档中，加载游戏时保持一致
+- 所有文本支持中英文双语
+
 ## 2026-03-13 New Character Classes Implementation
 
 目标：

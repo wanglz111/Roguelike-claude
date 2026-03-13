@@ -121,6 +121,31 @@ def prompt_player_name() -> str:
     return name or t({"en": "Hero", "zh": "英雄"})
 
 
+def prompt_difficulty_selection():
+    """Prompt player to select difficulty.
+
+    Returns:
+        Difficulty enum value
+    """
+    from game.difficulty import Difficulty
+
+    print(colorize(t({"en": "\nChoose difficulty:", "zh": "\n选择难度："}), Color.BRIGHT_CYAN))
+    print(f"{colorize('1', Color.YELLOW)}. {colorize(t({'en': 'Easy', 'zh': '简单'}), Color.GREEN)} - {t({'en': 'Weaker monsters, more gold and drops', 'zh': '怪物较弱，更多金币和掉落'})}")
+    print(f"{colorize('2', Color.YELLOW)}. {colorize(t({'en': 'Normal', 'zh': '普通'}), Color.CYAN)} - {t({'en': 'Balanced experience', 'zh': '平衡体验'})}")
+    print(f"{colorize('3', Color.YELLOW)}. {colorize(t({'en': 'Hard', 'zh': '困难'}), Color.RED)} - {t({'en': 'Stronger monsters, less gold and drops', 'zh': '怪物更强，更少金币和掉落'})}")
+    print()
+
+    while True:
+        choice = input(t({"en": "Select difficulty (1-3): ", "zh": "选择难度（1-3）："})).strip()
+        if choice == "1":
+            return Difficulty.EASY
+        elif choice == "2":
+            return Difficulty.NORMAL
+        elif choice == "3":
+            return Difficulty.HARD
+        print(colorize(t({"en": "Invalid choice. Try again.", "zh": "无效的选择。请重试。"}), Color.RED))
+
+
 def prompt_class_selection(classes_db) -> str:
     """Prompt player to select a class.
 

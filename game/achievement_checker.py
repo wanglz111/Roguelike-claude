@@ -82,11 +82,31 @@ def check_achievements(player: Player, achievements: List[Achievement], trigger:
             if player.unlock_achievement("first_completion"):
                 newly_unlocked.append(("first_completion", get_achievement_by_id(achievements, "first_completion")))
 
+            # Difficulty-based completion achievements
+            difficulty = kwargs.get("difficulty", None)
+            if difficulty:
+                from game.difficulty import Difficulty
+                if difficulty == Difficulty.EASY:
+                    if player.unlock_achievement("easy_completion"):
+                        newly_unlocked.append(("easy_completion", get_achievement_by_id(achievements, "easy_completion")))
+                elif difficulty == Difficulty.HARD:
+                    if player.unlock_achievement("hard_completion"):
+                        newly_unlocked.append(("hard_completion", get_achievement_by_id(achievements, "hard_completion")))
+
             # Cycle Veteran (complete cycle 3 or higher)
             cycle = kwargs.get("cycle", 1)
             if cycle >= 3:
                 if player.unlock_achievement("cycle_veteran"):
                     newly_unlocked.append(("cycle_veteran", get_achievement_by_id(achievements, "cycle_veteran")))
+
+        # Hard difficulty floor 10 achievement
+        if floor == 10:
+            difficulty = kwargs.get("difficulty", None)
+            if difficulty:
+                from game.difficulty import Difficulty
+                if difficulty == Difficulty.HARD:
+                    if player.unlock_achievement("hard_survivor"):
+                        newly_unlocked.append(("hard_survivor", get_achievement_by_id(achievements, "hard_survivor")))
 
     elif trigger == "level_up":
         level = player.level

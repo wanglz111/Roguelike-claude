@@ -50,7 +50,11 @@ def load_equipment_sets() -> list[EquipmentSet]:
         return [EquipmentSet(**set_data) for set_data in sets_data]
 
 
-def generate_monster(floor: int, rng: random.Random, cycle: int = 1) -> Monster:
+def generate_monster(floor: int, rng: random.Random, cycle: int = 1, difficulty=None) -> Monster:
+    from game.difficulty import Difficulty
+    if difficulty is None:
+        difficulty = Difficulty.NORMAL
+
     # Boss floors: every 5th floor (5, 10, 15, ...)
     is_boss_floor = (floor % 5 == 0)
 
@@ -68,11 +72,11 @@ def generate_monster(floor: int, rng: random.Random, cycle: int = 1) -> Monster:
             scale = max(0, floor - template["min_floor"])
             return Monster(
                 name=template["name"],
-                hp=int((template["hp"] + scale * 3) * cycle_mult),
-                attack=int((template["attack"] + scale * 2) * cycle_mult),
+                hp=int((template["hp"] + scale * 3) * cycle_mult * difficulty.get_monster_hp_mult()),
+                attack=int((template["attack"] + scale * 2) * cycle_mult * difficulty.get_monster_attack_mult()),
                 defense=int((template["defense"] + scale) * cycle_mult),
                 exp_reward=int((template["exp_reward"] + scale * 3) * cycle_mult),
-                gold_reward=int((template["gold_reward"] + scale * 2) * cycle_mult),
+                gold_reward=int((template["gold_reward"] + scale * 2) * cycle_mult * difficulty.get_gold_mult()),
                 drop_item=template.get("drop_item"),
                 is_boss=True,
             )
@@ -86,11 +90,11 @@ def generate_monster(floor: int, rng: random.Random, cycle: int = 1) -> Monster:
     scale = max(0, floor - template["min_floor"])
     return Monster(
         name=template["name"],
-        hp=int((template["hp"] + scale * 2) * cycle_mult),
-        attack=int((template["attack"] + scale) * cycle_mult),
+        hp=int((template["hp"] + scale * 2) * cycle_mult * difficulty.get_monster_hp_mult()),
+        attack=int((template["attack"] + scale) * cycle_mult * difficulty.get_monster_attack_mult()),
         defense=int((template["defense"] + scale // 2) * cycle_mult),
         exp_reward=int((template["exp_reward"] + scale * 2) * cycle_mult),
-        gold_reward=int((template["gold_reward"] + scale) * cycle_mult),
+        gold_reward=int((template["gold_reward"] + scale) * cycle_mult * difficulty.get_gold_mult()),
         drop_item=template.get("drop_item"),
         is_boss=False,
     )

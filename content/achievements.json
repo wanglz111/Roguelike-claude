@@ -244,6 +244,31 @@
       "description_zh": "完成第 3 周目或更高",
       "category": "progression",
       "hidden": true
+    },
+    {
+      "id": "easy_completion",
+      "name_en": "Casual Victor",
+      "name_zh": "休闲胜利者",
+      "description_en": "Complete the dungeon on Easy difficulty",
+      "description_zh": "在简单难度下通关地牢",
+      "category": "progression"
+    },
+    {
+      "id": "hard_completion",
+      "name_en": "True Champion",
+      "name_zh": "真正的冠军",
+      "description_en": "Complete the dungeon on Hard difficulty",
+      "description_zh": "在困难难度下通关地牢",
+      "category": "progression"
+    },
+    {
+      "id": "hard_survivor",
+      "name_en": "Against All Odds",
+      "name_zh": "逆境求生",
+      "description_en": "Reach floor 10 on Hard difficulty",
+      "description_zh": "在困难难度下到达第 10 层",
+      "category": "progression",
+      "hidden": true
     }
   ]
 }
