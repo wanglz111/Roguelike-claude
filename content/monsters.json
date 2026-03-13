@@ -264,5 +264,75 @@
     "gold_reward": 40,
     "drop_item": "Plate Armor",
     "is_boss": true
+  },
+  {
+    "name": {
+      "en": "Crystal Sentinel",
+      "zh": "水晶哨兵"
+    },
+    "min_floor": 12,
+    "hp": 70,
+    "attack": 25,
+    "defense": 9,
+    "exp_reward": 45,
+    "gold_reward": 30,
+    "drop_item": "Plate Armor",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Shadow Assassin",
+      "zh": "暗影刺客"
+    },
+    "min_floor": 14,
+    "hp": 80,
+    "attack": 28,
+    "defense": 10,
+    "exp_reward": 52,
+    "gold_reward": 35,
+    "drop_item": "Steel Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Chaos Knight",
+      "zh": "混沌骑士"
+    },
+    "min_floor": 17,
+    "hp": 100,
+    "attack": 33,
+    "defense": 12,
+    "exp_reward": 68,
+    "gold_reward": 48,
+    "drop_item": "Plate Armor",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Void Reaper",
+      "zh": "虚空收割者"
+    },
+    "min_floor": 18,
+    "hp": 110,
+    "attack": 34,
+    "defense": 13,
+    "exp_reward": 72,
+    "gold_reward": 52,
+    "drop_item": "Steel Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Abyssal Horror",
+      "zh": "深渊恐魔"
+    },
+    "min_floor": 19,
+    "hp": 125,
+    "attack": 36,
+    "defense": 14,
+    "exp_reward": 78,
+    "gold_reward": 58,
+    "drop_item": "Plate Armor",
+    "is_boss": false
   }
 ]
