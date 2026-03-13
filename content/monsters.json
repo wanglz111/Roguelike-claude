@@ -710,5 +710,75 @@
     "gold_reward": 51,
     "drop_item": "Plate Armor",
     "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Toxic Slime",
+      "zh": "剧毒史莱姆"
+    },
+    "min_floor": 2,
+    "hp": 14,
+    "attack": 6,
+    "defense": 1,
+    "exp_reward": 7,
+    "gold_reward": 5,
+    "drop_item": "Small Potion",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Ember Sprite",
+      "zh": "余烬精灵"
+    },
+    "min_floor": 5,
+    "hp": 30,
+    "attack": 13,
+    "defense": 4,
+    "exp_reward": 19,
+    "gold_reward": 13,
+    "drop_item": "Medium Potion",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Void Stalker",
+      "zh": "虚空潜行者"
+    },
+    "min_floor": 10,
+    "hp": 52,
+    "attack": 22,
+    "defense": 7,
+    "exp_reward": 38,
+    "gold_reward": 25,
+    "drop_item": "Steel Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Runic Golem",
+      "zh": "符文傀儡"
+    },
+    "min_floor": 13,
+    "hp": 76,
+    "attack": 27,
+    "defense": 10,
+    "exp_reward": 50,
+    "gold_reward": 33,
+    "drop_item": "Plate Armor",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Nightmare Fiend",
+      "zh": "梦魇魔"
+    },
+    "min_floor": 16,
+    "hp": 96,
+    "attack": 32,
+    "defense": 12,
+    "exp_reward": 66,
+    "gold_reward": 46,
+    "drop_item": "Steel Sword",
+    "is_boss": false
   }
 ]
