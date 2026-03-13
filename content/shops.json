@@ -117,5 +117,91 @@
         "stock": 1
       }
     ]
+  },
+  {
+    "name": {
+      "en": "Magic Emporium",
+      "zh": "魔法商店"
+    },
+    "description": {
+      "en": "A mystical shop filled with magical items and potions.",
+      "zh": "一家充满魔法物品和药水的神秘商店。"
+    },
+    "min_floor": 7,
+    "items": [
+      {
+        "item_name": "Large Potion",
+        "price": 60,
+        "stock": -1
+      },
+      {
+        "item_name": "Large Mana Potion",
+        "price": 60,
+        "stock": -1
+      },
+      {
+        "item_name": "Medium Mana Potion",
+        "price": 35,
+        "stock": -1
+      },
+      {
+        "item_name": "Enchanted Blade",
+        "price": 180,
+        "stock": 1
+      },
+      {
+        "item_name": "Enchanted Mail",
+        "price": 280,
+        "stock": 1
+      },
+      {
+        "item_name": "Power Amulet",
+        "price": 120,
+        "stock": 1
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Legendary Trader",
+      "zh": "传奇商人"
+    },
+    "description": {
+      "en": "A mysterious trader offering legendary treasures for those who can afford them.",
+      "zh": "一位神秘商人，为有能力支付的人提供传奇宝物。"
+    },
+    "min_floor": 15,
+    "items": [
+      {
+        "item_name": "Large Potion",
+        "price": 60,
+        "stock": -1
+      },
+      {
+        "item_name": "Large Mana Potion",
+        "price": 60,
+        "stock": -1
+      },
+      {
+        "item_name": "Dragon Slayer",
+        "price": 400,
+        "stock": 1
+      },
+      {
+        "item_name": "Dragon Scale Armor",
+        "price": 450,
+        "stock": 1
+      },
+      {
+        "item_name": "Dragon Pendant",
+        "price": 350,
+        "stock": 1
+      },
+      {
+        "item_name": "Berserker Ring",
+        "price": 200,
+        "stock": 1
+      }
+    ]
   }
 ]

@@ -1,5 +1,42 @@
 # Session Log
 
+## 2026-03-13 Shop System Expansion
+
+目标：
+扩展商店系统，添加更多商店类型和物品，丰富游戏经济系统。
+
+完成内容：
+
+1. 在 `content/items.json` 中添加大型魔力药水：
+   - Large Mana Potion（大型魔力药水）- 恢复 50 MP
+   - 填补 MP 恢复物品的空白（之前只有小型和中型）
+2. 在 `content/shops.json` 中添加 2 个新商店：
+   - Magic Emporium（魔法商店）- 最低楼层 7，出售魔法物品和大型魔力药水
+   - Legendary Trader（传奇商人）- 最低楼层 15，出售传奇装备（龙系装备）
+3. 商店总数从 3 个增加到 5 个，提升 67%
+4. 新商店设计理念：
+   - 楼层覆盖：1（流浪商人）、5（铁匠铺）、7（魔法商店）、10（大师工匠）、15（传奇商人）
+   - 价格平衡：从 15 金币（小药水）到 450 金币（龙鳞甲）
+   - 物品分布：魔法商店侧重附魔装备，传奇商人专注龙系传奇装备
+5. 所有新内容支持中英文双语
+6. 更新文档：
+   - README.md：商店数量从 3 更新到 5
+   - next_tasks.md：标记任务为已完成
+
+改动文件：
+- `content/items.json`
+- `content/shops.json`
+- `README.md`
+- `ai_dev/next_tasks.md`
+
+验证：
+- JSON 文件语法正确
+- 商店加载逻辑自动支持新商店（基于 min_floor 过滤）
+- 游戏保持可玩性
+
+下一步建议：
+从 `next_tasks.md` 中选择下一个任务（状态效果系统）。
+
 ## 2026-03-13 Achievement System Expansion
 
 目标：

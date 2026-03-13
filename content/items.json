@@ -204,6 +204,19 @@
   },
   {
     "name": {
+      "en": "Large Mana Potion",
+      "zh": "大型魔力药水"
+    },
+    "item_type": "consumable",
+    "effect_type": "restore_mp",
+    "effect_value": 50,
+    "description": {
+      "en": "Restores 50 MP",
+      "zh": "恢复50点魔力值"
+    }
+  },
+  {
+    "name": {
       "en": "Mythril Sword",
       "zh": "秘银剑"
     },
