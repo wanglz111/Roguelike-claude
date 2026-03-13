@@ -645,5 +645,93 @@
       "en": "+1 Attack, +2 Defense, +12 HP",
       "zh": "+1攻击力, +2防御力, +12生命值"
     }
+  },
+  {
+    "name": {
+      "en": "Rusty Dagger",
+      "zh": "生锈匕首"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "weapon",
+    "bonus_attack": 1,
+    "bonus_defense": 0,
+    "bonus_hp": 0,
+    "description": {
+      "en": "+1 Attack",
+      "zh": "+1攻击力"
+    }
+  },
+  {
+    "name": {
+      "en": "Voidblade",
+      "zh": "虚空之刃"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "weapon",
+    "bonus_attack": 8,
+    "bonus_defense": -1,
+    "bonus_hp": 5,
+    "rarity": "epic",
+    "description": {
+      "en": "+8 Attack, -1 Defense, +5 HP",
+      "zh": "+8攻击力, -1防御力, +5生命值"
+    }
+  },
+  {
+    "name": {
+      "en": "Tattered Cloak",
+      "zh": "破旧斗篷"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "armor",
+    "bonus_attack": 0,
+    "bonus_defense": 0,
+    "bonus_hp": 5,
+    "description": {
+      "en": "+5 HP",
+      "zh": "+5生命值"
+    }
+  },
+  {
+    "name": {
+      "en": "Shadowweave Armor",
+      "zh": "影织铠甲"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "armor",
+    "bonus_attack": 2,
+    "bonus_defense": 5,
+    "bonus_hp": 18,
+    "rarity": "epic",
+    "description": {
+      "en": "+2 Attack, +5 Defense, +18 HP",
+      "zh": "+2攻击力, +5防御力, +18生命值"
+    }
+  },
+  {
+    "name": {
+      "en": "Crimson Band",
+      "zh": "赤红指环"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "accessory",
+    "bonus_attack": 3,
+    "bonus_defense": 1,
+    "bonus_hp": 8,
+    "rarity": "rare",
+    "description": {
+      "en": "+3 Attack, +1 Defense, +8 HP",
+      "zh": "+3攻击力, +1防御力, +8生命值"
+    }
   }
 ]
