@@ -1,5 +1,39 @@
 # Session Log
 
+## 2026-03-13 Event System Expansion
+
+目标：
+扩展事件系统，添加更多随机事件，增加游戏内容多样性和可重玩性。
+
+完成内容：
+
+1. 添加 5 个新随机事件到 `content/events.json`：
+   - Crystal Cave（水晶洞穴，min_floor: 5）：采集水晶换金币、吸收能量恢复 HP、或不打扰
+   - Mysterious Portal（神秘传送门，min_floor: 7）：穿过获得金币、伸手冒险受伤、或远离
+   - Blacksmith's Workshop（铁匠工坊，min_floor: 9）：付费强化护甲（+2 防御）、免费修理恢复 HP、或拒绝
+   - Cursed Treasure Hoard（被诅咒的宝藏，min_floor: 12）：拿全部金币但受伤、拿少量安全金币、或不碰
+   - Ancient Guardian Statue（远古守护者雕像，min_floor: 16）：请求战斗精通（+3 攻击）、请求远古智慧（+12 最大 HP）、或恭敬离开
+
+2. 事件特点：
+   - 所有事件包含 3 个选择分支，提供策略深度
+   - 覆盖不同楼层范围（5-16 层）
+   - 包含多种效果类型：金币、治疗、伤害、永久属性提升
+   - 支持中英文双语
+
+3. 更新文档：
+   - 更新 `README.md` 事件数量从 19 增加到 24
+   - 更新 `ai_dev/next_tasks.md` 标记任务完成并调整待办任务顺序
+
+验证：
+- JSON 结构正确，所有新事件格式与现有事件一致
+- 事件总数从 19 增加到 24，达成目标
+
+影响范围：
+- 文件修改：content/events.json, README.md, ai_dev/next_tasks.md, ai_dev/session_log.md
+- 游戏逻辑无需修改，事件系统自动加载新事件
+
+---
+
 ## 2026-03-13 Difficulty Selection System Implementation
 
 目标：

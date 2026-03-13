@@ -857,5 +857,250 @@
         }
       }
     ]
+  },
+  {
+    "name": {
+      "en": "Crystal Cave",
+      "zh": "水晶洞穴"
+    },
+    "description": {
+      "en": "You enter a cave filled with glowing crystals. Their energy is palpable.",
+      "zh": "你进入了一个布满发光水晶的洞穴。它们的能量清晰可感。"
+    },
+    "min_floor": 5,
+    "choices": [
+      {
+        "text": {
+          "en": "Harvest crystals to sell",
+          "zh": "采集水晶出售"
+        },
+        "effect_type": "gold",
+        "effect_value": 45,
+        "result_text": {
+          "en": "You collect valuable crystals. +45 gold",
+          "zh": "你收集了珍贵的水晶。+45金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Absorb crystal energy",
+          "zh": "吸收水晶能量"
+        },
+        "effect_type": "heal",
+        "effect_value": 28,
+        "result_text": {
+          "en": "Crystal energy revitalizes you. +28 HP",
+          "zh": "水晶能量让你恢复活力。+28生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Leave crystals undisturbed",
+          "zh": "不打扰水晶"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You respect the natural beauty.",
+          "zh": "你尊重这份自然之美。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Mysterious Portal",
+      "zh": "神秘传送门"
+    },
+    "description": {
+      "en": "A swirling portal appears before you. Strange whispers emanate from within.",
+      "zh": "一个旋转的传送门出现在你面前。里面传来奇怪的低语。"
+    },
+    "min_floor": 7,
+    "choices": [
+      {
+        "text": {
+          "en": "Step through the portal",
+          "zh": "穿过传送门"
+        },
+        "effect_type": "gold",
+        "effect_value": 55,
+        "result_text": {
+          "en": "You emerge in a treasure room! +55 gold",
+          "zh": "你出现在一个宝藏室！+55金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Reach into the portal",
+          "zh": "伸手进入传送门"
+        },
+        "effect_type": "damage",
+        "effect_value": 14,
+        "result_text": {
+          "en": "Something bites your hand! -14 HP",
+          "zh": "有东西咬了你的手！-14生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Walk away from the portal",
+          "zh": "远离传送门"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "The portal fades behind you.",
+          "zh": "传送门在你身后消失了。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Blacksmith's Workshop",
+      "zh": "铁匠工坊"
+    },
+    "description": {
+      "en": "An old blacksmith offers his services. His forge burns bright with magical flames.",
+      "zh": "一位老铁匠提供他的服务。他的熔炉燃烧着明亮的魔法火焰。"
+    },
+    "min_floor": 9,
+    "choices": [
+      {
+        "text": {
+          "en": "Pay for armor reinforcement (50 gold)",
+          "zh": "支付强化护甲费用（50金币）"
+        },
+        "effect_type": "trade_boost_attack",
+        "effect_value": 2,
+        "result_text": {
+          "en": "Your armor is reinforced! Permanent +2 Defense, -50 gold",
+          "zh": "你的护甲被强化了！永久+2防御力，-50金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Ask for free repairs",
+          "zh": "请求免费修理"
+        },
+        "effect_type": "heal",
+        "effect_value": 22,
+        "result_text": {
+          "en": "The blacksmith patches you up. +22 HP",
+          "zh": "铁匠帮你修补伤口。+22生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Decline his services",
+          "zh": "拒绝他的服务"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You thank him and leave.",
+          "zh": "你感谢他后离开了。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Cursed Treasure Hoard",
+      "zh": "被诅咒的宝藏"
+    },
+    "description": {
+      "en": "A massive pile of gold sits in the center of the room, surrounded by ominous runes.",
+      "zh": "房间中央堆着一大堆金币，周围环绕着不祥的符文。"
+    },
+    "min_floor": 12,
+    "choices": [
+      {
+        "text": {
+          "en": "Take all the gold",
+          "zh": "拿走所有金币"
+        },
+        "effect_type": "gold_with_hp_cost",
+        "effect_value": 90,
+        "result_text": {
+          "en": "The curse strikes you! +90 gold, -15 HP",
+          "zh": "诅咒击中了你！+90金币，-15生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Take only a handful",
+          "zh": "只拿一把"
+        },
+        "effect_type": "gold",
+        "effect_value": 35,
+        "result_text": {
+          "en": "You take a safe amount. +35 gold",
+          "zh": "你拿了安全的数量。+35金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Don't touch the cursed gold",
+          "zh": "不碰被诅咒的金币"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "Wisdom prevails over greed.",
+          "zh": "智慧战胜了贪婪。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Ancient Guardian Statue",
+      "zh": "远古守护者雕像"
+    },
+    "description": {
+      "en": "A towering statue comes to life. 'Prove your worth, and I shall grant you power.'",
+      "zh": "一座高耸的雕像活了过来。'证明你的价值，我将赐予你力量。'"
+    },
+    "min_floor": 16,
+    "choices": [
+      {
+        "text": {
+          "en": "Request combat mastery",
+          "zh": "请求战斗精通"
+        },
+        "effect_type": "boost_attack",
+        "effect_value": 3,
+        "result_text": {
+          "en": "The guardian blesses your weapon! Permanent +3 Attack",
+          "zh": "守护者祝福了你的武器！永久+3攻击力"
+        }
+      },
+      {
+        "text": {
+          "en": "Request ancient wisdom",
+          "zh": "请求远古智慧"
+        },
+        "effect_type": "boost_max_hp",
+        "effect_value": 12,
+        "result_text": {
+          "en": "Ancient knowledge strengthens you! Permanent +12 Max HP",
+          "zh": "远古知识强化了你！永久+12最大生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Bow and leave respectfully",
+          "zh": "鞠躬并恭敬离开"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "The guardian nods approvingly.",
+          "zh": "守护者赞许地点头。"
+        }
+      }
+    ]
   }
 ]
