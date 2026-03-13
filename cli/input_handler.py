@@ -141,7 +141,7 @@ def prompt_class_selection(classes_db) -> str:
         print()
 
     while True:
-        choice = input(t({"en": "Select class (1-3): ", "zh": "选择职业（1-3）："})).strip()
+        choice = input(t({"en": f"Select class (1-{len(class_list)}): ", "zh": f"选择职业（1-{len(class_list)}）："})).strip()
         if choice.isdigit():
             idx = int(choice) - 1
             if 0 <= idx < len(class_list):

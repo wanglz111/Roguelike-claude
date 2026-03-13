@@ -1,5 +1,51 @@
 # Session Log
 
+## 2026-03-13 New Character Classes Implementation
+
+目标：
+扩展职业系统，添加 2 个新职业（游侠、牧师），增加玩家选择多样性。
+
+完成内容：
+
+1. 添加 2 个新职业到 `content/classes.json`：
+   - Ranger（游侠）：精准的弓箭手，平衡的 HP/MP，高攻击力
+     - 基础属性：HP 28, MP 22, ATK 9, DEF 3
+     - 成长速率：HP +5, MP +6, ATK +3, DEF +1
+   - Priest（牧师）：神圣的治疗者，高 MP，强大的支援能力
+     - 基础属性：HP 27, MP 35, ATK 5, DEF 3
+     - 成长速率：HP +5, MP +9, ATK +1, DEF +1
+
+2. 为新职业添加 6 个专属技能到 `content/skills.json`：
+   - 游侠技能：
+     - Precise Shot（精准射击）：2.0x 伤害，MP 8
+     - Rapid Fire（速射）：1.6x 伤害，MP 6
+     - Hunter's Mark（猎人印记）：2.3x 伤害，MP 11
+   - 牧师技能：
+     - Divine Light（神圣之光）：恢复 35 HP，MP 10
+     - Holy Smite（神圣惩击）：1.5x 伤害，MP 7
+     - Blessing（祝福术）：恢复 25 HP 并获得再生效果，MP 12
+
+3. 更新 UI 支持 5 个职业：
+   - 修改 `cli/input_handler.py` 的 `prompt_class_selection()` 函数
+   - 动态显示职业数量（1-5）而非硬编码（1-3）
+
+4. 验证和测试：
+   - 创建 `test_new_classes.py` 测试脚本
+   - 验证所有 5 个职业正确加载
+   - 验证所有 26 个技能（包括新增的 6 个）正确加载
+   - 所有测试通过
+
+5. 更新文档：
+   - 更新 `ai_dev/architecture.md` 反映新的职业和技能数量
+   - 更新 `README.md` 反映新的职业和技能数量
+
+技术细节：
+- 职业系统完全数据驱动，易于扩展
+- 新职业平衡性良好，各有特色
+- 游侠专注于高伤害输出，牧师专注于治疗和支援
+- 保持向后兼容，不影响现有职业系统
+- 技能总数从 20 增加到 26
+
 ## 2026-03-13 Equipment Set System Implementation
 
 目标：

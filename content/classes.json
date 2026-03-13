@@ -52,5 +52,41 @@
     "mp_per_level": 5,
     "attack_per_level": 2,
     "defense_per_level": 1
+  },
+  "ranger": {
+    "name": {
+      "en": "Ranger",
+      "zh": "游侠"
+    },
+    "description": {
+      "en": "A skilled archer with high precision and mobility",
+      "zh": "精准的弓箭手，拥有高精准度和机动性"
+    },
+    "base_hp": 28,
+    "base_mp": 22,
+    "base_attack": 9,
+    "base_defense": 3,
+    "hp_per_level": 5,
+    "mp_per_level": 6,
+    "attack_per_level": 3,
+    "defense_per_level": 1
+  },
+  "priest": {
+    "name": {
+      "en": "Priest",
+      "zh": "牧师"
+    },
+    "description": {
+      "en": "A holy healer with powerful support abilities",
+      "zh": "神圣的治疗者，拥有强大的支援能力"
+    },
+    "base_hp": 27,
+    "base_mp": 35,
+    "base_attack": 5,
+    "base_defense": 3,
+    "hp_per_level": 5,
+    "mp_per_level": 9,
+    "attack_per_level": 1,
+    "defense_per_level": 1
   }
 }

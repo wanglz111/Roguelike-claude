@@ -156,5 +156,54 @@
     "effect_value": 5,
     "class_required": "mage",
     "status_effect_id": "regen"
+  },
+  "precise_shot": {
+    "name": {"en": "Precise Shot", "zh": "精准射击"},
+    "description": {"en": "Ranger skill: Deal 2.0x damage with high accuracy", "zh": "游侠技能：高精准度造成2.0倍伤害"},
+    "mp_cost": 8,
+    "effect_type": "damage_multiplier",
+    "effect_value": 2.0,
+    "class_required": "ranger"
+  },
+  "rapid_fire": {
+    "name": {"en": "Rapid Fire", "zh": "速射"},
+    "description": {"en": "Ranger skill: Deal 1.6x damage with low MP cost", "zh": "游侠技能：低MP消耗造成1.6倍伤害"},
+    "mp_cost": 6,
+    "effect_type": "damage_multiplier",
+    "effect_value": 1.6,
+    "class_required": "ranger"
+  },
+  "hunters_mark": {
+    "name": {"en": "Hunter's Mark", "zh": "猎人印记"},
+    "description": {"en": "Ranger skill: Deal 2.3x damage", "zh": "游侠技能：造成2.3倍伤害"},
+    "mp_cost": 11,
+    "effect_type": "damage_multiplier",
+    "effect_value": 2.3,
+    "class_required": "ranger"
+  },
+  "divine_light": {
+    "name": {"en": "Divine Light", "zh": "神圣之光"},
+    "description": {"en": "Priest skill: Restore 35 HP", "zh": "牧师技能：恢复35点生命值"},
+    "mp_cost": 10,
+    "effect_type": "heal",
+    "effect_value": 35,
+    "class_required": "priest"
+  },
+  "holy_smite": {
+    "name": {"en": "Holy Smite", "zh": "神圣惩击"},
+    "description": {"en": "Priest skill: Deal 1.5x damage", "zh": "牧师技能：造成1.5倍伤害"},
+    "mp_cost": 7,
+    "effect_type": "damage_multiplier",
+    "effect_value": 1.5,
+    "class_required": "priest"
+  },
+  "blessing": {
+    "name": {"en": "Blessing", "zh": "祝福术"},
+    "description": {"en": "Priest skill: Restore 25 HP and gain regeneration", "zh": "牧师技能：恢复25点生命值并获得再生效果"},
+    "mp_cost": 12,
+    "effect_type": "heal",
+    "effect_value": 25,
+    "class_required": "priest",
+    "status_effect_id": "regen"
   }
 }
