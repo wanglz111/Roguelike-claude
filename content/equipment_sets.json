@@ -73,5 +73,50 @@
     "bonus_attack": 8,
     "bonus_defense": 5,
     "bonus_hp": 40
+  },
+  {
+    "set_id": "mystic_scholar",
+    "name": {
+      "en": "Mystic Scholar Set",
+      "zh": "神秘学者套装"
+    },
+    "description": {
+      "en": "Wisdom and magic for spellcasters",
+      "zh": "施法者的智慧与魔力"
+    },
+    "items": ["Cloth Robe", "Health Ring", "Power Amulet"],
+    "bonus_attack": 2,
+    "bonus_defense": 1,
+    "bonus_hp": 10
+  },
+  {
+    "set_id": "flame_warrior",
+    "name": {
+      "en": "Flame Warrior Set",
+      "zh": "烈焰战士套装"
+    },
+    "description": {
+      "en": "Blazing power and resilience",
+      "zh": "炽热的力量与韧性"
+    },
+    "items": ["Flamebrand Sword", "Scale Mail", "Berserker Ring"],
+    "bonus_attack": 4,
+    "bonus_defense": 2,
+    "bonus_hp": 20
+  },
+  {
+    "set_id": "phoenix_guardian",
+    "name": {
+      "en": "Phoenix Guardian Set",
+      "zh": "凤凰守护者套装"
+    },
+    "description": {
+      "en": "Rebirth and protection combined",
+      "zh": "重生与守护的结合"
+    },
+    "items": ["Warden's Blade", "Titan's Plate", "Phoenix Amulet"],
+    "bonus_attack": 4,
+    "bonus_defense": 4,
+    "bonus_hp": 30
   }
 ]
