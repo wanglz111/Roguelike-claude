@@ -1,5 +1,43 @@
 # Session Log
 
+## 2026-03-13 Monster Pool Expansion (40→45)
+
+目标：
+扩展怪物池，添加 5 个新怪物，增加怪物多样性和战斗体验。
+
+完成内容：
+
+1. 添加 5 个新怪物到 `content/monsters.json`：
+   - Rabid Rat（狂暴鼠，楼层 1）：8 HP, 4 ATK, 0 DEF，掉落 Small Potion
+   - Iron Sentinel（钢铁哨兵，楼层 4）：26 HP, 11 ATK, 5 DEF，掉落 Iron Sword
+   - Storm Wisp（风暴精灵，楼层 6）：33 HP, 14 ATK, 3 DEF，掉落 Medium Potion
+   - Plague Bearer（瘟疫使者，楼层 8）：44 HP, 19 ATK, 6 DEF，掉落 Steel Sword
+   - Eternal Watcher（永恒守望者，楼层 20）：130 HP, 37 ATK, 15 DEF，掉落 Plate Armor
+
+2. 怪物分布优化：
+   - 怪物总数：从 40 种增加到 45 种（41 普通 + 4 Boss）
+   - 楼层分布：填补了楼层 1、4、6、8、20 的怪物选择
+   - 属性平衡：新怪物属性与同楼层现有怪物保持平衡
+   - 掉落物品：合理分配药水和装备掉落
+
+3. 平衡考虑：
+   - 新怪物属性曲线与现有怪物保持一致
+   - 增加了早期（楼层 1、4）、中期（楼层 6、8）和后期（楼层 20）的怪物多样性
+   - 保持中英文双语支持
+   - 所有新怪物都是普通怪物，Boss 数量保持 4 个不变
+
+验证：
+- monsters.json 格式正确，包含所有 45 种怪物
+- JSON 语法验证通过
+- 怪物属性曲线合理，楼层分布均衡
+- 游戏可以正常加载所有怪物
+
+影响范围：
+- 修改文件：content/monsters.json, ai_dev/architecture.md, ai_dev/next_tasks.md, README.md, ai_dev/session_log.md
+- 游戏体验改进：更多怪物种类，更丰富的战斗体验，减少重复遭遇
+
+---
+
 ## 2026-03-13 Monster Pool Expansion (35→40)
 
 目标：

@@ -570,5 +570,75 @@
     "gold_reward": 54,
     "drop_item": "Plate Armor",
     "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Rabid Rat",
+      "zh": "狂暴鼠"
+    },
+    "min_floor": 1,
+    "hp": 8,
+    "attack": 4,
+    "defense": 0,
+    "exp_reward": 4,
+    "gold_reward": 2,
+    "drop_item": "Small Potion",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Iron Sentinel",
+      "zh": "钢铁哨兵"
+    },
+    "min_floor": 4,
+    "hp": 26,
+    "attack": 11,
+    "defense": 5,
+    "exp_reward": 17,
+    "gold_reward": 11,
+    "drop_item": "Iron Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Storm Wisp",
+      "zh": "风暴精灵"
+    },
+    "min_floor": 6,
+    "hp": 33,
+    "attack": 14,
+    "defense": 3,
+    "exp_reward": 21,
+    "gold_reward": 14,
+    "drop_item": "Medium Potion",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Plague Bearer",
+      "zh": "瘟疫使者"
+    },
+    "min_floor": 8,
+    "hp": 44,
+    "attack": 19,
+    "defense": 6,
+    "exp_reward": 29,
+    "gold_reward": 20,
+    "drop_item": "Steel Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Eternal Watcher",
+      "zh": "永恒守望者"
+    },
+    "min_floor": 20,
+    "hp": 130,
+    "attack": 37,
+    "defense": 15,
+    "exp_reward": 82,
+    "gold_reward": 60,
+    "drop_item": "Plate Armor",
+    "is_boss": false
   }
 ]
