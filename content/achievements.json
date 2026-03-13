@@ -310,6 +310,48 @@
       "description_zh": "用 3 个不同职业通关地牢",
       "category": "progression",
       "hidden": true
+    },
+    {
+      "id": "critical_master",
+      "name_en": "Critical Master",
+      "name_zh": "暴击大师",
+      "description_en": "Land 20 critical hits in combat",
+      "description_zh": "在战斗中造成 20 次暴击",
+      "category": "combat"
+    },
+    {
+      "id": "treasure_hunter",
+      "name_en": "Treasure Hunter",
+      "name_zh": "寻宝猎人",
+      "description_en": "Collect 30 items from drops and events",
+      "description_zh": "从掉落和事件中收集 30 件物品",
+      "category": "collection"
+    },
+    {
+      "id": "iron_will",
+      "name_en": "Iron Will",
+      "name_zh": "钢铁意志",
+      "description_en": "Survive 10 battles in a row without healing",
+      "description_zh": "连续 10 场战斗不治疗并存活",
+      "category": "combat",
+      "hidden": true
+    },
+    {
+      "id": "floor_25",
+      "name_en": "Abyss Walker",
+      "name_zh": "深渊行者",
+      "description_en": "Reach floor 25 in New Game+",
+      "description_zh": "在新周目中到达第 25 层",
+      "category": "exploration"
+    },
+    {
+      "id": "set_master",
+      "name_en": "Set Master",
+      "name_zh": "套装大师",
+      "description_en": "Equip 3 different complete equipment sets",
+      "description_zh": "装备 3 套不同的完整装备套装",
+      "category": "collection",
+      "hidden": true
     }
   ]
 }

@@ -1,5 +1,42 @@
 # Session Log
 
+## 2026-03-13 Achievement Pool Expansion (38→43)
+
+目标：
+扩展成就系统，添加 5 个新成就，增加成就多样性和挑战性。
+
+完成内容：
+
+1. 添加 5 个新成就到 `content/achievements.json`：
+   - Critical Master（暴击大师）：在战斗中造成 20 次暴击（combat）
+   - Treasure Hunter（寻宝猎人）：从掉落和事件中收集 30 件物品（collection）
+   - Iron Will（钢铁意志）：连续 10 场战斗不治疗并存活（combat，隐藏）
+   - Abyss Walker（深渊行者）：在新周目中到达第 25 层（exploration）
+   - Set Master（套装大师）：装备 3 套不同的完整装备套装（collection，隐藏）
+
+2. 成就分布优化：
+   - 成就总数：从 38 个增加到 43 个
+   - 类别分布：combat（3个）、collection（2个）、exploration（1个）
+   - 隐藏成就：新增 2 个隐藏成就，增加探索乐趣
+   - 挑战性：包含暴击统计、收藏追踪、生存挑战等多样化目标
+
+3. 平衡考虑：
+   - 新成就目标值合理，与现有成就难度保持一致
+   - 增加了更多战斗技巧相关成就（暴击）
+   - 提供了更多收藏和探索目标
+   - 保持中英文双语支持
+
+验证：
+- achievements.json 格式正确，包含所有 43 个成就
+- 新成就平衡合理，符合现有成就设计模式
+- JSON 语法验证通过
+
+影响范围：
+- 修改文件：content/achievements.json, README.md, ai_dev/next_tasks.md
+- 游戏体验改进：更多成就目标，更丰富的挑战和追踪系统
+
+---
+
 ## 2026-03-13 Event Pool Expansion (24→30)
 
 目标：
