@@ -430,5 +430,75 @@
     "gold_reward": 55,
     "drop_item": "Plate Armor",
     "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Lava Serpent",
+      "zh": "熔岩巨蛇"
+    },
+    "min_floor": 6,
+    "hp": 38,
+    "attack": 15,
+    "defense": 3,
+    "exp_reward": 20,
+    "gold_reward": 14,
+    "drop_item": "Medium Potion",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Cursed Berserker",
+      "zh": "诅咒狂战士"
+    },
+    "min_floor": 8,
+    "hp": 42,
+    "attack": 19,
+    "defense": 6,
+    "exp_reward": 28,
+    "gold_reward": 19,
+    "drop_item": "Steel Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Necromancer",
+      "zh": "亡灵法师"
+    },
+    "min_floor": 13,
+    "hp": 72,
+    "attack": 27,
+    "defense": 9,
+    "exp_reward": 46,
+    "gold_reward": 31,
+    "drop_item": "Plate Armor",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Phantom Stalker",
+      "zh": "幻影追猎者"
+    },
+    "min_floor": 14,
+    "hp": 78,
+    "attack": 29,
+    "defense": 10,
+    "exp_reward": 54,
+    "gold_reward": 36,
+    "drop_item": "Steel Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Magma Colossus",
+      "zh": "熔岩巨像"
+    },
+    "min_floor": 16,
+    "hp": 92,
+    "attack": 31,
+    "defense": 12,
+    "exp_reward": 63,
+    "gold_reward": 44,
+    "drop_item": "Plate Armor",
+    "is_boss": false
   }
 ]

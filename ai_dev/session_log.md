@@ -1,5 +1,42 @@
 # Session Log
 
+## 2026-03-13 Monster Pool Expansion (30→35)
+
+目标：
+扩展怪物池，添加 5 个新怪物，填补楼层分布空缺，增加怪物多样性。
+
+完成内容：
+
+1. 添加 5 个新怪物到 `content/monsters.json`：
+   - Lava Serpent（熔岩巨蛇，Floor 6）：HP=38, ATK=15, DEF=3
+   - Cursed Berserker（诅咒狂战士，Floor 8）：HP=42, ATK=19, DEF=6
+   - Necromancer（亡灵法师，Floor 13）：HP=72, ATK=27, DEF=9
+   - Phantom Stalker（幻影追猎者，Floor 14）：HP=78, ATK=29, DEF=10
+   - Magma Colossus（熔岩巨像，Floor 16）：HP=92, ATK=31, DEF=12
+
+2. 怪物分布优化：
+   - 怪物总数：从 30 个增加到 35 个（31 普通 + 4 Boss）
+   - 楼层分布：填补了 Floor 6、8、13、14、16 的空缺
+   - 属性曲线：新怪物属性与同楼层现有怪物保持平衡
+   - 掉落物品：合理分配药水和装备掉落
+
+3. 平衡考虑：
+   - 新怪物属性值与现有怪物保持一致的成长曲线
+   - 经验和金币奖励符合楼层难度
+   - 增加了中期楼层（6-16层）的怪物多样性
+   - 保持中英文双语支持
+
+验证：
+- monsters.json 格式正确，包含所有 35 个怪物
+- 新怪物平衡合理，符合现有怪物设计模式
+- JSON 语法验证通过
+
+影响范围：
+- 修改文件：content/monsters.json, README.md, ai_dev/next_tasks.md
+- 游戏体验改进：更多怪物变化，更丰富的战斗体验
+
+---
+
 ## 2026-03-13 Achievement Pool Expansion (38→43)
 
 目标：
