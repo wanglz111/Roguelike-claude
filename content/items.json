@@ -409,5 +409,44 @@
       "en": "+3 Attack, +2 Defense, +20 HP",
       "zh": "+3攻击力, +2防御力, +20生命值"
     }
+  },
+  {
+    "name": {
+      "en": "Elixir of Vitality",
+      "zh": "活力药剂"
+    },
+    "item_type": "consumable",
+    "effect_type": "restore_both",
+    "effect_value": 25,
+    "description": {
+      "en": "Restores 25 HP and 25 MP",
+      "zh": "恢复25点生命值和25点魔力值"
+    }
+  },
+  {
+    "name": {
+      "en": "Antidote",
+      "zh": "解毒剂"
+    },
+    "item_type": "consumable",
+    "effect_type": "cure_status",
+    "effect_value": 0,
+    "description": {
+      "en": "Removes all negative status effects",
+      "zh": "移除所有负面状态效果"
+    }
+  },
+  {
+    "name": {
+      "en": "Scroll of Sanctuary",
+      "zh": "庇护卷轴"
+    },
+    "item_type": "consumable",
+    "effect_type": "full_restore",
+    "effect_value": 0,
+    "description": {
+      "en": "Fully restores HP and MP",
+      "zh": "完全恢复生命值和魔力值"
+    }
   }
 ]

@@ -41,9 +41,11 @@
 `Item`
 持有物品名称、类型、效果、描述、装备槽、属性加成、稀有度。
 装备槽类型：weapon（武器）、armor（护甲）、accessory（饰品）。
+消耗品效果类型：heal（恢复生命值）、restore_mp（恢复魔力值）、restore_both（同时恢复生命值和魔力值）、cure_status（移除所有负面状态效果）、full_restore（完全恢复生命值和魔力值）。
 稀有度系统：common（普通，1.0x）、rare（稀有，1.3x）、epic（史诗，1.6x）、legendary（传奇，2.0x）。
 稀有度倍率应用于装备的所有属性加成（攻击、防御、生命值）。
 当前已有 4 件稀有/史诗装备：Steel Sword（稀有）、Plate Armor（稀有）、Mythril Sword（史诗）、Balanced Ring（史诗）。
+当前共 27 件物品：9 种消耗品（3 种生命药水 + 3 种魔力药水 + 3 种特殊药剂）+ 18 件装备。
 
 `Skill`
 持有技能名称、描述、MP 消耗、效果类型、效果值、职业限制（可选）、治疗量（可选）、状态效果 ID（可选）。

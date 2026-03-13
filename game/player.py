@@ -150,6 +150,24 @@ class Player:
             self.mp = min(self.total_max_mp, self.mp + item.effect_value)
             restored = self.mp - old_mp
             return t({"en": f"Used {item.get_name()}. Restored {restored} MP.", "zh": f"使用了{item.get_name()}。恢复了{restored}点魔力值。"})
+        elif item.effect_type == "restore_both":
+            old_hp = self.hp
+            old_mp = self.mp
+            self.hp = min(self.total_max_hp, self.hp + item.effect_value)
+            self.mp = min(self.total_max_mp, self.mp + item.effect_value)
+            healed = self.hp - old_hp
+            restored = self.mp - old_mp
+            return t({"en": f"Used {item.get_name()}. Restored {healed} HP and {restored} MP.", "zh": f"使用了{item.get_name()}。恢复了{healed}点生命值和{restored}点魔力值。"})
+        elif item.effect_type == "cure_status":
+            count = len(self.status_effects)
+            self.clear_status_effects()
+            if count > 0:
+                return t({"en": f"Used {item.get_name()}. Removed {count} status effect(s).", "zh": f"使用了{item.get_name()}。移除了{count}个状态效果。"})
+            return t({"en": f"Used {item.get_name()}. No status effects to remove.", "zh": f"使用了{item.get_name()}。没有状态效果需要移除。"})
+        elif item.effect_type == "full_restore":
+            self.hp = self.total_max_hp
+            self.mp = self.total_max_mp
+            return t({"en": f"Used {item.get_name()}. HP and MP fully restored!", "zh": f"使用了{item.get_name()}。生命值和魔力值已完全恢复！"})
         return t({"en": f"Used {item.get_name()}.", "zh": f"使用了{item.get_name()}。"})
 
     def gain_rewards(self, exp: int, gold: int) -> list[str]:

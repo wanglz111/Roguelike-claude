@@ -1,5 +1,41 @@
 # Session Log
 
+## 2026-03-13 New Consumable Items Implementation
+
+目标：
+添加 3 种新的消耗品，增加战术选择和紧急恢复选项。
+
+完成内容：
+
+1. 在 `content/items.json` 中添加 3 种新消耗品：
+   - Elixir of Vitality（活力药剂）- 同时恢复 25 HP 和 25 MP
+   - Antidote（解毒剂）- 移除所有负面状态效果
+   - Scroll of Sanctuary（庇护卷轴）- 完全恢复 HP 和 MP
+2. 更新 `game/player.py` 的 use_item() 方法支持新效果类型：
+   - restore_both：同时恢复 HP 和 MP
+   - cure_status：移除所有状态效果
+   - full_restore：完全恢复 HP 和 MP
+3. 创建 `tests/test_new_consumables.py` 测试新消耗品功能
+4. 更新文档：
+   - architecture.md：添加消耗品效果类型说明，更新物品总数
+   - README.md：更新核心功能列表，添加消耗品系统说明
+
+技术细节：
+- 所有新效果类型都遵循现有的 use_item() 模式
+- cure_status 使用现有的 clear_status_effects() 方法
+- 消耗品总数从 6 个增加到 9 个
+- 物品总数从 24 个增加到 27 个
+
+验证：
+- 代码逻辑审查通过
+- 测试文件已创建（待运行）
+- 文档已同步更新
+
+下一步建议：
+- 运行测试验证功能
+- 考虑在商店中添加新消耗品
+- 考虑调整掉落概率包含新物品
+
 ## 2026-03-13 Status Effect System Implementation
 
 目标：
