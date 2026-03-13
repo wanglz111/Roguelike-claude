@@ -556,5 +556,94 @@
       "en": "+2 Attack, +2 Defense, +15 HP",
       "zh": "+2攻击力, +2防御力, +15生命值"
     }
+  },
+  {
+    "name": {
+      "en": "Silver Blade",
+      "zh": "银刃"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "weapon",
+    "bonus_attack": 4,
+    "bonus_defense": 1,
+    "bonus_hp": 0,
+    "rarity": "rare",
+    "description": {
+      "en": "+4 Attack, +1 Defense",
+      "zh": "+4攻击力, +1防御力"
+    }
+  },
+  {
+    "name": {
+      "en": "Celestial Sword",
+      "zh": "天界之剑"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "weapon",
+    "bonus_attack": 9,
+    "bonus_defense": 1,
+    "bonus_hp": 10,
+    "rarity": "epic",
+    "description": {
+      "en": "+9 Attack, +1 Defense, +10 HP",
+      "zh": "+9攻击力, +1防御力, +10生命值"
+    }
+  },
+  {
+    "name": {
+      "en": "Padded Armor",
+      "zh": "软甲"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "armor",
+    "bonus_attack": 0,
+    "bonus_defense": 1,
+    "bonus_hp": 8,
+    "description": {
+      "en": "+1 Defense, +8 HP",
+      "zh": "+1防御力, +8生命值"
+    }
+  },
+  {
+    "name": {
+      "en": "Knight's Armor",
+      "zh": "骑士铠甲"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "armor",
+    "bonus_attack": 0,
+    "bonus_defense": 6,
+    "bonus_hp": 22,
+    "rarity": "rare",
+    "description": {
+      "en": "+6 Defense, +22 HP",
+      "zh": "+6防御力, +22生命值"
+    }
+  },
+  {
+    "name": {
+      "en": "Sage's Ring",
+      "zh": "贤者指环"
+    },
+    "item_type": "equipment",
+    "effect_type": "none",
+    "effect_value": 0,
+    "equipment_slot": "accessory",
+    "bonus_attack": 1,
+    "bonus_defense": 2,
+    "bonus_hp": 12,
+    "rarity": "rare",
+    "description": {
+      "en": "+1 Attack, +2 Defense, +12 HP",
+      "zh": "+1攻击力, +2防御力, +12生命值"
+    }
   }
 ]
