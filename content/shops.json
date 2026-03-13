@@ -26,6 +26,11 @@
         "stock": -1
       },
       {
+        "item_name": "Antidote",
+        "price": 30,
+        "stock": -1
+      },
+      {
         "item_name": "Iron Sword",
         "price": 50,
         "stock": 1
@@ -64,6 +69,11 @@
         "stock": -1
       },
       {
+        "item_name": "Elixir of Vitality",
+        "price": 40,
+        "stock": -1
+      },
+      {
         "item_name": "Steel Sword",
         "price": 120,
         "stock": 1
@@ -99,6 +109,16 @@
       {
         "item_name": "Medium Mana Potion",
         "price": 35,
+        "stock": -1
+      },
+      {
+        "item_name": "Elixir of Vitality",
+        "price": 40,
+        "stock": -1
+      },
+      {
+        "item_name": "Scroll of Sanctuary",
+        "price": 80,
         "stock": -1
       },
       {
@@ -145,6 +165,16 @@
         "stock": -1
       },
       {
+        "item_name": "Elixir of Vitality",
+        "price": 40,
+        "stock": -1
+      },
+      {
+        "item_name": "Antidote",
+        "price": 30,
+        "stock": -1
+      },
+      {
         "item_name": "Enchanted Blade",
         "price": 180,
         "stock": 1
@@ -180,6 +210,21 @@
       {
         "item_name": "Large Mana Potion",
         "price": 60,
+        "stock": -1
+      },
+      {
+        "item_name": "Elixir of Vitality",
+        "price": 40,
+        "stock": -1
+      },
+      {
+        "item_name": "Scroll of Sanctuary",
+        "price": 80,
+        "stock": -1
+      },
+      {
+        "item_name": "Antidote",
+        "price": 30,
         "stock": -1
       },
       {

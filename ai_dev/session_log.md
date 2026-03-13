@@ -1,5 +1,50 @@
 # Session Log
 
+## 2026-03-13 Shop Integration for New Consumables
+
+目标：
+将新添加的 3 种消耗品集成到商店系统中，让玩家可以购买这些物品。
+
+完成内容：
+
+1. 在 `content/shops.json` 中为所有 5 个商店添加新消耗品：
+   - Wandering Merchant（流浪商人，Floor 1+）：添加 Antidote（30 金币）
+   - Blacksmith's Shop（铁匠铺，Floor 5+）：添加 Elixir of Vitality（40 金币）
+   - Magic Emporium（魔法商店，Floor 7+）：添加 Elixir of Vitality（40 金币）和 Antidote（30 金币）
+   - Master Armorer（大师工匠，Floor 10+）：添加 Elixir of Vitality（40 金币）和 Scroll of Sanctuary（80 金币）
+   - Legendary Trader（传奇商人，Floor 15+）：添加全部 3 种新消耗品
+
+2. 价格设置符合任务要求：
+   - Elixir of Vitality（活力药剂）：40 金币
+   - Antidote（解毒剂）：30 金币
+   - Scroll of Sanctuary（庇护卷轴）：80 金币
+
+3. 分布策略：
+   - 早期商店（Floor 1）提供基础的 Antidote，帮助玩家应对状态效果
+   - 中期商店（Floor 5-10）提供 Elixir of Vitality，提供 HP/MP 双重恢复
+   - 高级商店（Floor 10+）提供 Scroll of Sanctuary，作为紧急恢复选项
+   - 传奇商店（Floor 15+）提供全部新消耗品
+
+技术细节：
+- 所有新消耗品设置为无限库存（stock: -1）
+- 只修改了 content/shops.json，完全数据驱动
+- 不需要修改任何代码逻辑
+
+验证：
+- ✓ 成功加载 28 件物品（包含 3 种新消耗品）
+- ✓ 成功加载 5 个商店
+- ✓ 所有 5 个商店都包含至少 1 种新消耗品
+- ✓ 商店分布合理，覆盖从 Floor 1 到 Floor 15+
+
+影响：
+- 玩家现在可以在商店购买新消耗品
+- 增加了商店的战术价值和物品多样性
+- 完成了新消耗品系统的最后一环
+
+下一步建议：
+- 考虑为 Boss 添加特殊机制
+- 考虑添加装备套装系统
+
 ## 2026-03-13 New Consumable Items Implementation
 
 目标：
