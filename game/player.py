@@ -319,6 +319,78 @@ class Player:
             else:
                 return t({"en": " (Not enough gold!)", "zh": "（金币不足！）"})
 
+        elif effect_type == "trade_boost_defense":
+            # Pay gold for permanent defense boost
+            cost = 40
+            if self.gold >= cost:
+                self.gold -= cost
+                self.defense += effect_value
+                return ""
+            else:
+                return t({"en": " (Not enough gold!)", "zh": "（金币不足！）"})
+
+        elif effect_type == "trade_boost_max_hp":
+            # Pay gold for permanent max HP boost
+            cost = 60
+            if self.gold >= cost:
+                self.gold -= cost
+                self.max_hp += effect_value
+                self.hp = min(self.total_max_hp, self.hp + effect_value)
+                return ""
+            else:
+                return t({"en": " (Not enough gold!)", "zh": "（金币不足！）"})
+
+        elif effect_type == "trade_hp_for_attack":
+            # Sacrifice HP for permanent attack boost
+            hp_cost = 30
+            self.hp = max(1, self.hp - hp_cost)
+            self.attack += effect_value
+            return ""
+
+        elif effect_type == "risky_gold":
+            # 60% chance to get gold, 40% chance to take damage
+            import random
+            if random.random() < 0.6:
+                self.gold += effect_value
+                return t({"en": " Success! You got the treasure!", "zh": " 成功！你得到了宝藏！"})
+            else:
+                self.hp = max(0, self.hp - 25)
+                return t({"en": " The dragon wakes! You take 25 damage!", "zh": " 巨龙醒了！你受到25点伤害！"})
+
+        elif effect_type == "wish":
+            # Pay gold for random beneficial effect
+            cost = 30
+            if self.gold >= cost:
+                self.gold -= cost
+                import random
+                wish_type = random.choice(["heal", "attack", "defense", "max_hp"])
+                if wish_type == "heal":
+                    old_hp = self.hp
+                    self.hp = min(self.total_max_hp, self.hp + 30)
+                    healed = self.hp - old_hp
+                    return t({"en": f" Granted +{healed} HP!", "zh": f" 获得+{healed}生命值！"})
+                elif wish_type == "attack":
+                    self.attack += 2
+                    return t({"en": " Granted +2 attack!", "zh": " 获得+2攻击！"})
+                elif wish_type == "defense":
+                    self.defense += 2
+                    return t({"en": " Granted +2 defense!", "zh": " 获得+2防御！"})
+                else:  # max_hp
+                    self.max_hp += 10
+                    self.hp = min(self.total_max_hp, self.hp + 10)
+                    return t({"en": " Granted +10 max HP!", "zh": " 获得+10最大生命值！"})
+            else:
+                return t({"en": " (Not enough gold!)", "zh": "（金币不足！）"})
+
+        elif effect_type == "search_battlefield":
+            # 60% chance to find gold, 40% chance to find nothing
+            import random
+            if random.random() < 0.6:
+                self.gold += effect_value
+                return t({"en": " You found salvageable equipment!", "zh": " 你找到了可用的装备！"})
+            else:
+                return t({"en": " You found nothing useful.", "zh": " 你没有找到有用的东西。"})
+
         elif effect_type == "nothing":
             return ""
 

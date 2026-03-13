@@ -1,5 +1,55 @@
 # Session Log
 
+## 2026-03-13 Event Pool Expansion (35→40)
+
+目标：
+扩展事件池，添加 5 个新随机事件，增加事件多样性和选择分支。
+
+完成内容：
+
+1. 添加 5 个新事件到 `content/events.json`：
+   - Blood Ritual Circle（血祭法阵）：楼层 18+，献祭生命换取力量或摧毁法阵获得金币
+   - Ethereal Merchant（虚灵商人）：楼层 8+，用金币交易永久属性提升（防御或最大生命值）
+   - Dragon's Hoard（巨龙宝库）：楼层 16+，冒险偷取宝藏（60%成功获得80金币，40%失败受到25伤害）
+   - Mystical Well（神秘古井）：楼层 9+，许愿获得随机增益或喝井水恢复生命值
+   - Battlefield Remnants（战场遗迹）：楼层 12+，搜索装备（60%获得40金币，40%一无所获）或向死者致敬恢复生命值
+
+2. 新增 6 种事件效果类型到 `game/player.py`：
+   - trade_boost_defense：花费40金币永久增加防御力
+   - trade_boost_max_hp：花费60金币永久增加最大生命值
+   - trade_hp_for_attack：献祭30生命值永久增加攻击力
+   - risky_gold：60%概率获得金币，40%概率受到伤害
+   - wish：花费30金币许愿，随机获得生命值、攻击力、防御力或最大生命值提升
+   - search_battlefield：60%概率找到金币，40%概率一无所获
+
+3. 事件系统优化：
+   - 事件总数：从 35 个增加到 40 个
+   - 新增高风险高回报事件（Dragon's Hoard、Blood Ritual Circle）
+   - 新增随机性事件（Mystical Well、Battlefield Remnants）
+   - 新增交易型事件（Ethereal Merchant）
+   - 楼层分布：8-18 层，覆盖中后期游戏阶段
+   - 保持中英文双语支持
+
+4. 事件设计理念：
+   - Blood Ritual Circle：黑暗主题，高风险高回报，献祭生命换取力量
+   - Ethereal Merchant：提供更多永久属性提升选项，补充现有交易系统
+   - Dragon's Hoard：经典冒险场景，概率性风险决策
+   - Mystical Well：随机性增益，增加游戏变数和趣味性
+   - Battlefield Remnants：探索主题，搜索与致敬的道德选择
+
+验证：
+- events.json 格式正确，包含所有 40 个事件
+- JSON 语法验证通过
+- 新增 6 种效果类型已实现并集成到 player.py
+- 游戏系统正常运行
+- 事件楼层分布合理
+
+影响范围：
+- 修改文件：content/events.json, game/player.py, ai_dev/architecture.md, README.md
+- 游戏体验改进：更多事件选择，更丰富的决策分支，更多永久属性提升机会
+
+---
+
 ## 2026-03-13 Skill Pool Expansion (35→40)
 
 目标：

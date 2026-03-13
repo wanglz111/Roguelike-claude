@@ -1641,5 +1641,238 @@
         }
       }
     ]
+  },
+  {
+    "name": {
+      "en": "Blood Ritual Circle",
+      "zh": "血祭法阵"
+    },
+    "description": {
+      "en": "You discover a dark ritual circle. Ancient runes glow with crimson light. You sense powerful magic here.",
+      "zh": "你发现了一个黑暗的祭祀法阵。古老的符文闪烁着深红色的光芒。你感受到这里有强大的魔力。"
+    },
+    "min_floor": 18,
+    "choices": [
+      {
+        "text": {
+          "en": "Sacrifice HP for power (+5 attack permanently, -30 HP)",
+          "zh": "献祭生命换取力量（永久+5攻击，-30生命值）"
+        },
+        "effect_type": "trade_hp_for_attack",
+        "effect_value": 5,
+        "result_text": {
+          "en": "Dark energy flows into you! +5 attack permanently, but you lose 30 HP.",
+          "zh": "黑暗能量涌入你的身体！永久+5攻击，但你失去了30生命值。"
+        }
+      },
+      {
+        "text": {
+          "en": "Destroy the circle (gain 50 gold)",
+          "zh": "摧毁法阵（获得50金币）"
+        },
+        "effect_type": "gold",
+        "effect_value": 50,
+        "result_text": {
+          "en": "You shatter the dark magic and find hidden gold! +50 gold",
+          "zh": "你粉碎了黑暗魔法并发现了隐藏的金币！+50金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Leave it alone",
+          "zh": "不要触碰"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You wisely avoid the dark magic.",
+          "zh": "你明智地避开了黑暗魔法。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Ethereal Merchant",
+      "zh": "虚灵商人"
+    },
+    "description": {
+      "en": "A ghostly figure materializes before you, offering strange deals from beyond the veil.",
+      "zh": "一个幽灵般的身影在你面前显现，提供来自彼岸的奇异交易。"
+    },
+    "min_floor": 8,
+    "choices": [
+      {
+        "text": {
+          "en": "Trade 40 gold for +3 defense permanently",
+          "zh": "用40金币换取永久+3防御"
+        },
+        "effect_type": "trade_boost_defense",
+        "effect_value": 3,
+        "result_text": {
+          "en": "Ethereal armor wraps around you! +3 defense permanently for 40 gold.",
+          "zh": "虚灵护甲包裹着你！花费40金币，永久+3防御。"
+        }
+      },
+      {
+        "text": {
+          "en": "Trade 60 gold for +15 max HP permanently",
+          "zh": "用60金币换取永久+15最大生命值"
+        },
+        "effect_type": "trade_boost_max_hp",
+        "effect_value": 15,
+        "result_text": {
+          "en": "Life force surges through you! +15 max HP permanently for 60 gold.",
+          "zh": "生命力涌入你的身体！花费60金币，永久+15最大生命值。"
+        }
+      },
+      {
+        "text": {
+          "en": "Decline the offer",
+          "zh": "拒绝交易"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "The ethereal merchant fades away.",
+          "zh": "虚灵商人消失了。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Dragon's Hoard",
+      "zh": "巨龙宝库"
+    },
+    "description": {
+      "en": "You stumble upon a sleeping dragon guarding a massive pile of treasure. Do you dare approach?",
+      "zh": "你偶然发现一条沉睡的巨龙守护着一大堆宝藏。你敢靠近吗？"
+    },
+    "min_floor": 16,
+    "choices": [
+      {
+        "text": {
+          "en": "Sneak and steal treasure (80 gold, but 40% chance of -25 HP)",
+          "zh": "潜行偷取宝藏（80金币，但40%概率-25生命值）"
+        },
+        "effect_type": "risky_gold",
+        "effect_value": 80,
+        "result_text": {
+          "en": "You carefully grab the treasure...",
+          "zh": "你小心翼翼地拿取宝藏……"
+        }
+      },
+      {
+        "text": {
+          "en": "Leave quietly",
+          "zh": "悄悄离开"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You wisely retreat without disturbing the dragon.",
+          "zh": "你明智地撤退，没有惊扰巨龙。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Mystical Well",
+      "zh": "神秘古井"
+    },
+    "description": {
+      "en": "An ancient well radiates magical energy. You can hear whispers echoing from its depths.",
+      "zh": "一口古老的井散发着魔法能量。你能听到从井底传来的低语。"
+    },
+    "min_floor": 9,
+    "choices": [
+      {
+        "text": {
+          "en": "Throw in 30 gold and make a wish",
+          "zh": "投入30金币许愿"
+        },
+        "effect_type": "wish",
+        "effect_value": 30,
+        "result_text": {
+          "en": "The well grants your wish!",
+          "zh": "古井实现了你的愿望！"
+        }
+      },
+      {
+        "text": {
+          "en": "Drink from the well (restore 25 HP)",
+          "zh": "喝井水（恢复25生命值）"
+        },
+        "effect_type": "heal",
+        "effect_value": 25,
+        "result_text": {
+          "en": "The mystical water heals you! +25 HP",
+          "zh": "神秘的井水治愈了你！+25生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Walk away",
+          "zh": "离开"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You continue your journey.",
+          "zh": "你继续你的旅程。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Battlefield Remnants",
+      "zh": "战场遗迹"
+    },
+    "description": {
+      "en": "You find the remains of an ancient battle. Broken weapons and armor litter the ground.",
+      "zh": "你发现了一场古老战斗的遗迹。破碎的武器和盔甲散落一地。"
+    },
+    "min_floor": 12,
+    "choices": [
+      {
+        "text": {
+          "en": "Search for salvageable equipment (60% chance +40 gold, 40% chance nothing)",
+          "zh": "搜寻可用的装备（60%概率+40金币，40%概率一无所获）"
+        },
+        "effect_type": "search_battlefield",
+        "effect_value": 40,
+        "result_text": {
+          "en": "You search through the ruins...",
+          "zh": "你在废墟中搜寻……"
+        }
+      },
+      {
+        "text": {
+          "en": "Pay respects to the fallen (restore 20 HP)",
+          "zh": "向死者致敬（恢复20生命值）"
+        },
+        "effect_type": "heal",
+        "effect_value": 20,
+        "result_text": {
+          "en": "The spirits of the fallen bless you. +20 HP",
+          "zh": "死者的灵魂祝福了你。+20生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Move on",
+          "zh": "继续前进"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You leave the battlefield behind.",
+          "zh": "你离开了战场。"
+        }
+      }
+    ]
   }
 ]
