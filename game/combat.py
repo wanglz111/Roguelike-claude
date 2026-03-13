@@ -106,6 +106,7 @@ def fight(player: Player, monster: Monster, skill: Skill = None) -> tuple[bool, 
                     )
                     status_msg = player.add_status_effect(active_effect)
                     log.append(status_msg)
+                    player.status_effects_applied += 1
         else:
             # Normal attack
             player_crit = check_critical_hit()

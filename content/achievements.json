@@ -352,6 +352,65 @@
       "description_zh": "装备 3 套不同的完整装备套装",
       "category": "collection",
       "hidden": true
+    },
+    {
+      "id": "potion_master",
+      "name_en": "Potion Master",
+      "name_zh": "药剂大师",
+      "description_en": "Use 30 consumable items",
+      "description_zh": "使用 30 个消耗品",
+      "category": "collection"
+    },
+    {
+      "id": "glass_cannon",
+      "name_en": "Glass Cannon",
+      "name_zh": "玻璃大炮",
+      "description_en": "Defeat a boss with less than 20% HP remaining",
+      "description_zh": "以少于 20% 生命值击败 Boss",
+      "category": "combat",
+      "hidden": true
+    },
+    {
+      "id": "status_master",
+      "name_en": "Status Master",
+      "name_zh": "状态大师",
+      "description_en": "Apply 50 status effects in combat",
+      "description_zh": "在战斗中施加 50 次状态效果",
+      "category": "combat"
+    },
+    {
+      "id": "millionaire",
+      "name_en": "Millionaire",
+      "name_zh": "百万富翁",
+      "description_en": "Accumulate 2000 gold",
+      "description_zh": "积累 2000 金币",
+      "category": "collection",
+      "hidden": true
+    },
+    {
+      "id": "event_seeker",
+      "name_en": "Event Seeker",
+      "name_zh": "事件探索者",
+      "description_en": "Encounter 25 random events",
+      "description_zh": "遭遇 25 个随机事件",
+      "category": "exploration"
+    },
+    {
+      "id": "rogue_champion",
+      "name_en": "Rogue Champion",
+      "name_zh": "盗贼冠军",
+      "description_en": "Complete the dungeon as a Rogue",
+      "description_zh": "以盗贼职业通关地牢",
+      "category": "progression"
+    },
+    {
+      "id": "unstoppable",
+      "name_en": "Unstoppable",
+      "name_zh": "势不可挡",
+      "description_en": "Defeat 100 monsters",
+      "description_zh": "击败 100 个怪物",
+      "category": "combat",
+      "hidden": true
     }
   ]
 }

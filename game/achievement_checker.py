@@ -31,6 +31,11 @@ def check_achievements(player: Player, achievements: List[Achievement], trigger:
             if player.unlock_achievement("monster_hunter"):
                 newly_unlocked.append(("monster_hunter", get_achievement_by_id(achievements, "monster_hunter")))
 
+        # Unstoppable
+        if player.monsters_killed >= 100:
+            if player.unlock_achievement("unstoppable"):
+                newly_unlocked.append(("unstoppable", get_achievement_by_id(achievements, "unstoppable")))
+
         # Boss achievements
         if kwargs.get("is_boss", False):
             if player.bosses_killed == 1:
@@ -92,6 +97,9 @@ def check_achievements(player: Player, achievements: List[Achievement], trigger:
             elif player.player_class == "mage":
                 if player.unlock_achievement("mage_champion"):
                     newly_unlocked.append(("mage_champion", get_achievement_by_id(achievements, "mage_champion")))
+            elif player.player_class == "rogue":
+                if player.unlock_achievement("rogue_champion"):
+                    newly_unlocked.append(("rogue_champion", get_achievement_by_id(achievements, "rogue_champion")))
 
             # Versatile Hero (complete with 3 different classes)
             if len(player.completed_classes) >= 3:
@@ -153,6 +161,12 @@ def check_achievements(player: Player, achievements: List[Achievement], trigger:
             if player.unlock_achievement("set_collector"):
                 newly_unlocked.append(("set_collector", get_achievement_by_id(achievements, "set_collector")))
 
+            # Track equipped sets for Set Master achievement
+            player.equipped_sets.add(active_set.id)
+            if len(player.equipped_sets) >= 3:
+                if player.unlock_achievement("set_master"):
+                    newly_unlocked.append(("set_master", get_achievement_by_id(achievements, "set_master")))
+
         # Rarity achievements
         item = kwargs.get("item", None)
         if item and hasattr(item, "rarity"):
@@ -173,6 +187,9 @@ def check_achievements(player: Player, achievements: List[Achievement], trigger:
         if player.gold >= 1000:
             if player.unlock_achievement("wealthy_adventurer"):
                 newly_unlocked.append(("wealthy_adventurer", get_achievement_by_id(achievements, "wealthy_adventurer")))
+        if player.gold >= 2000:
+            if player.unlock_achievement("millionaire"):
+                newly_unlocked.append(("millionaire", get_achievement_by_id(achievements, "millionaire")))
 
     elif trigger == "skill_used":
         if player.skills_used >= 50:
@@ -188,6 +205,11 @@ def check_achievements(player: Player, achievements: List[Achievement], trigger:
             if player.unlock_achievement("survivor"):
                 newly_unlocked.append(("survivor", get_achievement_by_id(achievements, "survivor")))
 
+        # Glass Cannon (boss with less than 20% HP)
+        if kwargs.get("is_boss", False) and hp_percent < 20:
+            if player.unlock_achievement("glass_cannon"):
+                newly_unlocked.append(("glass_cannon", get_achievement_by_id(achievements, "glass_cannon")))
+
         # Perfect victory (boss without damage)
         if kwargs.get("is_boss", False) and kwargs.get("damage_taken", 0) == 0:
             if player.unlock_achievement("perfect_victory"):
@@ -201,6 +223,21 @@ def check_achievements(player: Player, achievements: List[Achievement], trigger:
     elif trigger == "new_game_plus":
         if player.unlock_achievement("new_game_plus"):
             newly_unlocked.append(("new_game_plus", get_achievement_by_id(achievements, "new_game_plus")))
+
+    elif trigger == "consumable_used":
+        if player.consumables_used >= 30:
+            if player.unlock_achievement("potion_master"):
+                newly_unlocked.append(("potion_master", get_achievement_by_id(achievements, "potion_master")))
+
+    elif trigger == "status_effect_applied":
+        if player.status_effects_applied >= 50:
+            if player.unlock_achievement("status_master"):
+                newly_unlocked.append(("status_master", get_achievement_by_id(achievements, "status_master")))
+
+    elif trigger == "event_encountered":
+        if player.events_encountered >= 25:
+            if player.unlock_achievement("event_seeker"):
+                newly_unlocked.append(("event_seeker", get_achievement_by_id(achievements, "event_seeker")))
 
     return newly_unlocked
 

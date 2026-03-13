@@ -144,6 +144,11 @@ def main() -> None:
         for _, ach in newly_unlocked:
             print(format_achievement_unlock(ach))
 
+        # Check status effect achievement
+        newly_unlocked = check_achievements(state.player, achievements_db, "status_effect_applied")
+        for _, ach in newly_unlocked:
+            print(format_achievement_unlock(ach))
+
         if not victory:
             state.game_over = True
             break
@@ -200,10 +205,16 @@ def main() -> None:
         # Check for random event
         event = generate_event(state.floor, rng)
         if event:
+            state.player.events_encountered += 1
             choice_idx = prompt_event_choice(event)
             chosen = event.choices[choice_idx]
             extra_msg = state.player.apply_event_effect(chosen.effect_type, chosen.effect_value)
             state.log.append(chosen.get_result_text() + extra_msg)
+
+            # Check event encounter achievement
+            newly_unlocked = check_achievements(state.player, achievements_db, "event_encountered")
+            for _, ach in newly_unlocked:
+                print(format_achievement_unlock(ach))
 
             # Check if player died from event damage
             if not state.player.is_alive:
@@ -247,6 +258,11 @@ def main() -> None:
             idx = int(choice[1:]) - 1
             msg = state.player.use_item(idx)
             state.log.append(msg)
+
+            # Check consumable usage achievement
+            newly_unlocked = check_achievements(state.player, achievements_db, "consumable_used")
+            for _, ach in newly_unlocked:
+                print(format_achievement_unlock(ach))
         elif choice.startswith('e') and choice[1:].isdigit():
             idx = int(choice[1:]) - 1
             item = state.player.inventory[idx] if 0 <= idx < len(state.player.inventory) else None

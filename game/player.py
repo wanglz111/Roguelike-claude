@@ -34,7 +34,11 @@ class Player:
     bosses_killed: int = 0
     skills_used: int = 0
     items_purchased: int = 0
+    consumables_used: int = 0
+    status_effects_applied: int = 0
+    events_encountered: int = 0
     completed_classes: Set[str] = field(default_factory=set)  # Set of class names that completed the dungeon
+    equipped_sets: Set[str] = field(default_factory=set)  # Set of equipment set IDs that have been equipped
     # Status effects
     status_effects: List = field(default_factory=list)  # List of ActiveStatusEffect
 
@@ -183,6 +187,10 @@ class Player:
         if index < 0 or index >= len(self.inventory):
             return t({"en": "Invalid item.", "zh": "无效的物品。"})
         item = self.inventory.pop(index)
+
+        # Track consumable usage for achievements
+        self.consumables_used += 1
+
         if item.effect_type == "heal":
             old_hp = self.hp
             self.hp = min(self.total_max_hp, self.hp + item.effect_value)

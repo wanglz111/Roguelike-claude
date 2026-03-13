@@ -1,5 +1,65 @@
 # Session Log
 
+## 2026-03-13 Achievement Pool Expansion (43→50)
+
+目标：
+扩展成就系统，添加 7 个新成就，增加成就多样性和挑战性。
+
+完成内容：
+
+1. 添加 7 个新成就到 `content/achievements.json`：
+   - Potion Master（药剂大师）：使用 30 个消耗品
+   - Glass Cannon（玻璃大炮）：以少于 20% 生命值击败 Boss（隐藏）
+   - Status Master（状态大师）：在战斗中施加 50 次状态效果
+   - Millionaire（百万富翁）：积累 2000 金币（隐藏）
+   - Event Seeker（事件探索者）：遭遇 25 个随机事件
+   - Rogue Champion（盗贼冠军）：以盗贼职业通关地牢
+   - Unstoppable（势不可挡）：击败 100 个怪物（隐藏）
+
+2. 添加新的追踪字段到 `Player` 类：
+   - `consumables_used`：追踪消耗品使用次数
+   - `status_effects_applied`：追踪状态效果施加次数
+   - `events_encountered`：追踪遭遇事件次数
+   - `equipped_sets`：追踪已装备过的套装集合（用于 Set Master 成就）
+
+3. 更新成就检查逻辑 `game/achievement_checker.py`：
+   - 添加 `unstoppable` 成就检查（击败 100 个怪物）
+   - 添加 `rogue_champion` 成就检查（盗贼职业通关）
+   - 添加 `millionaire` 成就检查（2000 金币）
+   - 添加 `glass_cannon` 成就检查（Boss 战低血量胜利）
+   - 添加 `set_master` 成就检查（装备 3 套不同套装）
+   - 添加新触发器：`consumable_used`、`status_effect_applied`、`event_encountered`
+
+4. 更新游戏逻辑以追踪新统计数据：
+   - `game/player.py`：在 `use_item()` 中追踪消耗品使用
+   - `game/combat.py`：在技能施加状态效果时追踪
+   - `cli/main.py`：在事件遭遇时追踪，并在相应时机检查成就
+
+5. 成就系统优化：
+   - 成就总数：从 43 个增加到 50 个
+   - 隐藏成就：12 个（包含 3 个新隐藏成就）
+   - 成就分类：combat（战斗）、exploration（探索）、collection（收集）、progression（进度）
+   - 保持中英文双语支持
+
+验证：
+- achievements.json 格式正确，包含所有 50 个成就
+- JSON 语法验证通过
+- 成就数据加载成功（测试通过）
+- Player 类新字段初始化正常
+- 成就检查逻辑工作正常
+- 游戏状态初始化成功
+
+影响范围：
+- 修改文件：
+  - content/achievements.json（添加 7 个新成就）
+  - game/player.py（添加 4 个追踪字段，更新 use_item 方法）
+  - game/achievement_checker.py（添加新成就检查逻辑和触发器）
+  - game/combat.py（追踪状态效果施加）
+  - cli/main.py（追踪事件遭遇和消耗品使用，添加成就检查）
+- 游戏体验改进：更多成就挑战，更丰富的追踪系统
+
+---
+
 ## 2026-03-13 Event Pool Expansion (30→35)
 
 目标：
