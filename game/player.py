@@ -45,6 +45,30 @@ class Player:
     def is_alive(self) -> bool:
         return self.hp > 0
 
+    def get_active_set_bonus(self):
+        """Get equipment set bonus if wearing a complete set."""
+        if not self.weapon and not self.armor and not self.accessory:
+            return None
+
+        from game.floor import load_equipment_sets
+        equipment_sets = load_equipment_sets()
+
+        equipped_names = set()
+        if self.weapon:
+            name = self.weapon.name if isinstance(self.weapon.name, str) else self.weapon.name.get("en", "")
+            equipped_names.add(name)
+        if self.armor:
+            name = self.armor.name if isinstance(self.armor.name, str) else self.armor.name.get("en", "")
+            equipped_names.add(name)
+        if self.accessory:
+            name = self.accessory.name if isinstance(self.accessory.name, str) else self.accessory.name.get("en", "")
+            equipped_names.add(name)
+
+        for eq_set in equipment_sets:
+            if all(item_name in equipped_names for item_name in eq_set.items):
+                return eq_set
+        return None
+
     @property
     def total_attack(self) -> int:
         bonus = 0
@@ -54,6 +78,12 @@ class Player:
             bonus += self.armor.effective_bonus_attack
         if self.accessory:
             bonus += self.accessory.effective_bonus_attack
+
+        # Add set bonus
+        active_set = self.get_active_set_bonus()
+        if active_set:
+            bonus += active_set.bonus_attack
+
         base_attack = self.attack + bonus
 
         # Apply status effect modifiers
@@ -71,6 +101,12 @@ class Player:
             bonus += self.armor.effective_bonus_defense
         if self.accessory:
             bonus += self.accessory.effective_bonus_defense
+
+        # Add set bonus
+        active_set = self.get_active_set_bonus()
+        if active_set:
+            bonus += active_set.bonus_defense
+
         base_defense = self.defense + bonus
 
         # Apply status effect modifiers
@@ -88,6 +124,12 @@ class Player:
             bonus += self.armor.effective_bonus_hp
         if self.accessory:
             bonus += self.accessory.effective_bonus_hp
+
+        # Add set bonus
+        active_set = self.get_active_set_bonus()
+        if active_set:
+            bonus += active_set.bonus_hp
+
         return self.max_hp + bonus
 
     @property

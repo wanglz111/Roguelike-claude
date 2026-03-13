@@ -18,6 +18,20 @@ def render_inventory(player) -> None:
     print(f"  {colorize(t({'en': 'Armor', 'zh': '护甲'}), Color.CYAN)}: {armor_name}")
     print(f"  {colorize(t({'en': 'Accessory', 'zh': '饰品'}), Color.MAGENTA)}: {accessory_name}")
 
+    # Display set bonus if active
+    active_set = player.get_active_set_bonus()
+    if active_set:
+        set_name = colorize(active_set.get_name(), Color.BRIGHT_MAGENTA)
+        bonus_parts = []
+        if active_set.bonus_attack > 0:
+            bonus_parts.append(f"+{active_set.bonus_attack} {t({'en': 'Atk', 'zh': '攻击'})}")
+        if active_set.bonus_defense > 0:
+            bonus_parts.append(f"+{active_set.bonus_defense} {t({'en': 'Def', 'zh': '防御'})}")
+        if active_set.bonus_hp > 0:
+            bonus_parts.append(f"+{active_set.bonus_hp} {t({'en': 'HP', 'zh': '生命'})}")
+        bonus_text = colorize(", ".join(bonus_parts), Color.GREEN)
+        print(f"  {colorize(t({'en': 'Set Bonus', 'zh': '套装加成'}), Color.BOLD)}: {set_name} ({bonus_text})")
+
     # Display active status effects
     if player.status_effects:
         print(colorize(t({"en": "Status Effects:", "zh": "状态效果："}), Color.BOLD))

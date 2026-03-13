@@ -1,5 +1,43 @@
 # Session Log
 
+## 2026-03-13 Equipment Set System Implementation
+
+目标：
+添加装备套装系统，增加装备收集深度和玩家策略选择。
+
+完成内容：
+
+1. 创建装备套装数据结构：
+   - 新增 `game/equipment_set.py` 定义 EquipmentSet 类
+   - 新增 `content/equipment_sets.json` 配置 5 个装备套装
+   - 套装包含 2-3 件装备，穿戴整套时获得额外加成
+
+2. 定义的 5 个装备套装：
+   - Iron Warrior Set（铁甲战士）：Iron Sword + Leather Armor，+2 攻击 +1 防御
+   - Steel Guardian Set（钢铁守护者）：Steel Sword + Chain Mail + Guardian Charm，+3 攻击 +3 防御 +15 生命
+   - Plate Defender Set（板甲防御者）：Steel Sword + Plate Armor，+2 攻击 +4 防御 +20 生命
+   - Mythril Champion Set（秘银勇士）：Mythril Sword + Enchanted Mail + Balanced Ring，+5 攻击 +3 防御 +25 生命
+   - Dragon Slayer Set（屠龙者）：Dragon Slayer + Dragon Scale Armor + Dragon Pendant，+8 攻击 +5 防御 +40 生命
+
+3. 更新 Player 类实现套装检测：
+   - 添加 `get_active_set_bonus()` 方法检测当前装备的套装
+   - 更新 `total_attack`、`total_defense`、`total_max_hp` 属性应用套装加成
+   - 使用英文名称匹配确保跨语言兼容
+
+4. 更新 UI 显示套装信息：
+   - 在 `cli/renderer.py` 的 `render_inventory()` 中显示激活的套装加成
+   - 使用彩色高亮显示套装名称和加成数值
+
+5. 更新内容加载器：
+   - 在 `game/floor.py` 添加 `load_equipment_sets()` 函数
+   - 支持从 JSON 加载套装配置
+
+技术细节：
+- 套装系统完全数据驱动，易于扩展
+- 套装检测基于英文名称，避免本地化问题
+- 套装加成在属性计算中正确叠加
+- 保持向后兼容，不影响现有装备系统
+
 ## 2026-03-13 Boss Special Mechanics Implementation
 
 目标：

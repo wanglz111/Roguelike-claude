@@ -1,0 +1,77 @@
+[
+  {
+    "set_id": "iron_warrior",
+    "name": {
+      "en": "Iron Warrior Set",
+      "zh": "铁甲战士套装"
+    },
+    "description": {
+      "en": "Basic warrior equipment",
+      "zh": "基础战士装备"
+    },
+    "items": ["Iron Sword", "Leather Armor"],
+    "bonus_attack": 2,
+    "bonus_defense": 1,
+    "bonus_hp": 0
+  },
+  {
+    "set_id": "steel_guardian",
+    "name": {
+      "en": "Steel Guardian Set",
+      "zh": "钢铁守护者套装"
+    },
+    "description": {
+      "en": "Enhanced protection and power",
+      "zh": "增强的防护与力量"
+    },
+    "items": ["Steel Sword", "Chain Mail", "Guardian Charm"],
+    "bonus_attack": 3,
+    "bonus_defense": 3,
+    "bonus_hp": 15
+  },
+  {
+    "set_id": "plate_defender",
+    "name": {
+      "en": "Plate Defender Set",
+      "zh": "板甲防御者套装"
+    },
+    "description": {
+      "en": "Maximum defense for warriors",
+      "zh": "战士的最强防御"
+    },
+    "items": ["Steel Sword", "Plate Armor"],
+    "bonus_attack": 2,
+    "bonus_defense": 4,
+    "bonus_hp": 20
+  },
+  {
+    "set_id": "mythril_champion",
+    "name": {
+      "en": "Mythril Champion Set",
+      "zh": "秘银勇士套装"
+    },
+    "description": {
+      "en": "Legendary warrior equipment",
+      "zh": "传奇战士装备"
+    },
+    "items": ["Mythril Sword", "Enchanted Mail", "Balanced Ring"],
+    "bonus_attack": 5,
+    "bonus_defense": 3,
+    "bonus_hp": 25
+  },
+  {
+    "set_id": "dragon_slayer",
+    "name": {
+      "en": "Dragon Slayer Set",
+      "zh": "屠龙者套装"
+    },
+    "description": {
+      "en": "Ultimate power to slay dragons",
+      "zh": "屠龙的终极力量"
+    },
+    "items": ["Dragon Slayer", "Dragon Scale Armor", "Dragon Pendant"],
+    "bonus_attack": 8,
+    "bonus_defense": 5,
+    "bonus_hp": 40
+  }
+]

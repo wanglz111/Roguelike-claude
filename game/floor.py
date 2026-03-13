@@ -6,12 +6,14 @@ from game.monster import Monster
 from game.item import Item
 from game.event import Event, EventChoice
 from game.shop import Shop, ShopItem
+from game.equipment_set import EquipmentSet
 
 
 CONTENT_PATH = Path(__file__).resolve().parent.parent / "content" / "monsters.json"
 ITEMS_PATH = Path(__file__).resolve().parent.parent / "content" / "items.json"
 EVENTS_PATH = Path(__file__).resolve().parent.parent / "content" / "events.json"
 SHOPS_PATH = Path(__file__).resolve().parent.parent / "content" / "shops.json"
+EQUIPMENT_SETS_PATH = Path(__file__).resolve().parent.parent / "content" / "equipment_sets.json"
 
 
 def load_monster_pool() -> list[dict]:
@@ -40,6 +42,12 @@ def load_events() -> list[dict]:
 def load_shops() -> list[dict]:
     with SHOPS_PATH.open("r", encoding="utf-8") as handle:
         return json.load(handle)
+
+
+def load_equipment_sets() -> list[EquipmentSet]:
+    with EQUIPMENT_SETS_PATH.open("r", encoding="utf-8") as handle:
+        sets_data = json.load(handle)
+        return [EquipmentSet(**set_data) for set_data in sets_data]
 
 
 def generate_monster(floor: int, rng: random.Random, cycle: int = 1) -> Monster:
