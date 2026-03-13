@@ -26,11 +26,21 @@ def check_achievements(player: Player, achievements: List[Achievement], trigger:
             if player.unlock_achievement("first_blood"):
                 newly_unlocked.append(("first_blood", get_achievement_by_id(achievements, "first_blood")))
 
+        # Monster Hunter
+        if player.monsters_killed >= 50:
+            if player.unlock_achievement("monster_hunter"):
+                newly_unlocked.append(("monster_hunter", get_achievement_by_id(achievements, "monster_hunter")))
+
         # Boss achievements
         if kwargs.get("is_boss", False):
             if player.bosses_killed == 1:
                 if player.unlock_achievement("boss_slayer"):
                     newly_unlocked.append(("boss_slayer", get_achievement_by_id(achievements, "boss_slayer")))
+
+            # Boss Master (all 4 bosses defeated)
+            if player.bosses_killed == 4:
+                if player.unlock_achievement("boss_master"):
+                    newly_unlocked.append(("boss_master", get_achievement_by_id(achievements, "boss_master")))
 
             # Specific boss achievements
             monster_name = kwargs.get("monster_name", "")
@@ -62,10 +72,21 @@ def check_achievements(player: Player, achievements: List[Achievement], trigger:
             if player.unlock_achievement(ach_id):
                 newly_unlocked.append((ach_id, get_achievement_by_id(achievements, ach_id)))
 
+        # Speed Runner (reach floor 10 before level 8)
+        if floor == 10 and player.level < 8:
+            if player.unlock_achievement("speed_runner"):
+                newly_unlocked.append(("speed_runner", get_achievement_by_id(achievements, "speed_runner")))
+
         # Completion achievement
         if floor > 20:
             if player.unlock_achievement("first_completion"):
                 newly_unlocked.append(("first_completion", get_achievement_by_id(achievements, "first_completion")))
+
+            # Cycle Veteran (complete cycle 3 or higher)
+            cycle = kwargs.get("cycle", 1)
+            if cycle >= 3:
+                if player.unlock_achievement("cycle_veteran"):
+                    newly_unlocked.append(("cycle_veteran", get_achievement_by_id(achievements, "cycle_veteran")))
 
     elif trigger == "level_up":
         level = player.level
@@ -104,11 +125,17 @@ def check_achievements(player: Player, achievements: List[Achievement], trigger:
         if player.gold >= 500:
             if player.unlock_achievement("gold_hoarder"):
                 newly_unlocked.append(("gold_hoarder", get_achievement_by_id(achievements, "gold_hoarder")))
+        if player.gold >= 1000:
+            if player.unlock_achievement("wealthy_adventurer"):
+                newly_unlocked.append(("wealthy_adventurer", get_achievement_by_id(achievements, "wealthy_adventurer")))
 
     elif trigger == "skill_used":
         if player.skills_used >= 50:
             if player.unlock_achievement("skill_master"):
                 newly_unlocked.append(("skill_master", get_achievement_by_id(achievements, "skill_master")))
+        if player.skills_used >= 100:
+            if player.unlock_achievement("skill_specialist"):
+                newly_unlocked.append(("skill_specialist", get_achievement_by_id(achievements, "skill_specialist")))
 
     elif trigger == "battle_won":
         hp_percent = (player.hp / player.total_max_hp) * 100

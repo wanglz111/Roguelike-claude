@@ -10,7 +10,7 @@ from game.item import Item
 def test_load_achievements():
     """Test loading achievements from JSON."""
     achievements = load_achievements()
-    assert len(achievements) == 24  # Total number of achievements
+    assert len(achievements) == 30  # Total number of achievements (24 + 6 new)
 
     # Check that all achievements have required fields
     for ach in achievements:
@@ -241,3 +241,100 @@ def test_player_achievement_methods():
     result = player.unlock_achievement("first_blood")
     assert result is False
     assert len(player.unlocked_achievements) == 1
+
+
+def test_monster_hunter_achievement():
+    """Test monster hunter achievement (50 kills)."""
+    achievements = load_achievements()
+    player = Player(name="Test Hero")
+
+    # 49 kills - no achievement
+    player.monsters_killed = 49
+    newly_unlocked = check_achievements(player, achievements, "monster_killed", is_boss=False)
+    assert len(newly_unlocked) == 0
+
+    # 50 kills - achievement unlocked
+    player.monsters_killed = 50
+    newly_unlocked = check_achievements(player, achievements, "monster_killed", is_boss=False)
+    assert len(newly_unlocked) == 1
+    assert newly_unlocked[0][0] == "monster_hunter"
+
+
+def test_boss_master_achievement():
+    """Test boss master achievement (defeat all 4 bosses)."""
+    achievements = load_achievements()
+    player = Player(name="Test Hero")
+
+    # 3 bosses - no achievement
+    player.bosses_killed = 3
+    newly_unlocked = check_achievements(player, achievements, "monster_killed", is_boss=True, monster_name="Ancient Dragon")
+    assert "boss_master" not in [ach_id for ach_id, _ in newly_unlocked]
+
+    # 4 bosses - achievement unlocked
+    player.bosses_killed = 4
+    newly_unlocked = check_achievements(player, achievements, "monster_killed", is_boss=True, monster_name="Demon Lord")
+    assert any(ach_id == "boss_master" for ach_id, _ in newly_unlocked)
+
+
+def test_speed_runner_achievement():
+    """Test speed runner achievement (reach floor 10 before level 8)."""
+    achievements = load_achievements()
+    player = Player(name="Test Hero")
+
+    # Level 8 at floor 10 - no achievement
+    player.level = 8
+    newly_unlocked = check_achievements(player, achievements, "floor_reached", floor=10, cycle=1)
+    assert "speed_runner" not in [ach_id for ach_id, _ in newly_unlocked]
+
+    # Level 7 at floor 10 - achievement unlocked
+    player = Player(name="Test Hero")
+    player.level = 7
+    newly_unlocked = check_achievements(player, achievements, "floor_reached", floor=10, cycle=1)
+    assert any(ach_id == "speed_runner" for ach_id, _ in newly_unlocked)
+
+
+def test_wealthy_adventurer_achievement():
+    """Test wealthy adventurer achievement (1000 gold)."""
+    achievements = load_achievements()
+    player = Player(name="Test Hero")
+
+    # 999 gold - no achievement
+    player.gold = 999
+    newly_unlocked = check_achievements(player, achievements, "gold_changed")
+    assert "wealthy_adventurer" not in [ach_id for ach_id, _ in newly_unlocked]
+
+    # 1000 gold - achievement unlocked
+    player.gold = 1000
+    newly_unlocked = check_achievements(player, achievements, "gold_changed")
+    assert any(ach_id == "wealthy_adventurer" for ach_id, _ in newly_unlocked)
+
+
+def test_skill_specialist_achievement():
+    """Test skill specialist achievement (100 skills used)."""
+    achievements = load_achievements()
+    player = Player(name="Test Hero")
+
+    # 99 skills - no achievement
+    player.skills_used = 99
+    newly_unlocked = check_achievements(player, achievements, "skill_used")
+    assert "skill_specialist" not in [ach_id for ach_id, _ in newly_unlocked]
+
+    # 100 skills - achievement unlocked
+    player.skills_used = 100
+    newly_unlocked = check_achievements(player, achievements, "skill_used")
+    assert any(ach_id == "skill_specialist" for ach_id, _ in newly_unlocked)
+
+
+def test_cycle_veteran_achievement():
+    """Test cycle veteran achievement (complete cycle 3+)."""
+    achievements = load_achievements()
+    player = Player(name="Test Hero")
+
+    # Cycle 2 completion - no achievement
+    newly_unlocked = check_achievements(player, achievements, "floor_reached", floor=21, cycle=2)
+    assert "cycle_veteran" not in [ach_id for ach_id, _ in newly_unlocked]
+
+    # Cycle 3 completion - achievement unlocked
+    newly_unlocked = check_achievements(player, achievements, "floor_reached", floor=21, cycle=3)
+    assert any(ach_id == "cycle_veteran" for ach_id, _ in newly_unlocked)
+

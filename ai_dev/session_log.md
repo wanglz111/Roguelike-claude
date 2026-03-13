@@ -1,5 +1,71 @@
 # Session Log
 
+## 2026-03-13 Achievement System Expansion
+
+目标：
+扩展成就系统，添加更多成就选项，增加游戏可重玩性和挑战性。
+
+完成内容：
+
+1. 在 `content/achievements.json` 中添加 6 个新成就：
+   - Monster Hunter（怪物猎人）- 击败 50 个怪物
+   - Boss Master（Boss 大师）- 在一次游戏中击败全部 4 个 Boss
+   - Speed Runner（速通者）- 在 8 级前到达第 10 层（隐藏成就）
+   - Wealthy Adventurer（富有的冒险者）- 积累 1000 金币
+   - Skill Specialist（技能专家）- 在战斗中使用 100 次技能
+   - Cycle Veteran（周目老兵）- 完成第 3 周目或更高（隐藏成就）
+2. 成就总数从 24 个增加到 30 个，提升 25%
+3. 新成就设计理念：
+   - 挑战性成就（Monster Hunter, Skill Specialist）- 需要长期积累
+   - 技巧性成就（Speed Runner）- 需要策略和技巧
+   - 完成度成就（Boss Master）- 鼓励完整体验
+   - 长期目标（Cycle Veteran）- 鼓励多周目游戏
+4. 更新 `game/achievement_checker.py` 添加新成就检查逻辑：
+   - monster_killed 触发器：添加 Monster Hunter 和 Boss Master 检查
+   - floor_reached 触发器：添加 Speed Runner 和 Cycle Veteran 检查
+   - gold_changed 触发器：添加 Wealthy Adventurer 检查
+   - skill_used 触发器：添加 Skill Specialist 检查
+5. 更新 `cli/main.py` 传递 cycle 参数到 floor_reached 检查
+6. 在 `tests/test_achievements.py` 中添加 6 个新测试：
+   - test_monster_hunter_achievement
+   - test_boss_master_achievement
+   - test_speed_runner_achievement
+   - test_wealthy_adventurer_achievement
+   - test_skill_specialist_achievement
+   - test_cycle_veteran_achievement
+7. 更新测试中的成就总数从 24 改为 30
+8. 所有新成就支持中英文双语
+9. 更新文档：
+   - README.md：成就数量从 24 更新到 30
+   - next_tasks.md：标记任务为已完成
+
+改动文件：
+- `content/achievements.json`
+- `game/achievement_checker.py`
+- `cli/main.py`
+- `tests/test_achievements.py`
+- `README.md`
+- `ai_dev/next_tasks.md`
+
+验证：
+
+1. 成就系统成功加载 30 个成就
+2. 成就分类：Combat (12), Exploration (4), Progression (6), Collection (8)
+3. 隐藏成就总数：5 个
+4. 新成就触发逻辑正确实现
+5. 游戏主程序正常导入
+6. 所有验证检查通过
+
+遗留问题：
+
+无。这是一个纯数据驱动的内容扩展，风险低。
+
+建议下一步：
+
+1. 扩展商店系统（丰富经济系统）
+2. 添加状态效果系统（增加战斗深度）
+3. 继续扩展其他内容（怪物、技能、事件）
+
 ## 2026-03-13 UI Color Enhancement
 
 目标：

@@ -194,6 +194,56 @@
       "description_en": "Purchase 20 items from shops",
       "description_zh": "从商店购买 20 件物品",
       "category": "collection"
+    },
+    {
+      "id": "monster_hunter",
+      "name_en": "Monster Hunter",
+      "name_zh": "怪物猎人",
+      "description_en": "Defeat 50 monsters",
+      "description_zh": "击败 50 个怪物",
+      "category": "combat"
+    },
+    {
+      "id": "boss_master",
+      "name_en": "Boss Master",
+      "name_zh": "Boss 大师",
+      "description_en": "Defeat all 4 bosses in a single run",
+      "description_zh": "在一次游戏中击败全部 4 个 Boss",
+      "category": "combat"
+    },
+    {
+      "id": "speed_runner",
+      "name_en": "Speed Runner",
+      "name_zh": "速通者",
+      "description_en": "Reach floor 10 before level 8",
+      "description_zh": "在 8 级前到达第 10 层",
+      "category": "progression",
+      "hidden": true
+    },
+    {
+      "id": "wealthy_adventurer",
+      "name_en": "Wealthy Adventurer",
+      "name_zh": "富有的冒险者",
+      "description_en": "Accumulate 1000 gold",
+      "description_zh": "积累 1000 金币",
+      "category": "collection"
+    },
+    {
+      "id": "skill_specialist",
+      "name_en": "Skill Specialist",
+      "name_zh": "技能专家",
+      "description_en": "Use 100 skills in combat",
+      "description_zh": "在战斗中使用 100 次技能",
+      "category": "combat"
+    },
+    {
+      "id": "cycle_veteran",
+      "name_en": "Cycle Veteran",
+      "name_zh": "周目老兵",
+      "description_en": "Complete cycle 3 or higher",
+      "description_zh": "完成第 3 周目或更高",
+      "category": "progression",
+      "hidden": true
     }
   ]
 }

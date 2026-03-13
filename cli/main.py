@@ -94,7 +94,7 @@ def main() -> None:
         state.log.append(t({"en": f"Floor {state.floor} begins.", "zh": f"第{state.floor}层开始。"}))
 
         # Check floor achievement
-        newly_unlocked = check_achievements(state.player, achievements_db, "floor_reached", floor=state.floor)
+        newly_unlocked = check_achievements(state.player, achievements_db, "floor_reached", floor=state.floor, cycle=state.cycle)
         for _, ach in newly_unlocked:
             print(format_achievement_unlock(ach))
 
