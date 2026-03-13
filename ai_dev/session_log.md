@@ -1,5 +1,46 @@
 # Session Log
 
+## 2026-03-13 Equipment Set Expansion (8→11)
+
+目标：
+扩展装备套装系统，添加 3 个新装备套装，增加装备收集和构建多样性。
+
+完成内容：
+
+1. 添加 3 个新装备套装到 `content/equipment_sets.json`：
+   - Celestial Knight Set（天界骑士套装）：Celestial Sword + Knight's Armor + Sage's Ring
+     - 套装加成：+5 攻击, +4 防御, +35 生命值
+     - 定位：高级平衡型套装，适合中后期
+   - Silver Sentinel Set（银月哨兵套装）：Silver Blade + Scale Mail + Warding Talisman
+     - 套装加成：+3 攻击, +4 防御, +25 生命值
+     - 定位：防御导向的中级套装
+   - Enchanted Scholar Set（附魔学者套装）：Enchanted Blade + Enchanted Mail + Balanced Ring
+     - 套装加成：+4 攻击, +3 防御, +30 生命值
+     - 定位：魔力灌注的多功能战斗装备
+
+2. 套装系统优化：
+   - 套装总数：从 8 个增加到 11 个
+   - 利用现有装备创建新组合，无需添加新装备
+   - 增加了构建路线的多样性
+   - 保持中英文双语支持
+
+3. 平衡考虑：
+   - 新套装加成与现有套装保持平衡
+   - 覆盖不同的装备组合和玩法风格
+   - 鼓励玩家收集配套装备
+
+验证：
+- equipment_sets.json 格式正确，包含所有 11 个套装
+- JSON 语法验证通过
+- 游戏可以正常加载所有装备套装（测试通过）
+- 套装加成合理，与现有套装保持平衡
+
+影响范围：
+- 修改文件：content/equipment_sets.json
+- 游戏体验改进：更多套装选择，更丰富的装备构建路线
+
+---
+
 ## 2026-03-13 Monster Pool Expansion (40→45)
 
 目标：

@@ -118,5 +118,50 @@
     "bonus_attack": 4,
     "bonus_defense": 4,
     "bonus_hp": 30
+  },
+  {
+    "set_id": "celestial_knight",
+    "name": {
+      "en": "Celestial Knight Set",
+      "zh": "天界骑士套装"
+    },
+    "description": {
+      "en": "Divine power from the heavens",
+      "zh": "来自天界的神圣力量"
+    },
+    "items": ["Celestial Sword", "Knight's Armor", "Sage's Ring"],
+    "bonus_attack": 5,
+    "bonus_defense": 4,
+    "bonus_hp": 35
+  },
+  {
+    "set_id": "silver_sentinel",
+    "name": {
+      "en": "Silver Sentinel Set",
+      "zh": "银月哨兵套装"
+    },
+    "description": {
+      "en": "Swift and balanced protection",
+      "zh": "迅捷而平衡的守护"
+    },
+    "items": ["Silver Blade", "Scale Mail", "Warding Talisman"],
+    "bonus_attack": 3,
+    "bonus_defense": 4,
+    "bonus_hp": 25
+  },
+  {
+    "set_id": "enchanted_scholar",
+    "name": {
+      "en": "Enchanted Scholar Set",
+      "zh": "附魔学者套装"
+    },
+    "description": {
+      "en": "Magic-infused equipment for versatile fighters",
+      "zh": "魔力灌注的多功能战斗装备"
+    },
+    "items": ["Enchanted Blade", "Enchanted Mail", "Balanced Ring"],
+    "bonus_attack": 4,
+    "bonus_defense": 3,
+    "bonus_hp": 30
   }
 ]
