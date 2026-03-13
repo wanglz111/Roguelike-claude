@@ -275,5 +275,45 @@
     "mp_cost": 5,
     "effect_type": "heal",
     "effect_value": 15
+  },
+  "thunderbolt": {
+    "name": {"en": "Thunderbolt", "zh": "雷霆一击"},
+    "description": {"en": "Mage skill: Deal 2.8x damage with lightning", "zh": "法师技能：用闪电造成2.8倍伤害"},
+    "mp_cost": 14,
+    "effect_type": "damage_multiplier",
+    "effect_value": 2.8,
+    "class_required": "mage"
+  },
+  "whirlwind": {
+    "name": {"en": "Whirlwind", "zh": "旋风斩"},
+    "description": {"en": "Warrior skill: Deal 1.9x damage in a spinning attack", "zh": "战士技能：旋转攻击造成1.9倍伤害"},
+    "mp_cost": 9,
+    "effect_type": "damage_multiplier",
+    "effect_value": 1.9,
+    "class_required": "warrior"
+  },
+  "assassinate": {
+    "name": {"en": "Assassinate", "zh": "刺杀"},
+    "description": {"en": "Rogue skill: Deal 2.6x damage with a lethal strike", "zh": "盗贼技能：致命一击造成2.6倍伤害"},
+    "mp_cost": 13,
+    "effect_type": "damage_multiplier",
+    "effect_value": 2.6,
+    "class_required": "rogue"
+  },
+  "volley": {
+    "name": {"en": "Volley", "zh": "箭雨"},
+    "description": {"en": "Ranger skill: Deal 2.4x damage with multiple arrows", "zh": "游侠技能：多重箭矢造成2.4倍伤害"},
+    "mp_cost": 12,
+    "effect_type": "damage_multiplier",
+    "effect_value": 2.4,
+    "class_required": "ranger"
+  },
+  "divine_shield": {
+    "name": {"en": "Divine Shield", "zh": "神圣护盾"},
+    "description": {"en": "Priest skill: Reduce damage by 85% this turn", "zh": "牧师技能：本回合减少85%受到的伤害"},
+    "mp_cost": 11,
+    "effect_type": "defense_boost",
+    "effect_value": 0.85,
+    "class_required": "priest"
   }
 }
