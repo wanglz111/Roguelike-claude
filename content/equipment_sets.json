@@ -163,5 +163,65 @@
     "bonus_attack": 4,
     "bonus_defense": 3,
     "bonus_hp": 30
+  },
+  {
+    "set_id": "shadow_assassin",
+    "name": {
+      "en": "Shadow Assassin Set",
+      "zh": "暗影刺客套装"
+    },
+    "description": {
+      "en": "Deadly precision from the shadows",
+      "zh": "来自暗影的致命精准"
+    },
+    "items": ["Voidblade", "Shadowweave Armor", "Crimson Band"],
+    "bonus_attack": 5,
+    "bonus_defense": 2,
+    "bonus_hp": 25
+  },
+  {
+    "set_id": "novice_adventurer",
+    "name": {
+      "en": "Novice Adventurer Set",
+      "zh": "新手冒险者套装"
+    },
+    "description": {
+      "en": "Basic equipment for starting heroes",
+      "zh": "初始英雄的基础装备"
+    },
+    "items": ["Bronze Sword", "Padded Armor", "Simple Band"],
+    "bonus_attack": 1,
+    "bonus_defense": 1,
+    "bonus_hp": 10
+  },
+  {
+    "set_id": "berserker_fury",
+    "name": {
+      "en": "Berserker Fury Set",
+      "zh": "狂战士之怒套装"
+    },
+    "description": {
+      "en": "Overwhelming offense at the cost of defense",
+      "zh": "以防御为代价的压倒性攻击"
+    },
+    "items": ["Voidblade", "Leather Armor", "Berserker Ring"],
+    "bonus_attack": 6,
+    "bonus_defense": -1,
+    "bonus_hp": 15
+  },
+  {
+    "set_id": "titan_fortress",
+    "name": {
+      "en": "Titan's Fortress Set",
+      "zh": "泰坦堡垒套装"
+    },
+    "description": {
+      "en": "Impenetrable defense for the patient warrior",
+      "zh": "耐心战士的坚不可摧防御"
+    },
+    "items": ["Warden's Blade", "Titan's Plate", "Warding Talisman"],
+    "bonus_attack": 3,
+    "bonus_defense": 6,
+    "bonus_hp": 35
   }
 ]
