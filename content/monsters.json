@@ -640,5 +640,75 @@
     "gold_reward": 60,
     "drop_item": "Plate Armor",
     "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Swamp Lurker",
+      "zh": "沼泽潜伏者"
+    },
+    "min_floor": 2,
+    "hp": 16,
+    "attack": 7,
+    "defense": 2,
+    "exp_reward": 8,
+    "gold_reward": 5,
+    "drop_item": "Small Potion",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Arcane Construct",
+      "zh": "奥术构造体"
+    },
+    "min_floor": 7,
+    "hp": 38,
+    "attack": 18,
+    "defense": 5,
+    "exp_reward": 25,
+    "gold_reward": 17,
+    "drop_item": "Steel Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Dread Knight",
+      "zh": "恐惧骑士"
+    },
+    "min_floor": 11,
+    "hp": 62,
+    "attack": 24,
+    "defense": 8,
+    "exp_reward": 41,
+    "gold_reward": 27,
+    "drop_item": "Plate Armor",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Crimson Wyvern",
+      "zh": "赤红飞龙"
+    },
+    "min_floor": 15,
+    "hp": 88,
+    "attack": 30,
+    "defense": 11,
+    "exp_reward": 60,
+    "gold_reward": 40,
+    "drop_item": "Steel Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Obsidian Demon",
+      "zh": "黑曜石恶魔"
+    },
+    "min_floor": 18,
+    "hp": 108,
+    "attack": 34,
+    "defense": 13,
+    "exp_reward": 71,
+    "gold_reward": 51,
+    "drop_item": "Plate Armor",
+    "is_boss": false
   }
 ]
