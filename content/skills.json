@@ -205,5 +205,36 @@
     "effect_value": 25,
     "class_required": "priest",
     "status_effect_id": "regen"
+  },
+  "cleave": {
+    "name": {"en": "Cleave", "zh": "顺劈斩"},
+    "description": {"en": "Warrior skill: Deal 1.4x damage with a wide swing", "zh": "战士技能：大范围挥砍造成1.4倍伤害"},
+    "mp_cost": 6,
+    "effect_type": "damage_multiplier",
+    "effect_value": 1.4,
+    "class_required": "warrior"
+  },
+  "camouflage": {
+    "name": {"en": "Camouflage", "zh": "伪装"},
+    "description": {"en": "Ranger skill: Reduce damage by 55% this turn", "zh": "游侠技能：本回合减少55%受到的伤害"},
+    "mp_cost": 5,
+    "effect_type": "defense_boost",
+    "effect_value": 0.55,
+    "class_required": "ranger"
+  },
+  "sanctuary": {
+    "name": {"en": "Sanctuary", "zh": "庇护所"},
+    "description": {"en": "Priest skill: Reduce damage by 75% this turn", "zh": "牧师技能：本回合减少75%受到的伤害"},
+    "mp_cost": 9,
+    "effect_type": "defense_boost",
+    "effect_value": 0.75,
+    "class_required": "priest"
+  },
+  "focus_strike": {
+    "name": {"en": "Focus Strike", "zh": "集中打击"},
+    "description": {"en": "Deal 1.6x damage with concentrated effort", "zh": "集中精力造成1.6倍伤害"},
+    "mp_cost": 6,
+    "effect_type": "damage_multiplier",
+    "effect_value": 1.6
   }
 }
