@@ -1,7 +1,10 @@
 from dataclasses import dataclass, field
-from typing import Set
+from typing import Set, List, TYPE_CHECKING
 
 from game.i18n import t
+
+if TYPE_CHECKING:
+    from game.status_effect import ActiveStatusEffect
 
 
 @dataclass
@@ -31,6 +34,8 @@ class Player:
     bosses_killed: int = 0
     skills_used: int = 0
     items_purchased: int = 0
+    # Status effects
+    status_effects: List = field(default_factory=list)  # List of ActiveStatusEffect
 
     @property
     def exp_to_next_level(self) -> int:
@@ -49,7 +54,13 @@ class Player:
             bonus += self.armor.effective_bonus_attack
         if self.accessory:
             bonus += self.accessory.effective_bonus_attack
-        return self.attack + bonus
+        base_attack = self.attack + bonus
+
+        # Apply status effect modifiers
+        for active_effect in self.status_effects:
+            base_attack = int(base_attack * active_effect.effect.attack_modifier)
+
+        return base_attack
 
     @property
     def total_defense(self) -> int:
@@ -60,7 +71,13 @@ class Player:
             bonus += self.armor.effective_bonus_defense
         if self.accessory:
             bonus += self.accessory.effective_bonus_defense
-        return self.defense + bonus
+        base_defense = self.defense + bonus
+
+        # Apply status effect modifiers
+        for active_effect in self.status_effects:
+            base_defense = int(base_defense * active_effect.effect.defense_modifier)
+
+        return base_defense
 
     @property
     def total_max_hp(self) -> int:
@@ -237,3 +254,72 @@ class Player:
             return ""
 
         return ""
+
+    def add_status_effect(self, status_effect: 'ActiveStatusEffect') -> str:
+        """Add a status effect to the player.
+
+        Args:
+            status_effect: The ActiveStatusEffect to add
+
+        Returns:
+            Message describing the effect applied
+        """
+        # Check if the same effect type already exists
+        for existing in self.status_effects:
+            if existing.effect.effect_id == status_effect.effect.effect_id:
+                # Refresh duration instead of stacking
+                existing.remaining_turns = status_effect.remaining_turns
+                return t({"en": f"{status_effect.effect.get_name()} effect refreshed!",
+                         "zh": f"{status_effect.effect.get_name()}效果已刷新！"})
+
+        self.status_effects.append(status_effect)
+        return t({"en": f"You are afflicted with {status_effect.effect.get_name()}!",
+                 "zh": f"你受到了{status_effect.effect.get_name()}效果！"})
+
+    def process_status_effects(self) -> list[str]:
+        """Process all active status effects for one turn.
+
+        Returns:
+            List of messages describing what happened
+        """
+        messages = []
+        effects_to_remove = []
+
+        for active_effect in self.status_effects:
+            damage = active_effect.tick()
+
+            if damage > 0:
+                # Damage effect
+                self.hp = max(0, self.hp - damage)
+                messages.append(t({
+                    "en": f"{active_effect.effect.get_name()} deals {damage} damage!",
+                    "zh": f"{active_effect.effect.get_name()}造成了{damage}点伤害！"
+                }))
+            elif damage < 0:
+                # Healing effect
+                heal_amount = -damage
+                old_hp = self.hp
+                self.hp = min(self.total_max_hp, self.hp + heal_amount)
+                actual_heal = self.hp - old_hp
+                if actual_heal > 0:
+                    messages.append(t({
+                        "en": f"{active_effect.effect.get_name()} restores {actual_heal} HP!",
+                        "zh": f"{active_effect.effect.get_name()}恢复了{actual_heal}点生命值！"
+                    }))
+
+            if active_effect.is_expired():
+                effects_to_remove.append(active_effect)
+                messages.append(t({
+                    "en": f"{active_effect.effect.get_name()} has worn off.",
+                    "zh": f"{active_effect.effect.get_name()}效果已消失。"
+                }))
+
+        # Remove expired effects
+        for effect in effects_to_remove:
+            self.status_effects.remove(effect)
+
+        return messages
+
+    def clear_status_effects(self):
+        """Clear all status effects (e.g., on level up or using special items)."""
+        self.status_effects.clear()

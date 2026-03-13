@@ -1,5 +1,97 @@
 # Session Log
 
+## 2026-03-13 Status Effect System Implementation
+
+目标：
+实现状态效果系统，增加战斗策略深度，让玩家可以受到持续伤害、持续治疗或属性修正效果。
+
+完成内容：
+
+1. 创建 `game/status_effect.py` 模块：
+   - 定义 StatusEffect 数据类（效果 ID、名称、描述、效果类型、每回合伤害/治疗、持续时间、属性修正）
+   - 定义 ActiveStatusEffect 数据类（追踪激活的状态效果和剩余回合数）
+   - 实现 load_status_effects() 函数从 JSON 加载状态效果
+2. 创建 `content/status_effects.json` 定义 6 种状态效果：
+   - Poison（中毒）- 每回合 3 点伤害，持续 3 回合
+   - Burn（燃烧）- 每回合 5 点伤害，持续 2 回合
+   - Freeze（冰冻）- 攻击力降低 50%，持续 2 回合
+   - Bleed（流血）- 每回合 4 点伤害，持续 3 回合
+   - Regen（再生）- 每回合恢复 5 HP，持续 3 回合
+   - Weaken（虚弱）- 攻击力和防御力降低 30%，持续 3 回合
+3. 更新 Player 类支持状态效果：
+   - 添加 status_effects 字段（List[ActiveStatusEffect]）
+   - 修改 total_attack 和 total_defense 属性应用状态效果修正
+   - 添加 add_status_effect() 方法（相同效果刷新持续时间而非叠加）
+   - 添加 process_status_effects() 方法（每回合处理伤害/治疗，移除过期效果）
+   - 添加 clear_status_effects() 方法
+4. 更新 Skill 类支持状态效果：
+   - 添加 status_effect_id 字段（可选）
+   - 更新 load_skills() 函数加载状态效果 ID
+5. 更新战斗系统 `game/combat.py`：
+   - 导入状态效果模块
+   - 在每回合开始时处理玩家的状态效果
+   - 技能使用后应用状态效果（如果技能有 status_effect_id）
+6. 在 `content/skills.json` 中添加 3 个带状态效果的技能：
+   - Poison Blade（毒刃）- 盗贼技能，造成 1.3x 伤害并施加中毒
+   - Flame Strike（烈焰打击）- 法师技能，造成 1.8x 伤害并施加燃烧
+   - Frost Armor（冰霜护甲）- 法师技能，治疗并施加再生效果
+7. 技能总数从 17 个增加到 20 个
+8. 更新 CLI 渲染器 `cli/renderer.py`：
+   - 在 render_inventory() 中显示激活的状态效果
+   - 显示效果名称和剩余回合数
+9. 创建 `tests/test_status_effects.py` 测试状态效果系统：
+   - 测试状态效果加载（6 种效果）
+   - 测试中毒、燃烧、流血效果（持续伤害）
+   - 测试再生效果（持续治疗）
+   - 测试冰冻、虚弱效果（属性修正）
+   - 测试状态效果过期机制
+   - 测试状态效果刷新（不叠加）
+   - 测试多个状态效果同时激活
+   - 测试清除所有状态效果
+10. 所有状态效果支持中英文双语
+11. 更新文档：
+    - architecture.md：添加 StatusEffect 说明，更新战斗系统和约束
+    - README.md：在核心功能列表中添加状态效果系统
+    - next_tasks.md：标记状态效果系统为已完成
+
+改动文件：
+- `game/status_effect.py`（新增）
+- `content/status_effects.json`（新增）
+- `game/player.py`
+- `game/skill.py`
+- `game/combat.py`
+- `content/skills.json`
+- `cli/renderer.py`
+- `tests/test_status_effects.py`（新增）
+- `ai_dev/architecture.md`
+- `README.md`
+- `ai_dev/next_tasks.md`
+
+验证：
+
+1. 状态效果系统成功加载 6 种状态效果
+2. 手动测试验证：
+   - 中毒效果每回合造成 3 点伤害
+   - 冰冻效果将攻击力降低到 50%
+   - 再生效果每回合恢复 5 HP
+3. 战斗集成测试验证：
+   - 技能可以正确施加状态效果
+   - 状态效果在战斗中每回合处理
+   - 状态效果在持续时间结束后自动移除
+4. CLI 正确显示激活的状态效果和剩余回合数
+5. 所有现有功能保持正常工作
+
+遗留问题：
+
+无。状态效果系统已完整实现并测试通过。
+
+建议下一步：
+
+1. 可选：添加更多状态效果类型（眩晕、沉默、护盾等）
+2. 可选：添加更多施加状态效果的技能和物品
+3. 可选：让怪物也能施加状态效果
+4. 项目已达到非常完整的可玩状态，所有核心系统完成
+
 ## 2026-03-13 Shop System Expansion
 
 目标：

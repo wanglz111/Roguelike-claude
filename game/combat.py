@@ -4,6 +4,17 @@ from game.monster import Monster
 from game.player import Player
 from game.skill import Skill
 from game.i18n import t
+from game.status_effect import load_status_effects, ActiveStatusEffect
+
+# Load status effects once at module level
+_status_effects_db = None
+
+
+def get_status_effects_db():
+    global _status_effects_db
+    if _status_effects_db is None:
+        _status_effects_db = load_status_effects()
+    return _status_effects_db
 
 
 def calculate_damage(attack: int, defense: int, is_critical: bool = False) -> int:
@@ -33,6 +44,15 @@ def fight(player: Player, monster: Monster, skill: Skill = None) -> tuple[bool, 
     defense_boost = 0.0
 
     while player.is_alive and monster.hp > 0:
+        # Process status effects at the start of each round (after round 1)
+        if round_number > 1:
+            status_messages = player.process_status_effects()
+            log.extend(status_messages)
+
+            # Check if player died from status effects
+            if not player.is_alive:
+                break
+
         # Player's turn
         if skill and round_number == 1:
             # Use skill on first round
@@ -62,6 +82,18 @@ def fight(player: Player, monster: Monster, skill: Skill = None) -> tuple[bool, 
                 healed = player.hp - old_hp
                 log.append(t({"en": f"Round {round_number}: You use {skill.get_name()}! {player_damage} damage to {monster_name}, restored {healed} HP.",
                              "zh": f"第{round_number}回合：你使用了{skill.get_name()}！对{monster_name}造成{player_damage}点伤害，恢复了{healed}点生命值。"}))
+
+            # Apply status effect if skill has one
+            if skill.status_effect_id:
+                status_db = get_status_effects_db()
+                if skill.status_effect_id in status_db:
+                    status_effect = status_db[skill.status_effect_id]
+                    active_effect = ActiveStatusEffect(
+                        effect=status_effect,
+                        remaining_turns=status_effect.duration
+                    )
+                    status_msg = player.add_status_effect(active_effect)
+                    log.append(status_msg)
         else:
             # Normal attack
             player_crit = check_critical_hit()

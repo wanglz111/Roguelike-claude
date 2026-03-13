@@ -18,6 +18,14 @@ def render_inventory(player) -> None:
     print(f"  {colorize(t({'en': 'Armor', 'zh': '护甲'}), Color.CYAN)}: {armor_name}")
     print(f"  {colorize(t({'en': 'Accessory', 'zh': '饰品'}), Color.MAGENTA)}: {accessory_name}")
 
+    # Display active status effects
+    if player.status_effects:
+        print(colorize(t({"en": "Status Effects:", "zh": "状态效果："}), Color.BOLD))
+        for active_effect in player.status_effects:
+            effect_name = active_effect.effect.get_name()
+            turns_left = active_effect.remaining_turns
+            print(f"  {colorize(effect_name, Color.MAGENTA)} ({turns_left} {t({'en': 'turns', 'zh': '回合'})})")
+
     if not player.inventory:
         print(colorize(t({"en": "Inventory: (empty)", "zh": "背包：（空）"}), Color.GRAY))
         return

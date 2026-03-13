@@ -1,0 +1,81 @@
+{
+  "poison": {
+    "name": {
+      "en": "Poison",
+      "zh": "中毒"
+    },
+    "description": {
+      "en": "Takes damage each turn",
+      "zh": "每回合受到伤害"
+    },
+    "effect_type": "poison",
+    "damage_per_turn": 3,
+    "duration": 3
+  },
+  "burn": {
+    "name": {
+      "en": "Burn",
+      "zh": "燃烧"
+    },
+    "description": {
+      "en": "Takes fire damage each turn",
+      "zh": "每回合受到火焰伤害"
+    },
+    "effect_type": "burn",
+    "damage_per_turn": 5,
+    "duration": 2
+  },
+  "freeze": {
+    "name": {
+      "en": "Freeze",
+      "zh": "冰冻"
+    },
+    "description": {
+      "en": "Attack reduced by 50%",
+      "zh": "攻击力降低50%"
+    },
+    "effect_type": "freeze",
+    "duration": 2,
+    "attack_modifier": 0.5
+  },
+  "bleed": {
+    "name": {
+      "en": "Bleed",
+      "zh": "流血"
+    },
+    "description": {
+      "en": "Loses HP each turn",
+      "zh": "每回合失去生命值"
+    },
+    "effect_type": "bleed",
+    "damage_per_turn": 4,
+    "duration": 3
+  },
+  "regen": {
+    "name": {
+      "en": "Regeneration",
+      "zh": "再生"
+    },
+    "description": {
+      "en": "Restores HP each turn",
+      "zh": "每回合恢复生命值"
+    },
+    "effect_type": "regen",
+    "heal_per_turn": 5,
+    "duration": 3
+  },
+  "weaken": {
+    "name": {
+      "en": "Weaken",
+      "zh": "虚弱"
+    },
+    "description": {
+      "en": "Attack and defense reduced by 30%",
+      "zh": "攻击力和防御力降低30%"
+    },
+    "effect_type": "weaken",
+    "duration": 3,
+    "attack_modifier": 0.7,
+    "defense_modifier": 0.7
+  }
+}

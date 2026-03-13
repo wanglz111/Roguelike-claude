@@ -13,6 +13,7 @@ class Skill:
     effect_value: float
     class_required: str = None
     heal_amount: int = None
+    status_effect_id: str = None  # ID of status effect to apply
 
     def get_name(self) -> str:
         return t(self.name)
@@ -34,6 +35,7 @@ def load_skills() -> dict[str, Skill]:
             effect_value=skill_data["effect_value"],
             class_required=skill_data.get("class_required"),
             heal_amount=skill_data.get("heal_amount"),
+            status_effect_id=skill_data.get("status_effect_id"),
         )
         for skill_id, skill_data in data.items()
     }
