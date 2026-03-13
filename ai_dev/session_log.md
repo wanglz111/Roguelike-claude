@@ -1,5 +1,40 @@
 # Session Log
 
+## 2026-03-13 Monster Pool Expansion
+
+目标：
+扩展怪物池，添加更多怪物，增加游戏内容多样性和楼层分布平衡。
+
+完成内容：
+
+1. 添加 6 个新怪物到 `content/monsters.json`：
+   - Corrupted Treant（腐化树人，floor 5）：HP 32, ATK 12, DEF 5
+   - Frost Giant（冰霜巨人，floor 10）：HP 55, ATK 21, DEF 7
+   - Blood Hound（血猎犬，floor 11）：HP 60, ATK 23, DEF 8
+   - Spectral Warden（幽灵守望者，floor 15）：HP 85, ATK 29, DEF 11
+   - Hellfire Imp（地狱火小鬼，floor 17）：HP 98, ATK 31, DEF 11
+   - Titan Golem（泰坦傀儡，floor 19）：HP 120, ATK 35, DEF 15
+
+2. 怪物分布优化：
+   - 填补了 floor 5、10、11、15、17、19 的怪物空缺
+   - 平衡了早期、中期和后期的怪物数量
+   - 所有新怪物属性符合楼层进度曲线
+
+3. 更新文档：
+   - 更新 `README.md` 怪物数量从 24 增加到 30（26 普通 + 4 Boss）
+   - 更新 `ai_dev/next_tasks.md` 标记任务完成并调整待办任务顺序
+
+验证：
+- 怪物总数从 24 增加到 30，达成目标
+- JSON 格式正确，所有新怪物包含必需字段
+- 楼层分布更加平衡
+
+影响范围：
+- 文件修改：content/monsters.json, README.md, ai_dev/next_tasks.md, ai_dev/session_log.md
+- 游戏内容扩展，玩家将遇到更多样化的敌人
+
+---
+
 ## 2026-03-13 Achievement System Expansion
 
 目标：

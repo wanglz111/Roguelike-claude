@@ -346,5 +346,89 @@
     "gold_reward": 58,
     "drop_item": "Plate Armor",
     "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Corrupted Treant",
+      "zh": "腐化树人"
+    },
+    "min_floor": 5,
+    "hp": 32,
+    "attack": 12,
+    "defense": 5,
+    "exp_reward": 18,
+    "gold_reward": 12,
+    "drop_item": "Medium Potion",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Frost Giant",
+      "zh": "冰霜巨人"
+    },
+    "min_floor": 10,
+    "hp": 55,
+    "attack": 21,
+    "defense": 7,
+    "exp_reward": 36,
+    "gold_reward": 24,
+    "drop_item": "Steel Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Blood Hound",
+      "zh": "血猎犬"
+    },
+    "min_floor": 11,
+    "hp": 60,
+    "attack": 23,
+    "defense": 8,
+    "exp_reward": 40,
+    "gold_reward": 26,
+    "drop_item": "Medium Potion",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Spectral Warden",
+      "zh": "幽灵守望者"
+    },
+    "min_floor": 15,
+    "hp": 85,
+    "attack": 29,
+    "defense": 11,
+    "exp_reward": 58,
+    "gold_reward": 38,
+    "drop_item": "Plate Armor",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Hellfire Imp",
+      "zh": "地狱火小鬼"
+    },
+    "min_floor": 17,
+    "hp": 98,
+    "attack": 31,
+    "defense": 11,
+    "exp_reward": 62,
+    "gold_reward": 42,
+    "drop_item": "Steel Sword",
+    "is_boss": false
+  },
+  {
+    "name": {
+      "en": "Titan Golem",
+      "zh": "泰坦傀儡"
+    },
+    "min_floor": 19,
+    "hp": 120,
+    "attack": 35,
+    "defense": 15,
+    "exp_reward": 75,
+    "gold_reward": 55,
+    "drop_item": "Plate Armor",
+    "is_boss": false
   }
 ]
