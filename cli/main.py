@@ -2,6 +2,7 @@ import random
 
 from cli.input_handler import confirm_start, prompt_player_name, prompt_item_use, prompt_event_choice, prompt_shop_purchase, prompt_skill_use, prompt_class_selection, prompt_view_achievements, prompt_save_slot
 from cli.renderer import render_intro, render_state
+from cli.colors import Color, colorize, hp_color
 from game.combat import fight
 from game.floor import generate_monster, load_items, generate_event, generate_shop
 from game.game_state import GameState
@@ -75,6 +76,21 @@ def main() -> None:
     state.log.append(t({"en": f"Welcome, {state.player.name}.", "zh": f"欢迎，{state.player.name}。"}))
 
     while not state.game_over and state.floor <= state.max_floor:
+        # Display floor header with colors
+        floor_text = t({"en": f"Floor {state.floor}", "zh": f"第{state.floor}层"})
+        print(f"\n{colorize('═' * 50, Color.CYAN)}")
+        print(colorize(f"  {floor_text}  ", Color.BRIGHT_CYAN))
+        print(colorize('═' * 50, Color.CYAN))
+
+        # Display player status
+        hp_col = hp_color(state.player.hp, state.player.total_max_hp)
+        print(f"{colorize(state.player.name, Color.BRIGHT_YELLOW)} | "
+              f"{t({'en': 'Lv', 'zh': '等级'})} {colorize(str(state.player.level), Color.GREEN)} | "
+              f"{t({'en': 'HP', 'zh': '生命'})} {colorize(f'{state.player.hp}/{state.player.total_max_hp}', hp_col)} | "
+              f"{t({'en': 'MP', 'zh': '魔法'})} {colorize(f'{state.player.mp}/{state.player.max_mp}', Color.CYAN)} | "
+              f"{t({'en': 'Gold', 'zh': '金币'})} {colorize(str(state.player.gold), Color.YELLOW)}")
+        print(colorize('─' * 50, Color.GRAY))
+
         state.log.append(t({"en": f"Floor {state.floor} begins.", "zh": f"第{state.floor}层开始。"}))
 
         # Check floor achievement
