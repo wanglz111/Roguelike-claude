@@ -1396,5 +1396,250 @@
         }
       }
     ]
+  },
+  {
+    "name": {
+      "en": "Hidden Armory",
+      "zh": "隐藏军械库"
+    },
+    "description": {
+      "en": "You discover a secret armory filled with ancient weapons and armor. The equipment looks well-maintained.",
+      "zh": "你发现了一个秘密军械库，里面装满了古老的武器和盔甲。装备看起来保养得很好。"
+    },
+    "min_floor": 10,
+    "choices": [
+      {
+        "text": {
+          "en": "Train with the weapons",
+          "zh": "用武器训练"
+        },
+        "effect_type": "boost_attack",
+        "effect_value": 2,
+        "result_text": {
+          "en": "You master new weapon techniques! Permanent +2 Attack",
+          "zh": "你掌握了新的武器技巧！永久+2攻击力"
+        }
+      },
+      {
+        "text": {
+          "en": "Try on the armor",
+          "zh": "试穿盔甲"
+        },
+        "effect_type": "boost_defense",
+        "effect_value": 2,
+        "result_text": {
+          "en": "The armor fits perfectly! Permanent +2 Defense",
+          "zh": "盔甲非常合身！永久+2防御力"
+        }
+      },
+      {
+        "text": {
+          "en": "Leave the armory",
+          "zh": "离开军械库"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You decide not to disturb the ancient equipment.",
+          "zh": "你决定不打扰这些古老的装备。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Moonlit Garden",
+      "zh": "月光花园"
+    },
+    "description": {
+      "en": "A beautiful garden bathed in moonlight appears. Luminescent flowers bloom everywhere.",
+      "zh": "一个沐浴在月光下的美丽花园出现了。发光的花朵遍地盛开。"
+    },
+    "min_floor": 7,
+    "choices": [
+      {
+        "text": {
+          "en": "Pick the glowing flowers",
+          "zh": "采摘发光的花朵"
+        },
+        "effect_type": "gold",
+        "effect_value": 42,
+        "result_text": {
+          "en": "The flowers turn into gold coins! +42 gold",
+          "zh": "花朵变成了金币！+42金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Rest in the garden",
+          "zh": "在花园中休息"
+        },
+        "effect_type": "heal",
+        "effect_value": 32,
+        "result_text": {
+          "en": "The peaceful atmosphere rejuvenates you. +32 HP",
+          "zh": "宁静的氛围让你恢复活力。+32生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Continue without stopping",
+          "zh": "不停留继续前进"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You admire the beauty and move on.",
+          "zh": "你欣赏了美景后继续前进。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Demon's Bargain",
+      "zh": "恶魔的交易"
+    },
+    "description": {
+      "en": "A demon materializes before you. 'Power for a price... are you willing to pay?'",
+      "zh": "一个恶魔在你面前现身。'力量是有代价的……你愿意付出吗？'"
+    },
+    "min_floor": 15,
+    "choices": [
+      {
+        "text": {
+          "en": "Accept the bargain (lose 20 HP)",
+          "zh": "接受交易（失去20生命值）"
+        },
+        "effect_type": "gold_with_hp_cost",
+        "effect_value": 120,
+        "result_text": {
+          "en": "Dark power flows through you! +120 gold, -20 HP",
+          "zh": "黑暗力量流过你的身体！+120金币，-20生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Refuse the demon",
+          "zh": "拒绝恶魔"
+        },
+        "effect_type": "heal",
+        "effect_value": 25,
+        "result_text": {
+          "en": "Your virtue is rewarded with divine healing. +25 HP",
+          "zh": "你的美德得到了神圣治疗的奖励。+25生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Banish the demon",
+          "zh": "驱逐恶魔"
+        },
+        "effect_type": "damage",
+        "effect_value": 16,
+        "result_text": {
+          "en": "The demon lashes out before vanishing! -16 HP",
+          "zh": "恶魔在消失前猛烈反击！-16生命值"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Frozen Cavern",
+      "zh": "冰封洞穴"
+    },
+    "description": {
+      "en": "You enter a cavern covered in ice. The cold is intense, but you notice something frozen inside.",
+      "zh": "你进入了一个被冰覆盖的洞穴。寒冷刺骨，但你注意到冰里冻着什么东西。"
+    },
+    "min_floor": 11,
+    "choices": [
+      {
+        "text": {
+          "en": "Break the ice",
+          "zh": "打破冰层"
+        },
+        "effect_type": "gold",
+        "effect_value": 65,
+        "result_text": {
+          "en": "You find a frozen treasure chest! +65 gold",
+          "zh": "你找到了一个冰封的宝箱！+65金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Absorb the cold energy",
+          "zh": "吸收寒冷能量"
+        },
+        "effect_type": "boost_max_hp",
+        "effect_value": 10,
+        "result_text": {
+          "en": "The cold hardens your body! Permanent +10 Max HP",
+          "zh": "寒冷强化了你的身体！永久+10最大生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Leave the cavern quickly",
+          "zh": "快速离开洞穴"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "The cold is unbearable. You escape.",
+          "zh": "寒冷难以忍受。你逃了出去。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Merchant Caravan",
+      "zh": "商队"
+    },
+    "description": {
+      "en": "A traveling merchant caravan offers various goods and services at reasonable prices.",
+      "zh": "一支旅行商队以合理的价格提供各种商品和服务。"
+    },
+    "min_floor": 5,
+    "choices": [
+      {
+        "text": {
+          "en": "Buy combat training (35 gold)",
+          "zh": "购买战斗训练（35金币）"
+        },
+        "effect_type": "trade_boost_attack",
+        "effect_value": 2,
+        "result_text": {
+          "en": "The trainer teaches you new techniques! Permanent +2 Attack, -35 gold",
+          "zh": "训练师教给你新技巧！永久+2攻击力，-35金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Buy healing supplies (25 gold)",
+          "zh": "购买治疗补给（25金币）"
+        },
+        "effect_type": "trade_heal",
+        "effect_value": 35,
+        "result_text": {
+          "en": "You purchase and use healing supplies. +35 HP, -20 gold",
+          "zh": "你购买并使用了治疗补给。+35生命值，-20金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Move on without buying",
+          "zh": "不购买继续前进"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You wave goodbye to the merchants.",
+          "zh": "你向商人们挥手告别。"
+        }
+      }
+    ]
   }
 ]
