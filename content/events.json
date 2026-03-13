@@ -612,5 +612,250 @@
         }
       }
     ]
+  },
+  {
+    "name": {
+      "en": "Collapsing Bridge",
+      "zh": "坍塌的桥梁"
+    },
+    "description": {
+      "en": "You reach a rickety bridge over a deep chasm. It looks unstable but might hold your weight.",
+      "zh": "你来到一座横跨深渊的摇摇欲坠的桥梁。它看起来不稳定，但也许能承受你的重量。"
+    },
+    "min_floor": 8,
+    "choices": [
+      {
+        "text": {
+          "en": "Cross carefully",
+          "zh": "小心通过"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You make it across safely!",
+          "zh": "你安全地通过了！"
+        }
+      },
+      {
+        "text": {
+          "en": "Rush across quickly",
+          "zh": "快速冲过去"
+        },
+        "effect_type": "damage",
+        "effect_value": 12,
+        "result_text": {
+          "en": "The bridge collapses! You barely escape. -12 HP",
+          "zh": "桥梁坍塌了！你勉强逃脱。-12生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Find another way",
+          "zh": "寻找其他路线"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You find a safer path around.",
+          "zh": "你找到了一条更安全的路。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Mysterious Egg",
+      "zh": "神秘的蛋"
+    },
+    "description": {
+      "en": "You find a large, glowing egg. It pulses with strange energy. What could be inside?",
+      "zh": "你发现了一个巨大的发光蛋。它散发着奇异的能量。里面会是什么？"
+    },
+    "min_floor": 10,
+    "choices": [
+      {
+        "text": {
+          "en": "Break it open",
+          "zh": "打破它"
+        },
+        "effect_type": "gold",
+        "effect_value": 70,
+        "result_text": {
+          "en": "Gold coins spill out! +70 gold",
+          "zh": "金币洒了出来！+70金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Touch it gently",
+          "zh": "轻轻触摸"
+        },
+        "effect_type": "heal",
+        "effect_value": 25,
+        "result_text": {
+          "en": "Warm energy flows into you. +25 HP",
+          "zh": "温暖的能量流入你的身体。+25生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Leave it alone",
+          "zh": "不管它"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You decide not to disturb it.",
+          "zh": "你决定不打扰它。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Poisonous Gas",
+      "zh": "毒气陷阱"
+    },
+    "description": {
+      "en": "Green gas seeps from cracks in the walls. The air becomes thick and toxic.",
+      "zh": "绿色的气体从墙壁的裂缝中渗出。空气变得浓稠而有毒。"
+    },
+    "min_floor": 13,
+    "choices": [
+      {
+        "text": {
+          "en": "Hold your breath and run",
+          "zh": "屏住呼吸快跑"
+        },
+        "effect_type": "damage",
+        "effect_value": 8,
+        "result_text": {
+          "en": "You inhale some gas. -8 HP",
+          "zh": "你吸入了一些毒气。-8生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Search for an antidote",
+          "zh": "寻找解毒剂"
+        },
+        "effect_type": "gold",
+        "effect_value": 35,
+        "result_text": {
+          "en": "You find a stash of supplies! +35 gold",
+          "zh": "你找到了一批补给！+35金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Wait for the gas to clear",
+          "zh": "等待毒气散去"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "The gas eventually dissipates.",
+          "zh": "毒气最终散去了。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Enchanted Mirror",
+      "zh": "魔法镜子"
+    },
+    "description": {
+      "en": "An ornate mirror reflects your image, but something seems different about your reflection.",
+      "zh": "一面华丽的镜子映出你的影像，但你的倒影似乎有些不同。"
+    },
+    "min_floor": 15,
+    "choices": [
+      {
+        "text": {
+          "en": "Look deeply into the mirror",
+          "zh": "深深凝视镜子"
+        },
+        "effect_type": "boost_attack",
+        "effect_value": 2,
+        "result_text": {
+          "en": "You see your true potential! Permanent +2 Attack",
+          "zh": "你看到了自己的真正潜力！永久+2攻击力"
+        }
+      },
+      {
+        "text": {
+          "en": "Touch the mirror",
+          "zh": "触摸镜子"
+        },
+        "effect_type": "damage",
+        "effect_value": 18,
+        "result_text": {
+          "en": "Your reflection attacks you! -18 HP",
+          "zh": "你的倒影攻击了你！-18生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Avoid the mirror",
+          "zh": "避开镜子"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You walk past without looking.",
+          "zh": "你没有看它就走过去了。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Starving Beast",
+      "zh": "饥饿的野兽"
+    },
+    "description": {
+      "en": "A wounded beast blocks your path. It looks hungry and desperate, but not immediately hostile.",
+      "zh": "一只受伤的野兽挡住了你的去路。它看起来又饿又绝望，但并不立即表现出敌意。"
+    },
+    "min_floor": 11,
+    "choices": [
+      {
+        "text": {
+          "en": "Feed it (costs 30 gold)",
+          "zh": "喂食它（消耗30金币）"
+        },
+        "effect_type": "trade_heal",
+        "effect_value": 35,
+        "result_text": {
+          "en": "The beast licks your wounds gratefully. +35 HP, -20 gold",
+          "zh": "野兽感激地舔舐你的伤口。+35生命值，-20金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Fight it",
+          "zh": "与它战斗"
+        },
+        "effect_type": "damage",
+        "effect_value": 20,
+        "result_text": {
+          "en": "You drive it away but get injured. -20 HP",
+          "zh": "你赶走了它但受了伤。-20生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Sneak past quietly",
+          "zh": "悄悄溜过去"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You slip by unnoticed.",
+          "zh": "你悄悄溜了过去。"
+        }
+      }
+    ]
   }
 ]
