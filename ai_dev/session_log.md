@@ -1,5 +1,41 @@
 # Session Log
 
+## 2026-03-13 Equipment Pool Expansion
+
+目标：
+扩展装备池，添加 6 件新装备，增加装备多样性和稀有度分布平衡。
+
+完成内容：
+
+1. 添加 6 件新装备到 `content/items.json`：
+   - Flamebrand Sword（烈焰之刃，稀有武器）：+7 攻击力
+   - Warden's Blade（守望者之刃，史诗武器）：+6 攻击力，+3 防御力
+   - Scale Mail（鳞甲，稀有护甲）：+5 防御力，+18 生命值
+   - Titan's Plate（泰坦之铠，史诗护甲）：+7 防御力，+25 生命值
+   - Warding Talisman（守护护符，稀有饰品）：+3 防御力，+10 生命值
+   - Phoenix Amulet（凤凰护符，史诗饰品）：+2 攻击力，+2 防御力，+15 生命值
+
+2. 装备分布优化：
+   - 武器：从 6 件增加到 8 件（填补稀有和史诗级别的空缺）
+   - 护甲：从 6 件增加到 8 件（增加中高级护甲选择）
+   - 饰品：从 7 件增加到 9 件（增加防御型和平衡型饰品）
+   - 装备总数：从 19 件增加到 25 件
+
+3. 更新文档：
+   - 更新 `README.md` 装备数量说明（24→30）
+   - 更新 `ai_dev/architecture.md` 物品统计信息
+
+验证：
+- items.json 格式正确，包含所有 34 件物品（9 消耗品 + 25 装备）
+- 新装备填补了装备进度曲线的空缺
+- 稀有度分布更加平衡（普通、稀有、史诗、传奇）
+
+影响范围：
+- 修改文件：content/items.json, README.md, ai_dev/architecture.md, ai_dev/session_log.md, ai_dev/next_tasks.md
+- 游戏体验改进：更多装备选择，更平滑的装备进度曲线，更丰富的构建策略
+
+---
+
 ## 2026-03-13 Drop System Optimization
 
 目标：
