@@ -1,5 +1,38 @@
 # Session Log
 
+## 2026-03-13 Boss Special Mechanics Implementation
+
+目标：
+为现有 4 个 Boss 添加特殊能力和机制，增加 Boss 战的挑战性和趣味性。
+
+完成内容：
+
+1. 扩展 Monster 类支持特殊能力：
+   - 添加 special_ability 字段（特殊能力类型）
+   - 添加 status_effect_id 字段（关联的状态效果）
+   - 添加 lifesteal_percent 字段（吸血百分比）
+
+2. 为 4 个 Boss 设计并实现独特的特殊能力：
+   - 哥布林军阀（Floor 5）：狂暴（enrage）- 生命值低于 50% 时攻击力提升 50%
+   - 巫妖王（Floor 10）：诅咒（curse）- 第 2 回合对玩家施加中毒状态
+   - 远古巨龙（Floor 15）：灼烧（burn）- 第 3 回合对玩家施加燃烧状态
+   - 魔王（Floor 20）：吸血（lifesteal）- 每次攻击吸取 30% 伤害作为生命值
+
+3. 更新战斗系统处理 Boss 特殊机制：
+   - Boss 战开始时显示特殊能力提示
+   - 在战斗中适当时机触发特殊能力
+   - 添加特殊能力触发的战斗日志消息（中英文）
+
+4. 更新文档：
+   - 更新 architecture.md 中的 Monster 和战斗系统说明
+   - 记录本次开发到 session_log.md
+
+技术细节：
+- 保持向后兼容，普通怪物不受影响
+- 特殊能力完全数据驱动，通过 monsters.json 配置
+- 每个 Boss 的特殊能力在不同时机触发，增加战斗多样性
+- 使用现有的状态效果系统，无需新增状态类型
+
 ## 2026-03-13 Shop Integration for New Consumables
 
 目标：

@@ -38,10 +38,22 @@ def fight(player: Player, monster: Monster, skill: Skill = None) -> tuple[bool, 
             t({"en": f"HP: {monster.hp} | ATK: {monster.attack} | DEF: {monster.defense}", "zh": f"生命值：{monster.hp} | 攻击：{monster.attack} | 防御：{monster.defense}"}),
             "═" * 50
         ]
+        if monster.special_ability:
+            ability_desc = {
+                "enrage": {"en": "⚠️ Special: Enrages when HP drops below 50%!", "zh": "⚠️ 特殊能力：生命值低于50%时会狂暴！"},
+                "curse": {"en": "⚠️ Special: Curses you with poison!", "zh": "⚠️ 特殊能力：会用毒素诅咒你！"},
+                "burn": {"en": "⚠️ Special: Burns enemies with fire!", "zh": "⚠️ 特殊能力：用火焰灼烧敌人！"},
+                "lifesteal": {"en": "⚠️ Special: Steals life with each attack!", "zh": "⚠️ 特殊能力：每次攻击吸取生命！"}
+            }
+            if monster.special_ability in ability_desc:
+                log.append(t(ability_desc[monster.special_ability]))
     else:
         log = [t({"en": f"⚔️ A wild {monster_name} appears!", "zh": f"⚔️ 一只野生的{monster_name}出现了！"})]
     round_number = 1
     defense_boost = 0.0
+    boss_enraged = False
+    boss_curse_applied = False
+    boss_burn_applied = False
 
     while player.is_alive and monster.hp > 0:
         # Process status effects at the start of each round (after round 1)
@@ -114,6 +126,14 @@ def fight(player: Player, monster: Monster, skill: Skill = None) -> tuple[bool, 
         if monster.hp <= 0:
             break
 
+        # Boss special ability: Enrage (Goblin Warlord)
+        if monster.is_boss and monster.special_ability == "enrage" and not boss_enraged:
+            hp_percent = (monster.hp / (monster.hp + player_damage)) * 100
+            if hp_percent < 50:
+                monster.attack = int(monster.attack * 1.5)
+                boss_enraged = True
+                log.append(t({"en": f"💢 {monster_name} becomes enraged! Attack increased!", "zh": f"💢 {monster_name}陷入狂暴！攻击力提升！"}))
+
         # Monster's turn
         monster_crit = check_critical_hit()
         monster_damage = calculate_damage(monster.attack, player.total_defense, monster_crit)
@@ -132,6 +152,36 @@ def fight(player: Player, monster: Monster, skill: Skill = None) -> tuple[bool, 
                 t({"en": f"{monster_name} hits you for {monster_damage} damage.",
                    "zh": f"{monster_name}对你造成了{monster_damage}点伤害。"})
             )
+
+        # Boss special ability: Lifesteal (Demon Lord)
+        if monster.is_boss and monster.special_ability == "lifesteal" and monster.lifesteal_percent:
+            lifesteal_amount = int(monster_damage * monster.lifesteal_percent / 100)
+            monster.hp += lifesteal_amount
+            log.append(t({"en": f"🩸 {monster_name} steals {lifesteal_amount} HP!", "zh": f"🩸 {monster_name}吸取了{lifesteal_amount}点生命值！"}))
+
+        # Boss special ability: Curse with poison (Lich King)
+        if monster.is_boss and monster.special_ability == "curse" and not boss_curse_applied and monster.status_effect_id:
+            if round_number == 2:
+                status_db = get_status_effects_db()
+                if monster.status_effect_id in status_db:
+                    status_effect = status_db[monster.status_effect_id]
+                    active_effect = ActiveStatusEffect(effect=status_effect, remaining_turns=status_effect.duration)
+                    status_msg = player.add_status_effect(active_effect)
+                    log.append(t({"en": f"☠️ {monster_name} curses you!", "zh": f"☠️ {monster_name}诅咒了你！"}))
+                    log.append(status_msg)
+                    boss_curse_applied = True
+
+        # Boss special ability: Burn (Ancient Dragon)
+        if monster.is_boss and monster.special_ability == "burn" and not boss_burn_applied and monster.status_effect_id:
+            if round_number == 3:
+                status_db = get_status_effects_db()
+                if monster.status_effect_id in status_db:
+                    status_effect = status_db[monster.status_effect_id]
+                    active_effect = ActiveStatusEffect(effect=status_effect, remaining_turns=status_effect.duration)
+                    status_msg = player.add_status_effect(active_effect)
+                    log.append(t({"en": f"🔥 {monster_name} breathes fire!", "zh": f"🔥 {monster_name}喷出火焰！"}))
+                    log.append(status_msg)
+                    boss_burn_applied = True
 
         round_number += 1
 

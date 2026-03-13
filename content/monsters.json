@@ -221,7 +221,10 @@
     "exp_reward": 80,
     "gold_reward": 60,
     "drop_item": "Steel Sword",
-    "is_boss": true
+    "is_boss": true,
+    "special_ability": "burn",
+    "status_effect_id": "burn",
+    "lifesteal_percent": null
   },
   {
     "name": {
@@ -235,7 +238,10 @@
     "exp_reward": 100,
     "gold_reward": 80,
     "drop_item": "Plate Armor",
-    "is_boss": true
+    "is_boss": true,
+    "special_ability": "lifesteal",
+    "status_effect_id": null,
+    "lifesteal_percent": 30
   },
   {
     "name": {
@@ -249,7 +255,10 @@
     "exp_reward": 30,
     "gold_reward": 25,
     "drop_item": "Steel Sword",
-    "is_boss": true
+    "is_boss": true,
+    "special_ability": "enrage",
+    "status_effect_id": null,
+    "lifesteal_percent": null
   },
   {
     "name": {
@@ -263,7 +272,10 @@
     "exp_reward": 50,
     "gold_reward": 40,
     "drop_item": "Plate Armor",
-    "is_boss": true
+    "is_boss": true,
+    "special_ability": "curse",
+    "status_effect_id": "poison",
+    "lifesteal_percent": null
   },
   {
     "name": {

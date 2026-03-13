@@ -14,6 +14,9 @@ class Monster:
     gold_reward: int
     drop_item: Optional[str] = None
     is_boss: bool = False
+    special_ability: Optional[str] = None
+    status_effect_id: Optional[str] = None
+    lifesteal_percent: Optional[int] = None
 
     def get_name(self) -> str:
         """Get localized name."""
