@@ -236,5 +236,44 @@
     "mp_cost": 6,
     "effect_type": "damage_multiplier",
     "effect_value": 1.6
+  },
+  "battle_cry": {
+    "name": {"en": "Battle Cry", "zh": "战吼"},
+    "description": {"en": "Warrior skill: Deal 2.1x damage with a mighty roar", "zh": "战士技能：发出强力战吼造成2.1倍伤害"},
+    "mp_cost": 10,
+    "effect_type": "damage_multiplier",
+    "effect_value": 2.1,
+    "class_required": "warrior"
+  },
+  "ice_lance": {
+    "name": {"en": "Ice Lance", "zh": "冰枪术"},
+    "description": {"en": "Mage skill: Deal 2.2x damage with piercing ice", "zh": "法师技能：用穿刺冰枪造成2.2倍伤害"},
+    "mp_cost": 11,
+    "effect_type": "damage_multiplier",
+    "effect_value": 2.2,
+    "class_required": "mage"
+  },
+  "smoke_bomb": {
+    "name": {"en": "Smoke Bomb", "zh": "烟雾弹"},
+    "description": {"en": "Rogue skill: Reduce damage by 65% this turn", "zh": "盗贼技能：本回合减少65%受到的伤害"},
+    "mp_cost": 6,
+    "effect_type": "defense_boost",
+    "effect_value": 0.65,
+    "class_required": "rogue"
+  },
+  "eagle_eye": {
+    "name": {"en": "Eagle Eye", "zh": "鹰眼"},
+    "description": {"en": "Ranger skill: Deal 1.7x damage with enhanced vision", "zh": "游侠技能：增强视野造成1.7倍伤害"},
+    "mp_cost": 7,
+    "effect_type": "damage_multiplier",
+    "effect_value": 1.7,
+    "class_required": "ranger"
+  },
+  "meditation": {
+    "name": {"en": "Meditation", "zh": "冥想"},
+    "description": {"en": "Restore 15 HP through inner peace", "zh": "通过内心平静恢复15点生命值"},
+    "mp_cost": 5,
+    "effect_type": "heal",
+    "effect_value": 15
   }
 }
