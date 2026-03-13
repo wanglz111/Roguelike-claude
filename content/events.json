@@ -1102,5 +1102,299 @@
         }
       }
     ]
+  },
+  {
+    "name": {
+      "en": "Alchemist's Laboratory",
+      "zh": "炼金术士实验室"
+    },
+    "description": {
+      "en": "You discover an alchemist's lab filled with bubbling potions and strange ingredients.",
+      "zh": "你发现了一个炼金术士的实验室，里面装满了冒泡的药水和奇怪的材料。"
+    },
+    "min_floor": 4,
+    "choices": [
+      {
+        "text": {
+          "en": "Purchase strength elixir (40 gold)",
+          "zh": "购买力量药剂（40金币）"
+        },
+        "effect_type": "trade_boost_attack",
+        "effect_value": 2,
+        "result_text": {
+          "en": "The elixir enhances your muscles! Permanent +2 Attack, -40 gold",
+          "zh": "药剂增强了你的肌肉！永久+2攻击力，-40金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Drink a free sample",
+          "zh": "喝一份免费样品"
+        },
+        "effect_type": "heal",
+        "effect_value": 20,
+        "result_text": {
+          "en": "The potion tastes sweet and heals you. +20 HP",
+          "zh": "药水味道甘甜，治愈了你。+20生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Leave the lab",
+          "zh": "离开实验室"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You decide not to risk unknown potions.",
+          "zh": "你决定不冒险尝试未知药水。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Falling Rocks",
+      "zh": "落石"
+    },
+    "description": {
+      "en": "The ceiling begins to crumble! Rocks fall all around you.",
+      "zh": "天花板开始崩塌！石头从四周落下。"
+    },
+    "min_floor": 3,
+    "choices": [
+      {
+        "text": {
+          "en": "Dodge quickly",
+          "zh": "快速闪避"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You narrowly avoid the falling debris!",
+          "zh": "你险险避开了落下的碎石！"
+        }
+      },
+      {
+        "text": {
+          "en": "Shield yourself",
+          "zh": "用盾牌保护自己"
+        },
+        "effect_type": "damage",
+        "effect_value": 6,
+        "result_text": {
+          "en": "Some rocks hit you. -6 HP",
+          "zh": "一些石头击中了你。-6生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Search the rubble",
+          "zh": "搜索废墟"
+        },
+        "effect_type": "gold",
+        "effect_value": 25,
+        "result_text": {
+          "en": "You find coins in the debris! +25 gold",
+          "zh": "你在碎石中找到了金币！+25金币"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Mystical Runes",
+      "zh": "神秘符文"
+    },
+    "description": {
+      "en": "Ancient runes glow on the walls, pulsing with arcane power. You can feel their energy.",
+      "zh": "古老的符文在墙上发光，散发着奥术力量。你能感受到它们的能量。"
+    },
+    "min_floor": 13,
+    "choices": [
+      {
+        "text": {
+          "en": "Study the combat runes",
+          "zh": "研究战斗符文"
+        },
+        "effect_type": "boost_attack",
+        "effect_value": 2,
+        "result_text": {
+          "en": "You learn ancient combat techniques! Permanent +2 Attack",
+          "zh": "你学会了古老的战斗技巧！永久+2攻击力"
+        }
+      },
+      {
+        "text": {
+          "en": "Meditate on the runes",
+          "zh": "冥想符文"
+        },
+        "effect_type": "boost_max_hp",
+        "effect_value": 8,
+        "result_text": {
+          "en": "Your body is fortified by ancient magic! Permanent +8 Max HP",
+          "zh": "你的身体被古老魔法强化！永久+8最大生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Ignore the runes",
+          "zh": "无视符文"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "You walk past the mysterious symbols.",
+          "zh": "你走过这些神秘的符号。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Abandoned Camp",
+      "zh": "废弃营地"
+    },
+    "description": {
+      "en": "You find an abandoned adventurer's camp. Supplies are scattered everywhere.",
+      "zh": "你发现了一个废弃的冒险者营地。补给散落一地。"
+    },
+    "min_floor": 6,
+    "choices": [
+      {
+        "text": {
+          "en": "Search for valuables",
+          "zh": "搜寻贵重物品"
+        },
+        "effect_type": "gold",
+        "effect_value": 38,
+        "result_text": {
+          "en": "You find coins and gems! +38 gold",
+          "zh": "你找到了金币和宝石！+38金币"
+        }
+      },
+      {
+        "text": {
+          "en": "Rest at the camp",
+          "zh": "在营地休息"
+        },
+        "effect_type": "heal",
+        "effect_value": 26,
+        "result_text": {
+          "en": "You rest and recover your strength. +26 HP",
+          "zh": "你休息并恢复了体力。+26生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Leave immediately",
+          "zh": "立即离开"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "Something feels wrong. You leave quickly.",
+          "zh": "感觉有些不对劲。你迅速离开了。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Time Rift",
+      "zh": "时间裂缝"
+    },
+    "description": {
+      "en": "A tear in reality opens before you. Past and future collide in a swirl of energy.",
+      "zh": "现实的裂缝在你面前打开。过去和未来在能量漩涡中碰撞。"
+    },
+    "min_floor": 17,
+    "choices": [
+      {
+        "text": {
+          "en": "Reach into the rift",
+          "zh": "伸手进入裂缝"
+        },
+        "effect_type": "gold_with_hp_cost",
+        "effect_value": 100,
+        "result_text": {
+          "en": "You grab treasure but temporal energy burns you! +100 gold, -18 HP",
+          "zh": "你抓到了宝藏但时间能量灼伤了你！+100金币，-18生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Observe carefully",
+          "zh": "仔细观察"
+        },
+        "effect_type": "boost_defense",
+        "effect_value": 2,
+        "result_text": {
+          "en": "You glimpse future battles and learn! Permanent +2 Defense",
+          "zh": "你瞥见了未来的战斗并学到了东西！永久+2防御力"
+        }
+      },
+      {
+        "text": {
+          "en": "Stay away from the rift",
+          "zh": "远离裂缝"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "The rift closes harmlessly.",
+          "zh": "裂缝无害地关闭了。"
+        }
+      }
+    ]
+  },
+  {
+    "name": {
+      "en": "Spirit Guide",
+      "zh": "灵魂向导"
+    },
+    "description": {
+      "en": "A benevolent spirit appears and offers to aid you on your journey.",
+      "zh": "一个仁慈的灵魂出现，愿意在你的旅程中帮助你。"
+    },
+    "min_floor": 14,
+    "choices": [
+      {
+        "text": {
+          "en": "Request protection blessing",
+          "zh": "请求保护祝福"
+        },
+        "effect_type": "boost_defense",
+        "effect_value": 2,
+        "result_text": {
+          "en": "The spirit shields you with ethereal armor! Permanent +2 Defense",
+          "zh": "灵魂用虚灵护甲保护你！永久+2防御力"
+        }
+      },
+      {
+        "text": {
+          "en": "Request healing guidance",
+          "zh": "请求治疗指引"
+        },
+        "effect_type": "heal",
+        "effect_value": 45,
+        "result_text": {
+          "en": "The spirit's touch heals your wounds. +45 HP",
+          "zh": "灵魂的触碰治愈了你的伤口。+45生命值"
+        }
+      },
+      {
+        "text": {
+          "en": "Thank and decline",
+          "zh": "感谢并婉拒"
+        },
+        "effect_type": "nothing",
+        "effect_value": 0,
+        "result_text": {
+          "en": "The spirit smiles and fades away.",
+          "zh": "灵魂微笑着消失了。"
+        }
+      }
+    ]
   }
 ]
