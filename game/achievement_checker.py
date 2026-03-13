@@ -82,6 +82,22 @@ def check_achievements(player: Player, achievements: List[Achievement], trigger:
             if player.unlock_achievement("first_completion"):
                 newly_unlocked.append(("first_completion", get_achievement_by_id(achievements, "first_completion")))
 
+            # Track completed class
+            player.completed_classes.add(player.player_class)
+
+            # Class-specific completion achievements
+            if player.player_class == "warrior":
+                if player.unlock_achievement("warrior_champion"):
+                    newly_unlocked.append(("warrior_champion", get_achievement_by_id(achievements, "warrior_champion")))
+            elif player.player_class == "mage":
+                if player.unlock_achievement("mage_champion"):
+                    newly_unlocked.append(("mage_champion", get_achievement_by_id(achievements, "mage_champion")))
+
+            # Versatile Hero (complete with 3 different classes)
+            if len(player.completed_classes) >= 3:
+                if player.unlock_achievement("versatile_hero"):
+                    newly_unlocked.append(("versatile_hero", get_achievement_by_id(achievements, "versatile_hero")))
+
             # Difficulty-based completion achievements
             difficulty = kwargs.get("difficulty", None)
             if difficulty:
@@ -113,6 +129,9 @@ def check_achievements(player: Player, achievements: List[Achievement], trigger:
         if level == 10:
             if player.unlock_achievement("level_10"):
                 newly_unlocked.append(("level_10", get_achievement_by_id(achievements, "level_10")))
+        elif level == 15:
+            if player.unlock_achievement("class_master"):
+                newly_unlocked.append(("class_master", get_achievement_by_id(achievements, "class_master")))
         elif level == 20:
             if player.unlock_achievement("level_20"):
                 newly_unlocked.append(("level_20", get_achievement_by_id(achievements, "level_20")))
@@ -127,6 +146,12 @@ def check_achievements(player: Player, achievements: List[Achievement], trigger:
         if player.weapon and player.armor and player.accessory:
             if player.unlock_achievement("full_equipment"):
                 newly_unlocked.append(("full_equipment", get_achievement_by_id(achievements, "full_equipment")))
+
+        # Set Collector - check if wearing a complete set
+        active_set = player.get_active_set_bonus()
+        if active_set:
+            if player.unlock_achievement("set_collector"):
+                newly_unlocked.append(("set_collector", get_achievement_by_id(achievements, "set_collector")))
 
         # Rarity achievements
         item = kwargs.get("item", None)

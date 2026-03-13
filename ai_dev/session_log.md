@@ -1,5 +1,49 @@
 # Session Log
 
+## 2026-03-13 Achievement System Expansion
+
+目标：
+扩展成就系统，添加更多成就，增加游戏长期目标和可重玩性。
+
+完成内容：
+
+1. 添加 5 个新成就到 `content/achievements.json`：
+   - Set Collector（套装收藏家）：装备一套完整的装备套装
+   - Class Master（职业大师）：任意职业达到 15 级
+   - Warrior Champion（战士冠军）：以战士职业通关地牢
+   - Mage Champion（法师冠军）：以法师职业通关地牢
+   - Versatile Hero（多面英雄，隐藏）：用 3 个不同职业通关地牢
+
+2. 更新成就检测逻辑 `game/achievement_checker.py`：
+   - 添加套装收集成就检测（装备完整套装时触发）
+   - 添加职业大师成就检测（15 级时触发）
+   - 添加职业专精成就检测（战士/法师通关时触发）
+   - 添加多职业通关成就检测（3 个不同职业通关时触发）
+
+3. 更新玩家数据模型 `game/player.py`：
+   - 添加 `completed_classes` 字段追踪已通关的职业
+
+4. 更新存档系统 `game/save_load.py`：
+   - 保存和加载 `completed_classes` 字段
+
+5. 更新测试文件 `tests/test_achievements.py`：
+   - 更新成就总数从 33 增加到 38
+
+6. 更新文档：
+   - 更新 `README.md` 成就数量从 33 增加到 38
+   - 更新 `ai_dev/next_tasks.md` 标记任务完成并调整待办任务顺序
+
+验证：
+- 成就总数从 33 增加到 38，达成目标
+- 所有新成就正确加载
+- 成就检测逻辑正确实现
+
+影响范围：
+- 文件修改：content/achievements.json, game/achievement_checker.py, game/player.py, game/save_load.py, tests/test_achievements.py, README.md, ai_dev/next_tasks.md, ai_dev/session_log.md
+- 游戏逻辑已更新，支持新成就检测
+
+---
+
 ## 2026-03-13 Event System Expansion
 
 目标：

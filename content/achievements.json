@@ -269,6 +269,47 @@
       "description_zh": "在困难难度下到达第 10 层",
       "category": "progression",
       "hidden": true
+    },
+    {
+      "id": "set_collector",
+      "name_en": "Set Collector",
+      "name_zh": "套装收藏家",
+      "description_en": "Equip a complete equipment set",
+      "description_zh": "装备一套完整的装备套装",
+      "category": "collection"
+    },
+    {
+      "id": "class_master",
+      "name_en": "Class Master",
+      "name_zh": "职业大师",
+      "description_en": "Reach level 15 with any class",
+      "description_zh": "任意职业达到 15 级",
+      "category": "progression"
+    },
+    {
+      "id": "warrior_champion",
+      "name_en": "Warrior Champion",
+      "name_zh": "战士冠军",
+      "description_en": "Complete the dungeon as a Warrior",
+      "description_zh": "以战士职业通关地牢",
+      "category": "progression"
+    },
+    {
+      "id": "mage_champion",
+      "name_en": "Mage Champion",
+      "name_zh": "法师冠军",
+      "description_en": "Complete the dungeon as a Mage",
+      "description_zh": "以法师职业通关地牢",
+      "category": "progression"
+    },
+    {
+      "id": "versatile_hero",
+      "name_en": "Versatile Hero",
+      "name_zh": "多面英雄",
+      "description_en": "Complete the dungeon with 3 different classes",
+      "description_zh": "用 3 个不同职业通关地牢",
+      "category": "progression",
+      "hidden": true
     }
   ]
 }

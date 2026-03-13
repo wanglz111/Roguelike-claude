@@ -34,6 +34,7 @@ class Player:
     bosses_killed: int = 0
     skills_used: int = 0
     items_purchased: int = 0
+    completed_classes: Set[str] = field(default_factory=set)  # Set of class names that completed the dungeon
     # Status effects
     status_effects: List = field(default_factory=list)  # List of ActiveStatusEffect
 

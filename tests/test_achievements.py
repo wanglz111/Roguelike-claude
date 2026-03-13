@@ -10,7 +10,7 @@ from game.item import Item
 def test_load_achievements():
     """Test loading achievements from JSON."""
     achievements = load_achievements()
-    assert len(achievements) == 30  # Total number of achievements (24 + 6 new)
+    assert len(achievements) == 38  # Total number of achievements (33 + 5 new)
 
     # Check that all achievements have required fields
     for ach in achievements:

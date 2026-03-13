@@ -154,6 +154,7 @@ def save_game(state: GameState, slot: int = 1) -> str:
                 "bosses_killed": state.player.bosses_killed,
                 "skills_used": state.player.skills_used,
                 "items_purchased": state.player.items_purchased,
+                "completed_classes": list(state.player.completed_classes),
             },
             "floor": state.floor,
             "max_floor": state.max_floor,
@@ -231,6 +232,7 @@ def load_game(slot: int = 1) -> tuple[Optional[GameState], str]:
             bosses_killed=save_data["player"].get("bosses_killed", 0),
             skills_used=save_data["player"].get("skills_used", 0),
             items_purchased=save_data["player"].get("items_purchased", 0),
+            completed_classes=set(save_data["player"].get("completed_classes", [])),
         )
 
         # Reconstruct game state
